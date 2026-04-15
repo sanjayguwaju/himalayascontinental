@@ -140,5 +140,12 @@ export const Footer: GlobalConfig = {
         },
       ],
     },
+    {
+      name: "copyrightText",
+      type: "text",
+      localized: true,
+      label: "Copyright Text",
+      defaultValue: "&copy All Rights Reserved, Himalayas Continental Pvt. Ltd.",
+    },
   ],
 };

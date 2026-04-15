@@ -30,6 +30,7 @@ export function Footer({ data }: FooterProps) {
   const quickContact = data?.quickContact;
   const productsSection = data?.productsSection;
   const contactInfo = data?.contactInfo;
+  const copyrightText = data?.copyrightText;
 
   return (
     <footer className="bg-[#1a1a1a] text-white">
@@ -119,6 +120,13 @@ export function Footer({ data }: FooterProps) {
             </ul>
           </div>
         </div>
+
+        {/* Copyright Section */}
+        {copyrightText && (
+          <div className="mt-10 pt-6 border-t border-gray-700 text-center">
+            <p className="text-sm text-gray-400">{copyrightText}</p>
+          </div>
+        )}
       </div>
     </footer>
   );
