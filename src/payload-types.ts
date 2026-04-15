@@ -4783,6 +4783,7 @@ export interface Footer {
     email?: string | null;
     website?: string | null;
   };
+  copyrightText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -4932,6 +4933,7 @@ export interface FooterSelect<T extends boolean = true> {
         email?: T;
         website?: T;
       };
+  copyrightText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
