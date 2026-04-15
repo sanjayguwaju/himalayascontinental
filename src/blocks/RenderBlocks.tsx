@@ -38,6 +38,7 @@ import { OurTeamBlock } from "./OurTeam/Component";
 import { HomepageWelcomeSectionBlock } from "./HomepageGroupBlocks/HomepageWelcomeSection/Component";
 import { HomepageProductCategoriesBlock } from "./HomepageGroupBlocks/HomepageProductCategories/Component";
 import { HomepageOurProductsBlock } from "./HomepageGroupBlocks/HomepageOurProducts/Component";
+import { HomepageAuthorizedDistributorsBlock } from "./HomepageGroupBlocks/HomepageAuthorizedDistributors/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -75,6 +76,7 @@ const blockComponents = {
   homepageWelcomeSection: HomepageWelcomeSectionBlock,
   homepageProductCategories: HomepageProductCategoriesBlock,
   homepageOurProducts: HomepageOurProductsBlock,
+  homepageAuthorizedDistributors: HomepageAuthorizedDistributorsBlock,
 };
 
 export const RenderBlocks: React.FC<{

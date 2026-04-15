@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   return (
-    <div className="min-h-screen bg-[#0870b8] py-10 px-4">
-      <div className="max-w-[860px] mx-auto">
+    <div className="min-h-screen bg-[#0870b8] py-10">
+      <div className="container">
         {/* Page heading */}
         <h1
           className="text-white text-[22px] font-semibold mb-5"

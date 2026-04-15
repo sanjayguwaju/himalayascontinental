@@ -153,13 +153,32 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   return (
     <>
       <div
-        className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex gap-5 transition-shadow duration-200 hover:shadow-md"
+        className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row gap-5 transition-shadow duration-200 hover:shadow-md"
         style={{ fontFamily: "'Open Sans', sans-serif" }}
       >
         {/* Photo */}
-        <div className="shrink-0">
+        <div className="shrink-0 hidden sm:block">
           {photoUrl ? (
-            <div className="relative w-[130px] h-[155px] rounded-lg overflow-hidden">
+            <div className="relative w-[180px] h-[215px] rounded-lg overflow-hidden">
+              <Image
+                src={photoUrl}
+                alt={member.name}
+                fill
+                className="object-cover object-top"
+                sizes="180px"
+              />
+            </div>
+          ) : (
+            <div className="w-[180px] h-[215px] rounded-lg bg-gray-100 flex items-center justify-center">
+              <span className="text-gray-400 text-xs text-center px-2">{member.name}</span>
+            </div>
+          )}
+        </div>
+        
+        {/* Mobile Photo (smaller) */}
+        <div className="shrink-0 block sm:hidden mb-4">
+          {photoUrl ? (
+            <div className="relative w-[130px] h-[155px] rounded-lg overflow-hidden mx-auto">
               <Image
                 src={photoUrl}
                 alt={member.name}
@@ -169,7 +188,7 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
               />
             </div>
           ) : (
-            <div className="w-[130px] h-[155px] rounded-lg bg-gray-100 flex items-center justify-center">
+            <div className="w-[130px] h-[155px] rounded-lg bg-gray-100 flex items-center justify-center mx-auto">
               <span className="text-gray-400 text-xs text-center px-2">{member.name}</span>
             </div>
           )}
@@ -263,8 +282,8 @@ export const OurTeamBlock: React.FC<OurTeamBlockProps> = ({
   const subtitleColor = backgroundColor === "primary" ? "text-white/80" : "text-gray-600";
 
   return (
-    <section className={cn("py-12 md:py-16 px-4", bgClass)}>
-      <div className="max-w-[900px] mx-auto">
+    <section className={cn("py-12 md:py-16", bgClass)}>
+      <div className="container">
         {/* Section Header */}
         {(sectionTitle || subtitle) && (
           <div className="mb-8">

@@ -458,6 +458,7 @@ export interface Page {
     | HomepageWelcomeSectionBlock
     | HomepageProductCategoriesBlock
     | HomepageOurProductsBlock
+    | HomepageAuthorizedDistributorsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1974,6 +1975,26 @@ export interface HomepageOurProductsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageAuthorizedDistributorsBlock".
+ */
+export interface HomepageAuthorizedDistributorsBlock {
+  title?: string | null;
+  subtitle?: string | null;
+  distributors?:
+    | {
+        name: string;
+        logo?: (string | null) | Media;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('white' | 'lightGray' | 'primary') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageAuthorizedDistributors';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -3146,6 +3167,7 @@ export interface PagesSelect<T extends boolean = true> {
         homepageWelcomeSection?: T | HomepageWelcomeSectionBlockSelect<T>;
         homepageProductCategories?: T | HomepageProductCategoriesBlockSelect<T>;
         homepageOurProducts?: T | HomepageOurProductsBlockSelect<T>;
+        homepageAuthorizedDistributors?: T | HomepageAuthorizedDistributorsBlockSelect<T>;
       };
   meta?:
     | T
@@ -3930,6 +3952,25 @@ export interface HomepageOurProductsBlockSelect<T extends boolean = true> {
         label?: T;
         link?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageAuthorizedDistributorsBlock_select".
+ */
+export interface HomepageAuthorizedDistributorsBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  distributors?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        link?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
