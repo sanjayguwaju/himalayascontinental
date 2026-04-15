@@ -3,7 +3,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { type Media, type HomepageOurAssociatesBlock as HomepageOurAssociatesBlockType } from "@/payload-types";
+import {
+  type Media,
+  type HomepageOurAssociatesBlock as HomepageOurAssociatesBlockType,
+} from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import {
   Carousel,
@@ -13,7 +16,11 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-const GroupCarousel = ({ group }: { group: NonNullable<HomepageOurAssociatesBlockType["groups"]>[0] }) => {
+const GroupCarousel = ({
+  group,
+}: {
+  group: NonNullable<HomepageOurAssociatesBlockType["groups"]>[0];
+}) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -39,12 +46,12 @@ const GroupCarousel = ({ group }: { group: NonNullable<HomepageOurAssociatesBloc
       >
         {group.groupTitle}
       </h3>
-      
+
       <div className="border border-[#345c81] rounded-2xl p-6 h-full flex flex-col relative overflow-hidden">
         <Carousel
           setApi={setApi}
           plugins={[plugin.current]}
-          className="w-full flex-grow mb-6"
+          className="w-full grow mb-6"
           opts={{
             align: "start",
             loop: true,
@@ -82,7 +89,10 @@ const GroupCarousel = ({ group }: { group: NonNullable<HomepageOurAssociatesBloc
               return (
                 <CarouselItem key={idx} className="pl-4 basis-1/3 md:basis-1/4">
                   {associate.linkUrl ? (
-                    <Link href={associate.linkUrl} className="block hover:opacity-90 transition-opacity">
+                    <Link
+                      href={associate.linkUrl}
+                      className="block hover:opacity-90 transition-opacity"
+                    >
                       {LogoCard}
                     </Link>
                   ) : (
@@ -152,9 +162,11 @@ export const HomepageOurAssociatesBlock: React.FC<HomepageOurAssociatesBlockType
               {title}
             </h2>
             <div className="flex items-center justify-center w-full max-w-[300px]">
-              <div className={cn("h-[1px] flex-1", isDarkBg ? "bg-white/40" : "bg-gray-400")} />
-              <div className={cn("w-2 h-2 rounded-full mx-4", isDarkBg ? "bg-white" : "bg-gray-900")} />
-              <div className={cn("h-[1px] flex-1", isDarkBg ? "bg-white/40" : "bg-gray-400")} />
+              <div className={cn("h-px flex-1", isDarkBg ? "bg-white/40" : "bg-gray-400")} />
+              <div
+                className={cn("w-2 h-2 rounded-full mx-4", isDarkBg ? "bg-white" : "bg-gray-900")}
+              />
+              <div className={cn("h-px flex-1", isDarkBg ? "bg-white/40" : "bg-gray-400")} />
             </div>
           </div>
         )}

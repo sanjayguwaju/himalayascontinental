@@ -3,16 +3,16 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Media, HomepageAuthorizedDistributorsBlock as HomepageAuthorizedDistributorsBlockType } from "@/payload-types";
+import type {
+  Media,
+  HomepageAuthorizedDistributorsBlock as HomepageAuthorizedDistributorsBlockType,
+} from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import { Building2 } from "lucide-react";
 
-export const HomepageAuthorizedDistributorsBlock: React.FC<HomepageAuthorizedDistributorsBlockType> = ({
-  title,
-  subtitle,
-  distributors,
-  backgroundColor = "lightGray",
-}) => {
+export const HomepageAuthorizedDistributorsBlock: React.FC<
+  HomepageAuthorizedDistributorsBlockType
+> = ({ title, subtitle, distributors, backgroundColor = "lightGray" }) => {
   if (!distributors || distributors.length === 0) return null;
 
   const getBgClass = () => {
@@ -65,7 +65,7 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<HomepageAuthorizedDis
               typeof distributor.logo === "object" && distributor.logo !== null
                 ? (distributor.logo as Media).url
                 : null;
-            
+
             const hasLink = Boolean(distributor.link);
 
             const CardContent = (
@@ -78,7 +78,7 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<HomepageAuthorizedDis
                 style={{ fontFamily: "'Open Sans', sans-serif" }}
               >
                 {logoUrl ? (
-                  <div className="relative w-full aspect-[4/3] mb-4">
+                  <div className="relative w-full aspect-4/3 mb-4">
                     <Image
                       src={logoUrl}
                       alt={distributor.name}
@@ -101,7 +101,12 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<HomepageAuthorizedDis
             return (
               <div key={distributor.id || index} className="h-full">
                 {hasLink ? (
-                  <Link href={distributor.link!} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <Link
+                    href={distributor.link!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block h-full"
+                  >
                     {CardContent}
                   </Link>
                 ) : (

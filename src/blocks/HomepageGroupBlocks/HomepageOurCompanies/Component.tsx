@@ -3,7 +3,10 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { type Media, type HomepageOurCompaniesBlock as HomepageOurCompaniesBlockType } from "@/payload-types";
+import {
+  type Media,
+  type HomepageOurCompaniesBlock as HomepageOurCompaniesBlockType,
+} from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -14,10 +17,9 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
   companies,
   backgroundColor = "navy",
 }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { align: "start", loop: true },
-    [Autoplay({ delay: 4000, stopOnInteraction: true })]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: true }, [
+    Autoplay({ delay: 4000, stopOnInteraction: true }),
+  ]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -49,19 +51,21 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
         {/* Title Section */}
         {title && (
           <div className="flex flex-col items-center mb-16">
-            <h2 
+            <h2
               className={cn(
                 "text-[32px] md:text-[40px] mb-6 font-normal tracking-wide text-center",
                 isDarkBg ? "text-white" : "text-gray-900"
-              )} 
+              )}
               style={{ fontFamily: "Arial, sans-serif" }}
             >
               {title}
             </h2>
             <div className="flex items-center justify-center w-full max-w-[300px]">
-              <div className={cn("h-[1px] flex-1", isDarkBg ? "bg-gray-400/50" : "bg-gray-400")} />
-              <div className={cn("w-2 h-2 rounded-full mx-4", isDarkBg ? "bg-white" : "bg-gray-900")} />
-              <div className={cn("h-[1px] flex-1", isDarkBg ? "bg-gray-400/50" : "bg-gray-400")} />
+              <div className={cn("h-px flex-1", isDarkBg ? "bg-gray-400/50" : "bg-gray-400")} />
+              <div
+                className={cn("w-2 h-2 rounded-full mx-4", isDarkBg ? "bg-white" : "bg-gray-900")}
+              />
+              <div className={cn("h-px flex-1", isDarkBg ? "bg-gray-400/50" : "bg-gray-400")} />
             </div>
           </div>
         )}
@@ -81,7 +85,10 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
                     : company.name;
 
                 return (
-                  <div key={index} className="flex-none min-w-0 pl-4 md:pl-6 w-full md:w-1/2 lg:w-1/3">
+                  <div
+                    key={index}
+                    className="flex-none min-w-0 pl-4 md:pl-6 w-full md:w-1/2 lg:w-1/3"
+                  >
                     <div className="p-1 h-full">
                       <div className="bg-white rounded-xl shadow-lg p-8 h-full flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         {/* Logo */}
@@ -100,12 +107,18 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
                         </div>
 
                         {/* Company Name */}
-                        <h3 className="text-[18px] md:text-[20px] font-medium text-[#2e91db] mb-4 min-h-[56px] flex items-center justify-center" style={{ fontFamily: "Arial, sans-serif" }}>
+                        <h3
+                          className="text-[18px] md:text-[20px] font-medium text-[#2e91db] mb-4 min-h-[56px] flex items-center justify-center"
+                          style={{ fontFamily: "Arial, sans-serif" }}
+                        >
                           {company.name}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-[14px] text-gray-500 leading-relaxed mb-8 flex-grow" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                        <p
+                          className="text-[14px] text-gray-500 leading-relaxed mb-8 grow"
+                          style={{ fontFamily: "'Open Sans', sans-serif" }}
+                        >
                           {company.description}
                         </p>
 
@@ -134,7 +147,7 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
               })}
             </div>
           </div>
-            
+
           {/* Navigation arrows for desktop */}
           <div className="hidden md:block">
             <button
@@ -142,7 +155,9 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
               onClick={scrollPrev}
               className={cn(
                 "absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full -left-4 md:-left-8 border-none transition-colors",
-                isDarkBg ? "bg-white/10 text-white hover:bg-white/20" : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                isDarkBg
+                  ? "bg-white/10 text-white hover:bg-white/20"
+                  : "bg-gray-100 text-gray-800 hover:bg-gray-200"
               )}
             >
               <ChevronLeft className="w-6 h-6" />
@@ -152,7 +167,9 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
               onClick={scrollNext}
               className={cn(
                 "absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full -right-4 md:-right-8 border-none transition-colors",
-                isDarkBg ? "bg-white/10 text-white hover:bg-white/20" : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                isDarkBg
+                  ? "bg-white/10 text-white hover:bg-white/20"
+                  : "bg-gray-100 text-gray-800 hover:bg-gray-200"
               )}
             >
               <ChevronRight className="w-6 h-6" />

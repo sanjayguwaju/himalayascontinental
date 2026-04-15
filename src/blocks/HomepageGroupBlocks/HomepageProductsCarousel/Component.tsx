@@ -3,7 +3,10 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { type Media, type HomepageProductsCarouselBlock as HomepageProductsCarouselBlockType } from "@/payload-types";
+import {
+  type Media,
+  type HomepageProductsCarouselBlock as HomepageProductsCarouselBlockType,
+} from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -16,10 +19,9 @@ export const HomepageProductsCarouselBlock: React.FC<HomepageProductsCarouselBlo
   viewAllLabel = "View All",
   viewAllLink = "/products",
 }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { align: "start", loop: true },
-    [Autoplay({ delay: 3500, stopOnInteraction: true })]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: true }, [
+    Autoplay({ delay: 3500, stopOnInteraction: true }),
+  ]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -54,11 +56,11 @@ export const HomepageProductsCarouselBlock: React.FC<HomepageProductsCarouselBlo
         {/* Category Divider line */}
         {categoryText && (
           <div className="flex items-center justify-center w-full mb-8">
-            <div className="h-[1px] bg-gray-300 flex-1" />
+            <div className="h-px bg-gray-300 flex-1" />
             <h3 className="px-6 text-sm font-semibold tracking-widest text-gray-600 uppercase whitespace-nowrap">
               {categoryText}
             </h3>
-            <div className="h-[1px] bg-gray-300 flex-1" />
+            <div className="h-px bg-gray-300 flex-1" />
           </div>
         )}
 
