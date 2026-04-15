@@ -8,21 +8,24 @@ const productCategoriesSeedData = [
     name: "Medical Equipments",
     slug: "medical-equipments",
     hasSubCategories: true,
-    description: "High-quality medical equipment for hospitals, clinics, and healthcare facilities including diagnostic, therapeutic, and monitoring devices.",
+    description:
+      "High-quality medical equipment for hospitals, clinics, and healthcare facilities including diagnostic, therapeutic, and monitoring devices.",
     order: 1,
   },
   {
     name: "International Business",
     slug: "international-business",
     hasSubCategories: false,
-    description: "Global healthcare business solutions, import/export services, and international medical partnerships.",
+    description:
+      "Global healthcare business solutions, import/export services, and international medical partnerships.",
     order: 2,
   },
   {
     name: "Medicines",
     slug: "medicines",
     hasSubCategories: false,
-    description: "Pharmaceutical products, prescription medications, over-the-counter drugs, and healthcare supplements.",
+    description:
+      "Pharmaceutical products, prescription medications, over-the-counter drugs, and healthcare supplements.",
     order: 3,
   },
 ];
@@ -34,14 +37,16 @@ const productSubCategoriesSeedData = [
     name: "Critical Care Equipment",
     slug: "critical-care-equipment",
     parentCategorySlug: "medical-equipments",
-    description: "ICU ventilators, patient monitors, infusion pumps, and other critical care devices.",
+    description:
+      "ICU ventilators, patient monitors, infusion pumps, and other critical care devices.",
     order: 1,
   },
   {
     name: "Diagnostic Equipment",
     slug: "diagnostic-equipment",
     parentCategorySlug: "medical-equipments",
-    description: "X-ray machines, ultrasound scanners, ECG machines, and laboratory diagnostic instruments.",
+    description:
+      "X-ray machines, ultrasound scanners, ECG machines, and laboratory diagnostic instruments.",
     order: 2,
   },
   {
@@ -62,8 +67,20 @@ const productSubCategoriesSeedData = [
     name: "Oxygen & Respiratory",
     slug: "oxygen-respiratory",
     parentCategorySlug: "medical-equipments",
-    description: "Oxygen concentrators, nebulizers, CPAP machines, and respiratory therapy equipment.",
+    description:
+      "Oxygen concentrators, nebulizers, CPAP machines, and respiratory therapy equipment.",
     order: 5,
+  },
+];
+
+// ── BROCHURES (for products with hasBrochure: true) ─────────────────
+const brochuresSeedData = [
+  {
+    slug: "philips-ecg-brochure",
+    title: "Philips ECG Machine 12-Channel Brochure",
+    description:
+      "Complete product brochure with technical specifications, features, and ordering information for the Philips 12-Channel ECG Machine.",
+    alt: "Download Philips ECG Machine 12-Channel Brochure PDF",
   },
 ];
 
@@ -76,7 +93,8 @@ const productsSeedData = [
     sku: "OW-OC-10L-001",
     categorySlug: "medical-equipments",
     subCategorySlug: "oxygen-respiratory",
-    shortDescription: "High-flow oxygen concentrator delivering up to 10 liters per minute with 93%±3% purity. Ideal for home and clinical use.",
+    shortDescription:
+      "High-flow oxygen concentrator delivering up to 10 liters per minute with 93%±3% purity. Ideal for home and clinical use.",
     description: {
       root: {
         type: "root",
@@ -143,7 +161,8 @@ const productsSeedData = [
     sku: "PH-ECG-12CH-002",
     categorySlug: "medical-equipments",
     subCategorySlug: "diagnostic-equipment",
-    shortDescription: "Advanced 12-channel ECG machine with automatic interpretation, high-resolution touchscreen, and seamless EMR integration.",
+    shortDescription:
+      "Advanced 12-channel ECG machine with automatic interpretation, high-resolution touchscreen, and seamless EMR integration.",
     description: {
       root: {
         type: "root",
@@ -220,7 +239,8 @@ const productsSeedData = [
     sku: "HM-HB-5F-003",
     categorySlug: "medical-equipments",
     subCategorySlug: "patient-care-equipment",
-    shortDescription: "Electric hospital bed with 5 functions including height adjustment, backrest, knee break, Trendelenburg, and reverse Trendelenburg positions.",
+    shortDescription:
+      "Electric hospital bed with 5 functions including height adjustment, backrest, knee break, Trendelenburg, and reverse Trendelenburg positions.",
     description: {
       root: {
         type: "root",
@@ -312,7 +332,10 @@ async function seedProducts(): Promise<void> {
       }
     }
 
-    const existingSubCategories = await payload.find({ collection: "product-sub-categories", limit: 100 });
+    const existingSubCategories = await payload.find({
+      collection: "product-sub-categories",
+      limit: 100,
+    });
     if (existingSubCategories.docs.length > 0) {
       console.log(`   Deleting ${existingSubCategories.docs.length} sub-categories...`);
       for (const doc of existingSubCategories.docs) {
@@ -325,6 +348,14 @@ async function seedProducts(): Promise<void> {
       console.log(`   Deleting ${existingCategories.docs.length} categories...`);
       for (const doc of existingCategories.docs) {
         await payload.delete({ collection: "product-categories", id: doc.id });
+      }
+    }
+
+    const existingBrochures = await payload.find({ collection: "brochures", limit: 100 });
+    if (existingBrochures.docs.length > 0) {
+      console.log(`   Deleting ${existingBrochures.docs.length} brochures...`);
+      for (const doc of existingBrochures.docs) {
+        await payload.delete({ collection: "brochures", id: doc.id });
       }
     }
 
@@ -366,6 +397,19 @@ async function seedProducts(): Promise<void> {
       console.log(`   ✅ ${subCatData.name} (ID: ${subCategory.id})`);
     }
 
+    // ── CREATE BROCHURES ───────────────────────────────────────────
+    console.log("📄 Creating brochures...");
+    const createdBrochures: Record<string, string> = {};
+
+    for (const brochureData of brochuresSeedData) {
+      const brochure = await payload.create({
+        collection: "brochures",
+        data: brochureData as unknown as RequiredDataFromCollectionSlug<"brochures">,
+      });
+      createdBrochures[brochureData.slug] = brochure.id;
+      console.log(`   ✅ ${brochureData.title} (ID: ${brochure.id})`);
+    }
+
     // ── CREATE PRODUCTS ────────────────────────────────────────────
     console.log("📦 Creating products...");
 
@@ -390,6 +434,9 @@ async function seedProducts(): Promise<void> {
         }
       }
 
+      // Link brochure if product has hasBrochure: true
+      const brochureId = prodData.hasBrochure ? Object.values(createdBrochures)[0] : undefined;
+
       const product = await payload.create({
         collection: "products",
         data: {
@@ -408,6 +455,7 @@ async function seedProducts(): Promise<void> {
           inStock: prodData.inStock,
           isNew: prodData.isNew,
           hasBrochure: prodData.hasBrochure,
+          brochure: brochureId,
           hasSpecificationsTable: prodData.hasSpecificationsTable,
           specificationsTable: prodData.specificationsTable,
         } as unknown as RequiredDataFromCollectionSlug<"products">,
@@ -418,6 +466,7 @@ async function seedProducts(): Promise<void> {
     console.log("\n🎉 Seeding completed successfully!");
     console.log(`   📁 ${productCategoriesSeedData.length} Categories`);
     console.log(`   📂 ${productSubCategoriesSeedData.length} Sub-Categories`);
+    console.log(`   📄 ${brochuresSeedData.length} Brochures`);
     console.log(`   📦 ${productsSeedData.length} Products`);
   } catch (error) {
     console.error("❌ Seeder failed:", error);

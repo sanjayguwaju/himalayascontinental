@@ -172,12 +172,12 @@ export const Products: CollectionConfig = {
     },
     {
       name: "brochure",
-      type: "upload",
-      relationTo: "files",
-      label: "Product Brochure (PDF)",
+      type: "relationship",
+      relationTo: "brochures",
+      label: "Product Brochure",
       admin: {
         condition: (data) => data?.hasBrochure === true,
-        description: "Upload PDF brochure for this product",
+        description: "Select a brochure for this product",
       },
     },
 

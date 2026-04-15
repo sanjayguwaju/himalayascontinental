@@ -31,7 +31,7 @@ import {
 import { PayloadRedirects } from "@/components/PayloadRedirects";
 import { LivePreviewListener } from "@/components/LivePreviewListener";
 import RichText from "@/components/RichText";
-import type { Media, File, Product, ProductCategory, ProductSubCategory } from "@/payload-types";
+import type { Media, Brochure, Product, ProductCategory, ProductSubCategory } from "@/payload-types";
 import {
   Table,
   TableBody,
@@ -92,7 +92,7 @@ export default async function ProductPage({ params }: Args) {
     : null;
 
   const brochureFile = product.brochure && typeof product.brochure === "object" 
-    ? product.brochure as File 
+    ? product.brochure as Brochure 
     : null;
 
   const galleryImages = product.gallery?.map((item) => 

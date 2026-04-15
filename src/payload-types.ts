@@ -82,6 +82,7 @@ export interface Config {
     'product-categories': ProductCategory;
     'product-sub-categories': ProductSubCategory;
     products: Product;
+    brochures: Brochure;
     forms: Form;
     'form-submissions': FormSubmission;
     search: Search;
@@ -114,6 +115,7 @@ export interface Config {
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     'product-sub-categories': ProductSubCategoriesSelect<false> | ProductSubCategoriesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    brochures: BrochuresSelect<false> | BrochuresSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
@@ -453,6 +455,9 @@ export interface Page {
     | CompanyProfileBlock
     | CompanyBlock
     | OurTeamBlock
+    | HomepageWelcomeSectionBlock
+    | HomepageProductCategoriesBlock
+    | HomepageOurProductsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1881,6 +1886,94 @@ export interface OurTeamBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageWelcomeSectionBlock".
+ */
+export interface HomepageWelcomeSectionBlock {
+  preHeading?: string | null;
+  heading: string;
+  tagline?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  backgroundImage?: (string | null) | Media;
+  showDivider?: boolean | null;
+  alignment?: ('left' | 'center' | 'right') | null;
+  ctaButton?: {
+    show?: boolean | null;
+    label?: string | null;
+    link?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageWelcomeSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageProductCategoriesBlock".
+ */
+export interface HomepageProductCategoriesBlock {
+  title?: string | null;
+  subtitle?: string | null;
+  categories?:
+    | {
+        icon: string | Media;
+        title: string;
+        description?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('lightBlue' | 'white' | 'darkBlue') | null;
+  cardStyle?: ('rounded' | 'square') | null;
+  showViewAllButton?: boolean | null;
+  viewAllButton?: {
+    label?: string | null;
+    link?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageProductCategories';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageOurProductsBlock".
+ */
+export interface HomepageOurProductsBlock {
+  title?: string | null;
+  subtitle?: string | null;
+  products?:
+    | {
+        image: string | Media;
+        title: string;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  columns?: ('3' | '4' | '5') | null;
+  backgroundColor?: ('white' | 'lightGray' | 'lightBlue') | null;
+  showViewAllButton?: boolean | null;
+  viewAllButton?: {
+    label?: string | null;
+    link?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageOurProducts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -2465,9 +2558,9 @@ export interface Product {
   isNew?: boolean | null;
   hasBrochure?: boolean | null;
   /**
-   * Upload PDF brochure for this product
+   * Select a brochure for this product
    */
-  brochure?: (string | null) | File;
+  brochure?: (string | null) | Brochure;
   /**
    * Enable to show a detailed specifications table
    */
@@ -2494,6 +2587,34 @@ export interface Product {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brochures".
+ */
+export interface Brochure {
+  id: string;
+  /**
+   * URL-safe identifier. e.g. "owgels-oxygen-concentrator-brochure"
+   */
+  slug: string;
+  title: string;
+  description?: string | null;
+  /**
+   * Alternative text for accessibility (e.g. "Download OWGELS Oxygen Concentrator Brochure PDF")
+   */
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2746,6 +2867,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'products';
         value: string | Product;
+      } | null)
+    | ({
+        relationTo: 'brochures';
+        value: string | Brochure;
       } | null)
     | ({
         relationTo: 'forms';
@@ -3018,6 +3143,9 @@ export interface PagesSelect<T extends boolean = true> {
         companyProfile?: T | CompanyProfileBlockSelect<T>;
         company?: T | CompanyBlockSelect<T>;
         ourTeam?: T | OurTeamBlockSelect<T>;
+        homepageWelcomeSection?: T | HomepageWelcomeSectionBlockSelect<T>;
+        homepageProductCategories?: T | HomepageProductCategoriesBlockSelect<T>;
+        homepageOurProducts?: T | HomepageOurProductsBlockSelect<T>;
       };
   meta?:
     | T
@@ -3730,6 +3858,83 @@ export interface OurTeamBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageWelcomeSectionBlock_select".
+ */
+export interface HomepageWelcomeSectionBlockSelect<T extends boolean = true> {
+  preHeading?: T;
+  heading?: T;
+  tagline?: T;
+  description?: T;
+  backgroundImage?: T;
+  showDivider?: T;
+  alignment?: T;
+  ctaButton?:
+    | T
+    | {
+        show?: T;
+        label?: T;
+        link?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageProductCategoriesBlock_select".
+ */
+export interface HomepageProductCategoriesBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  categories?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        link?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  cardStyle?: T;
+  showViewAllButton?: T;
+  viewAllButton?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageOurProductsBlock_select".
+ */
+export interface HomepageOurProductsBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        link?: T;
+        id?: T;
+      };
+  columns?: T;
+  backgroundColor?: T;
+  showViewAllButton?: T;
+  viewAllButton?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -4125,6 +4330,27 @@ export interface ProductsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brochures_select".
+ */
+export interface BrochuresSelect<T extends boolean = true> {
+  slug?: T;
+  title?: T;
+  description?: T;
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

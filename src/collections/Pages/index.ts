@@ -46,6 +46,9 @@ import { Associates } from "@/blocks/Associates/config";
 import { CompanyProfile } from "@/blocks/CompanyProfile/config";
 import { Company } from "@/blocks/Company/config";
 import { OurTeam } from "@/blocks/OurTeam/config";
+import { HomepageWelcomeSection } from "@/blocks/HomepageGroupBlocks/HomepageWelcomeSection/config";
+import { HomepageProductCategories } from "@/blocks/HomepageGroupBlocks/HomepageProductCategories/config";
+import { HomepageOurProducts } from "@/blocks/HomepageGroupBlocks/HomepageOurProducts/config";
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -132,6 +135,9 @@ export const Pages: CollectionConfig<"pages"> = {
                 CompanyProfile,
                 Company,
                 OurTeam,
+                HomepageWelcomeSection,
+                HomepageProductCategories,
+                HomepageOurProducts,
               ],
               required: true,
               localized: true,

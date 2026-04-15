@@ -28,6 +28,7 @@ import { Files } from "./collections/Files";
 import { ProductCategories } from "./collections/ProductCategories";
 import { ProductSubCategories } from "./collections/ProductSubCategories";
 import { Products } from "./collections/Products";
+import { Brochures } from "./collections/Brochures";
 
 import config from "./config";
 
@@ -116,6 +117,7 @@ export default buildConfig({
     ProductCategories,
     ProductSubCategories,
     Products,
+    Brochures,
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [TopBar, Header, Navigation, Footer],
