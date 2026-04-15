@@ -6,39 +6,33 @@ async function seedFooter() {
   await payload.init({ config: configPromise });
 
   const footerData = {
-    organization: {
+    aboutUs: {
       title: "Himalayas Continental",
-      subtitle: "Medical Equipment & Healthcare Solutions, Nepal",
+      description: "Medical Equipment & Healthcare Solutions, Nepal",
     },
-    officeHours: {
-      title: "Hospital Operation Hours",
-      winterMonths: "जाडो (कार्तिक १६ देखि माघ १५)",
-      winterSchedule1: "Sunday - Thursday            09:00 A.M. - 04:00 P.M.",
-      winterSchedule2: "Friday            09:00 A.M. - 02:00 P.M.",
-      summerMonths: "गर्मी (माघ १६ देखि कार्तिक १५)",
-      summerSchedule1: "Sunday - Thursday            09:00 A.M. - 05:00 P.M.",
-      summerSchedule2: "Friday            09:00 A.M. - 03:00 P.M.",
+    quickContact: {
+      title: "Quick Contact",
+      links: [
+        { label: "About Us", url: "/about", icon: "company" as const },
+        { label: "Our Services", url: "/services", icon: "medical" as const },
+        { label: "Health News", url: "/news", icon: "link" as const },
+        { label: "Official Email", url: "mailto:info@amipalhospital.gov.np", icon: "link" as const },
+      ],
     },
-    importantLinksSection: {
-      title: "Important Links",
+    productsSection: {
+      title: "Products",
       links: [
         { label: "GIOMS", url: "#" },
         { label: "Sagarmatha Sambaad", url: "#" },
-        { label: "About Us", url: "/about" },
-        { label: "Official Email", url: "mailto:info@amipalhospital.gov.np" },
-        { label: "Our Services", url: "/services" },
-        { label: "Health News", url: "/news" },
+        { label: "Medical Equipment", url: "/products" },
       ],
     },
-    contact: {
-      facebookLink: "https://facebook.com/amipalhospital",
-      twitterLink: "https://twitter.com/amipalhospital",
-      locationText: "Baglung-01, Baglung, Gandaki Province, Nepal",
+    contactInfo: {
+      title: "Contact Info",
+      address: "Baglung-01, Baglung, Gandaki Province, Nepal",
+      phoneNumbers: "068-520123 / 522345",
       email: "info@amipalhospital.gov.np",
-      phone: "068-520123 / 522345",
-    },
-    appearance: {
-      silhouetteImage: null, // Fallback used in component
+      website: "https://himalayascontinental.com",
     },
   };
 
