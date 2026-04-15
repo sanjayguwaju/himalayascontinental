@@ -33,6 +33,7 @@ import { OurCompaniesBlock } from "./OurCompanies/Component";
 import { StatsCounterBlock } from "./StatsCounter/Component";
 import { AssociatesBlock } from "./Associates/Component";
 import { CompanyProfileBlock } from "./CompanyProfile/Component";
+import { CompanyBlock } from "./Company/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -65,6 +66,7 @@ const blockComponents = {
   statsCounter: StatsCounterBlock,
   associates: AssociatesBlock,
   companyProfile: CompanyProfileBlock,
+  company: CompanyBlock,
 };
 
 export const RenderBlocks: React.FC<{
