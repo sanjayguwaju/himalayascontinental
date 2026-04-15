@@ -50,6 +50,7 @@ import { HomepageWelcomeSection } from "@/blocks/HomepageGroupBlocks/HomepageWel
 import { HomepageProductCategories } from "@/blocks/HomepageGroupBlocks/HomepageProductCategories/config";
 import { HomepageOurProducts } from "@/blocks/HomepageGroupBlocks/HomepageOurProducts/config";
 import { HomepageAuthorizedDistributors } from "@/blocks/HomepageGroupBlocks/HomepageAuthorizedDistributors/config";
+import { HomepageContactUs } from "@/blocks/HomepageGroupBlocks/HomepageContactUs/config";
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -140,6 +141,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 HomepageProductCategories,
                 HomepageOurProducts,
                 HomepageAuthorizedDistributors,
+                HomepageContactUs,
               ],
               required: true,
               localized: true,

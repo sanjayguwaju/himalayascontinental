@@ -459,6 +459,7 @@ export interface Page {
     | HomepageProductCategoriesBlock
     | HomepageOurProductsBlock
     | HomepageAuthorizedDistributorsBlock
+    | HomepageContactUsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1995,6 +1996,29 @@ export interface HomepageAuthorizedDistributorsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageContactUsBlock".
+ */
+export interface HomepageContactUsBlock {
+  title: string;
+  logo: string | Media;
+  companyName: string;
+  address: string;
+  phone: string;
+  email: string;
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'twitter' | 'linkedin' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('white' | 'lightGray') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageContactUs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -3168,6 +3192,7 @@ export interface PagesSelect<T extends boolean = true> {
         homepageProductCategories?: T | HomepageProductCategoriesBlockSelect<T>;
         homepageOurProducts?: T | HomepageOurProductsBlockSelect<T>;
         homepageAuthorizedDistributors?: T | HomepageAuthorizedDistributorsBlockSelect<T>;
+        homepageContactUs?: T | HomepageContactUsBlockSelect<T>;
       };
   meta?:
     | T
@@ -3968,6 +3993,28 @@ export interface HomepageAuthorizedDistributorsBlockSelect<T extends boolean = t
         name?: T;
         logo?: T;
         link?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageContactUsBlock_select".
+ */
+export interface HomepageContactUsBlockSelect<T extends boolean = true> {
+  title?: T;
+  logo?: T;
+  companyName?: T;
+  address?: T;
+  phone?: T;
+  email?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
         id?: T;
       };
   backgroundColor?: T;

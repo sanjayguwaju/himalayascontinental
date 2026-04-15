@@ -39,6 +39,7 @@ import { HomepageWelcomeSectionBlock } from "./HomepageGroupBlocks/HomepageWelco
 import { HomepageProductCategoriesBlock } from "./HomepageGroupBlocks/HomepageProductCategories/Component";
 import { HomepageOurProductsBlock } from "./HomepageGroupBlocks/HomepageOurProducts/Component";
 import { HomepageAuthorizedDistributorsBlock } from "./HomepageGroupBlocks/HomepageAuthorizedDistributors/Component";
+import { HomepageContactUsBlock } from "./HomepageGroupBlocks/HomepageContactUs/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -77,6 +78,7 @@ const blockComponents = {
   homepageProductCategories: HomepageProductCategoriesBlock,
   homepageOurProducts: HomepageOurProductsBlock,
   homepageAuthorizedDistributors: HomepageAuthorizedDistributorsBlock,
+  homepageContactUs: HomepageContactUsBlock,
 };
 
 export const RenderBlocks: React.FC<{
