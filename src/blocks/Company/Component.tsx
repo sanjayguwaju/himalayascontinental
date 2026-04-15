@@ -12,14 +12,14 @@ export const CompanyBlock: React.FC<CompanyBlockProps> = ({
   content,
   backgroundColor,
 }) => {
-  const bgColorClass =
-    backgroundColor === "white"
-      ? "bg-white"
-      : backgroundColor === "gray"
-        ? "bg-gray-100"
-        : "bg-primary";
+  const bgColorMap: Record<string, string> = {
+    primary: "bg-[#0870b8]",
+    white: "bg-white",
+    light: "bg-[#f5f7fa]",
+  };
 
-  const textColorClass = backgroundColor === "primary" ? "text-white" : "text-foreground";
+  const bgColorClass = bgColorMap[backgroundColor ?? "primary"] ?? bgColorMap["primary"];
+  const textColorClass = backgroundColor === "primary" ? "text-white" : "text-gray-900";
 
   return (
     <section className={cn("py-12 md:py-16", bgColorClass)}>

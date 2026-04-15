@@ -50,7 +50,7 @@ export const Company: Block = {
       options: [
         { label: "Primary (Blue)", value: "primary" },
         { label: "White", value: "white" },
-        { label: "Gray", value: "gray" },
+        { label: "Light", value: "light" },
       ],
     },
   ],
