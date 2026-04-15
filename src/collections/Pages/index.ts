@@ -44,6 +44,7 @@ import { OurCompanies } from "@/blocks/OurCompanies/config";
 import { StatsCounter } from "@/blocks/StatsCounter/config";
 import { Associates } from "@/blocks/Associates/config";
 import { CompanyProfile } from "@/blocks/CompanyProfile/config";
+import { Company } from "@/blocks/Company/config";
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -128,6 +129,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 StatsCounter,
                 Associates,
                 CompanyProfile,
+                Company,
               ],
               required: true,
               localized: true,

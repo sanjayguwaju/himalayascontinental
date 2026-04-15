@@ -451,6 +451,7 @@ export interface Page {
     | StatsCounterBlock
     | AssociatesBlock
     | CompanyProfileBlock
+    | CompanyBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1813,6 +1814,33 @@ export interface CompanyProfileBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyBlock".
+ */
+export interface CompanyBlock {
+  title: string;
+  image: string | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  backgroundColor?: ('primary' | 'white' | 'gray') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'company';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -2944,6 +2972,7 @@ export interface PagesSelect<T extends boolean = true> {
         statsCounter?: T | StatsCounterBlockSelect<T>;
         associates?: T | AssociatesBlockSelect<T>;
         companyProfile?: T | CompanyProfileBlockSelect<T>;
+        company?: T | CompanyBlockSelect<T>;
       };
   meta?:
     | T
@@ -3609,6 +3638,18 @@ export interface CompanyProfileBlockSelect<T extends boolean = true> {
         content?: T;
         id?: T;
       };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyBlock_select".
+ */
+export interface CompanyBlockSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  content?: T;
   backgroundColor?: T;
   id?: T;
   blockName?: T;
