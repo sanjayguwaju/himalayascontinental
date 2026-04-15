@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { revalidateProductSubCategory, revalidateProductSubCategoryDelete } from "./hooks/revalidateProductSubCategory";
 
 export const ProductSubCategories: CollectionConfig = {
   slug: "product-sub-categories",
@@ -13,6 +14,10 @@ export const ProductSubCategories: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateProductSubCategory],
+    afterDelete: [revalidateProductSubCategoryDelete],
   },
   fields: [
     {
