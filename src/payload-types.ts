@@ -460,6 +460,11 @@ export interface Page {
     | HomepageOurProductsBlock
     | HomepageAuthorizedDistributorsBlock
     | HomepageContactUsBlock
+    | HomepageOurCompaniesBlock
+    | HomepageMapBlock
+    | HomepageProductsCarouselBlock
+    | HomepageStatsCounterBlock
+    | HomepageOurAssociatesBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2019,6 +2024,111 @@ export interface HomepageContactUsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageOurCompaniesBlock".
+ */
+export interface HomepageOurCompaniesBlock {
+  title: string;
+  companies?:
+    | {
+        name: string;
+        logo: string | Media;
+        description: string;
+        linkUrl?: string | null;
+        linkLabel?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('navy' | 'white' | 'lightGray') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageOurCompanies';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageMapBlock".
+ */
+export interface HomepageMapBlock {
+  /**
+   * Paste the src URL from the Google Maps iframe embed code.
+   */
+  mapEmbedUrl: string;
+  height: number;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageMap';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageProductsCarouselBlock".
+ */
+export interface HomepageProductsCarouselBlock {
+  title: string;
+  categoryText?: string | null;
+  products?:
+    | {
+        image: string | Media;
+        linkUrl?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  viewAllLabel?: string | null;
+  viewAllLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageProductsCarousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageStatsCounterBlock".
+ */
+export interface HomepageStatsCounterBlock {
+  stats?:
+    | {
+        /**
+         * e.g., '12', '150+', '198,135'
+         */
+        value: string;
+        /**
+         * e.g., 'Year\'s Experience'
+         */
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('lightGray' | 'white' | 'navy') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageStatsCounter';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageOurAssociatesBlock".
+ */
+export interface HomepageOurAssociatesBlock {
+  title: string;
+  groups?:
+    | {
+        /**
+         * e.g., NATIONAL, INTERNATIONAL
+         */
+        groupTitle: string;
+        associates?:
+          | {
+              logo: string | Media;
+              linkUrl?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('navy' | 'white' | 'lightGray') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homepageOurAssociates';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -3193,6 +3303,11 @@ export interface PagesSelect<T extends boolean = true> {
         homepageOurProducts?: T | HomepageOurProductsBlockSelect<T>;
         homepageAuthorizedDistributors?: T | HomepageAuthorizedDistributorsBlockSelect<T>;
         homepageContactUs?: T | HomepageContactUsBlockSelect<T>;
+        homepageOurCompanies?: T | HomepageOurCompaniesBlockSelect<T>;
+        homepageMap?: T | HomepageMapBlockSelect<T>;
+        homepageProductsCarousel?: T | HomepageProductsCarouselBlockSelect<T>;
+        homepageStatsCounter?: T | HomepageStatsCounterBlockSelect<T>;
+        homepageOurAssociates?: T | HomepageOurAssociatesBlockSelect<T>;
       };
   meta?:
     | T
@@ -4015,6 +4130,94 @@ export interface HomepageContactUsBlockSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageOurCompaniesBlock_select".
+ */
+export interface HomepageOurCompaniesBlockSelect<T extends boolean = true> {
+  title?: T;
+  companies?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        description?: T;
+        linkUrl?: T;
+        linkLabel?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageMapBlock_select".
+ */
+export interface HomepageMapBlockSelect<T extends boolean = true> {
+  mapEmbedUrl?: T;
+  height?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageProductsCarouselBlock_select".
+ */
+export interface HomepageProductsCarouselBlockSelect<T extends boolean = true> {
+  title?: T;
+  categoryText?: T;
+  products?:
+    | T
+    | {
+        image?: T;
+        linkUrl?: T;
+        id?: T;
+      };
+  viewAllLabel?: T;
+  viewAllLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageStatsCounterBlock_select".
+ */
+export interface HomepageStatsCounterBlockSelect<T extends boolean = true> {
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomepageOurAssociatesBlock_select".
+ */
+export interface HomepageOurAssociatesBlockSelect<T extends boolean = true> {
+  title?: T;
+  groups?:
+    | T
+    | {
+        groupTitle?: T;
+        associates?:
+          | T
+          | {
+              logo?: T;
+              linkUrl?: T;
+              id?: T;
+            };
         id?: T;
       };
   backgroundColor?: T;

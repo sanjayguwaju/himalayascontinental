@@ -40,6 +40,11 @@ import { HomepageProductCategoriesBlock } from "./HomepageGroupBlocks/HomepagePr
 import { HomepageOurProductsBlock } from "./HomepageGroupBlocks/HomepageOurProducts/Component";
 import { HomepageAuthorizedDistributorsBlock } from "./HomepageGroupBlocks/HomepageAuthorizedDistributors/Component";
 import { HomepageContactUsBlock } from "./HomepageGroupBlocks/HomepageContactUs/Component";
+import { HomepageOurCompaniesBlock } from "./HomepageGroupBlocks/HomepageOurCompanies/Component";
+import { HomepageMapBlockComponent } from "./HomepageGroupBlocks/HomepageMap/Component";
+import { HomepageProductsCarouselBlock } from "./HomepageGroupBlocks/HomepageProductsCarousel/Component";
+import { HomepageStatsCounterBlock } from "./HomepageGroupBlocks/HomepageStatsCounter/Component";
+import { HomepageOurAssociatesBlock } from "./HomepageGroupBlocks/HomepageOurAssociates/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -79,6 +84,11 @@ const blockComponents = {
   homepageOurProducts: HomepageOurProductsBlock,
   homepageAuthorizedDistributors: HomepageAuthorizedDistributorsBlock,
   homepageContactUs: HomepageContactUsBlock,
+  homepageOurCompanies: HomepageOurCompaniesBlock,
+  homepageMap: HomepageMapBlockComponent,
+  homepageProductsCarousel: HomepageProductsCarouselBlock,
+  homepageStatsCounter: HomepageStatsCounterBlock,
+  homepageOurAssociates: HomepageOurAssociatesBlock,
 };
 
 export const RenderBlocks: React.FC<{

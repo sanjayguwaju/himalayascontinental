@@ -51,6 +51,11 @@ import { HomepageProductCategories } from "@/blocks/HomepageGroupBlocks/Homepage
 import { HomepageOurProducts } from "@/blocks/HomepageGroupBlocks/HomepageOurProducts/config";
 import { HomepageAuthorizedDistributors } from "@/blocks/HomepageGroupBlocks/HomepageAuthorizedDistributors/config";
 import { HomepageContactUs } from "@/blocks/HomepageGroupBlocks/HomepageContactUs/config";
+import { HomepageOurCompanies } from "@/blocks/HomepageGroupBlocks/HomepageOurCompanies/config";
+import { HomepageMap } from "@/blocks/HomepageGroupBlocks/HomepageMap/config";
+import { HomepageProductsCarousel } from "@/blocks/HomepageGroupBlocks/HomepageProductsCarousel/config";
+import { HomepageStatsCounter } from "@/blocks/HomepageGroupBlocks/HomepageStatsCounter/config";
+import { HomepageOurAssociates } from "@/blocks/HomepageGroupBlocks/HomepageOurAssociates/config";
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -142,6 +147,11 @@ export const Pages: CollectionConfig<"pages"> = {
                 HomepageOurProducts,
                 HomepageAuthorizedDistributors,
                 HomepageContactUs,
+                HomepageOurCompanies,
+                HomepageMap,
+                HomepageProductsCarousel,
+                HomepageStatsCounter,
+                HomepageOurAssociates,
               ],
               required: true,
               localized: true,
