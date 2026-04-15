@@ -6,8 +6,8 @@ export const CommonFormSubmissions: CollectionConfig = {
   slug: "common-form-submissions",
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["ticketCode", "name", "email", "subject", "status", "priority", "createdAt"],
-    description: "Public common form submissions from the hospital website",
+    defaultColumns: ["ticketCode", "name", "email", "subjectText", "status", "priority", "createdAt"],
+    description: "Public contact form submissions from the Himalayas Continental website",
   },
   access: {
     create: () => true, // Public can submit
@@ -174,7 +174,6 @@ export const CommonFormSubmissions: CollectionConfig = {
                   // Phone stored as text to support +977 format
                   name: "phone",
                   type: "text",
-                  required: true,
                   label: {
                     en: "Phone Number",
                     ne: "फोन नम्बर",
@@ -188,7 +187,6 @@ export const CommonFormSubmissions: CollectionConfig = {
                   // Address — NOT localized (physical address)
                   name: "address",
                   type: "text",
-                  required: true,
                   label: {
                     en: "Address",
                     ne: "ठेगाना",
@@ -218,6 +216,19 @@ export const CommonFormSubmissions: CollectionConfig = {
         {
           label: "Message",
           fields: [
+            {
+              // Free-text subject from the contact form
+              name: "subjectText",
+              type: "text",
+              label: {
+                en: "Subject",
+                ne: "विषय",
+              },
+              admin: {
+                placeholder: "e.g. Product enquiry, Support request...",
+                description: "Free-text subject as entered by the submitter.",
+              },
+            },
             {
               // Message IS localized — user writes in their own language
               name: "message",

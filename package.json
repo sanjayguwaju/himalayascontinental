@@ -30,7 +30,8 @@
     "seed:hospital-sections": "tsx src/seeds/hospital.sections.seeder.ts",
     "seed:albums": "tsx src/seeds/albums.seeder.ts",
     "seed:home": "tsx src/seeds/home-page.seeder.ts",
-    "seed:our-services": "tsx src/seeds/our-services.seeder.ts"
+    "seed:our-services": "tsx src/seeds/our-services.seeder.ts",
+    "seed:products": "tsx src/seeds/products.seeder.ts"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",

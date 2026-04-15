@@ -1,26 +1,27 @@
 import type { Metadata } from "next";
-
 import React from "react";
 import { ContactUsClient } from "./ContactUsClient";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Himalayas Continental",
+  title: "Contact Us | Himalayas Continental Pvt. Ltd.",
   description:
-    "Get in touch with Himalayas Continental for general inquiries or medical equipment assistance.",
+    "Get in touch with Himalayas Continental Pvt. Ltd. for product enquiries, support, or general information.",
 };
 
 export default async function Page() {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col pt-8 pb-16">
-      <div className="container max-w-4xl mx-auto">
-        <div className="mb-8 text-center space-y-2">
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">Contact Us</h1>
-          <p className="text-muted-foreground text-sm md:text-base">
-            We are here to assist you. Fill out the form below and our team will get back to you as
-            soon as possible.
-          </p>
-        </div>
-        <div className="bg-card w-full shadow-sm border rounded-xl p-6 md:p-8">
+    <div className="min-h-screen bg-[#0870b8] py-10 px-4">
+      <div className="max-w-[860px] mx-auto">
+        {/* Page heading */}
+        <h1
+          className="text-white text-[22px] font-semibold mb-5"
+          style={{ fontFamily: "'Open Sans', sans-serif" }}
+        >
+          Contact Us
+        </h1>
+
+        {/* White card */}
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <ContactUsClient />
         </div>
       </div>

@@ -452,6 +452,7 @@ export interface Page {
     | AssociatesBlock
     | CompanyProfileBlock
     | CompanyBlock
+    | OurTeamBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1841,6 +1842,45 @@ export interface CompanyBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurTeamBlock".
+ */
+export interface OurTeamBlock {
+  sectionTitle?: string | null;
+  subtitle?: string | null;
+  /**
+   * Add and reorder team members to be displayed.
+   */
+  teamMembers?:
+    | {
+        photo: string | Media;
+        name: string;
+        title: string;
+        /**
+         * List of roles, positions, or affiliations (e.g. Chairperson: Rora Chem Pvt. Ltd.).
+         */
+        affiliations?:
+          | {
+              label: string;
+              organization?: string | null;
+              organizationLink?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        messageButtonLabel?: string | null;
+        /**
+         * The team member's message that will appear in a dialog when the button is clicked.
+         */
+        message?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('primary' | 'white' | 'light') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ourTeam';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -1938,7 +1978,7 @@ export interface List {
   createdAt: string;
 }
 /**
- * Public common form submissions from the hospital website
+ * Public contact form submissions from the Himalayas Continental website
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "common-form-submissions".
@@ -1962,9 +2002,13 @@ export interface CommonFormSubmission {
   repliedDate?: string | null;
   name: string;
   email?: string | null;
-  phone: string;
-  address: string;
+  phone?: string | null;
+  address?: string | null;
   preferredContactMethod?: ('email' | 'phone' | 'either') | null;
+  /**
+   * Free-text subject as entered by the submitter.
+   */
+  subjectText?: string | null;
   message: string;
   /**
    * Optional files attached by the submitter (images, documents)
@@ -2973,6 +3017,7 @@ export interface PagesSelect<T extends boolean = true> {
         associates?: T | AssociatesBlockSelect<T>;
         companyProfile?: T | CompanyProfileBlockSelect<T>;
         company?: T | CompanyBlockSelect<T>;
+        ourTeam?: T | OurTeamBlockSelect<T>;
       };
   meta?:
     | T
@@ -3656,6 +3701,35 @@ export interface CompanyBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OurTeamBlock_select".
+ */
+export interface OurTeamBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  subtitle?: T;
+  teamMembers?:
+    | T
+    | {
+        photo?: T;
+        name?: T;
+        title?: T;
+        affiliations?:
+          | T
+          | {
+              label?: T;
+              organization?: T;
+              organizationLink?: T;
+              id?: T;
+            };
+        messageButtonLabel?: T;
+        message?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -3828,6 +3902,7 @@ export interface CommonFormSubmissionsSelect<T extends boolean = true> {
   phone?: T;
   address?: T;
   preferredContactMethod?: T;
+  subjectText?: T;
   message?: T;
   attachments?:
     | T
