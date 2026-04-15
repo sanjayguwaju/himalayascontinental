@@ -3,11 +3,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Media, HomepageAuthorizedDistributorsBlock } from "@/payload-types";
+import type { Media, HomepageAuthorizedDistributorsBlock as HomepageAuthorizedDistributorsBlockType } from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import { Building2 } from "lucide-react";
 
-export const HomepageAuthorizedDistributorsBlock: React.FC<HomepageAuthorizedDistributorsBlock> = ({
+export const HomepageAuthorizedDistributorsBlock: React.FC<HomepageAuthorizedDistributorsBlockType> = ({
   title,
   subtitle,
   distributors,

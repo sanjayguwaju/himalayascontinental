@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { type Media, type HomepageOurAssociatesBlock } from "@/payload-types";
+import { type Media, type HomepageOurAssociatesBlock as HomepageOurAssociatesBlockType } from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import {
   Carousel,
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-const GroupCarousel = ({ group }: { group: NonNullable<HomepageOurAssociatesBlock["groups"]>[0] }) => {
+const GroupCarousel = ({ group }: { group: NonNullable<HomepageOurAssociatesBlockType["groups"]>[0] }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -115,7 +115,7 @@ const GroupCarousel = ({ group }: { group: NonNullable<HomepageOurAssociatesBloc
   );
 };
 
-export const HomepageOurAssociatesBlock: React.FC<HomepageOurAssociatesBlock> = ({
+export const HomepageOurAssociatesBlock: React.FC<HomepageOurAssociatesBlockType> = ({
   title,
   groups,
   backgroundColor = "navy",

@@ -3,11 +3,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Media, HomepageContactUsBlock } from "@/payload-types";
+import type { Media, HomepageContactUsBlock as HomepageContactUsBlockType } from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
-export const HomepageContactUsBlock: React.FC<HomepageContactUsBlock> = ({
+export const HomepageContactUsBlock: React.FC<HomepageContactUsBlockType> = ({
   title,
   logo,
   companyName,

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { type HomepageStatsCounterBlock } from "@/payload-types";
+import { type HomepageStatsCounterBlock as HomepageStatsCounterBlockType } from "@/payload-types";
 import { cn } from "@/utilities/ui";
 import {
   Carousel,
@@ -9,7 +9,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-export const HomepageStatsCounterBlock: React.FC<HomepageStatsCounterBlock> = ({
+export const HomepageStatsCounterBlock: React.FC<HomepageStatsCounterBlockType> = ({
   stats,
   backgroundColor = "lightGray",
 }) => {

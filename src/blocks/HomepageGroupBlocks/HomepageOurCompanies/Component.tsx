@@ -1,24 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { type Media, type HomepageOurCompaniesBlock } from "@/payload-types";
+import { type Media, type HomepageOurCompaniesBlock as HomepageOurCompaniesBlockType } from "@/payload-types";
 import { cn } from "@/utilities/ui";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlock> = ({
+export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> = ({
   title,
   companies,
   backgroundColor = "navy",
 }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { align: "start", loop: true },
+    [Autoplay({ delay: 4000, stopOnInteraction: true })]
+  );
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   if (!companies || companies.length === 0) return null;
 
   const getBgClass = () => {
@@ -34,10 +42,6 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlock> = ({
   };
 
   const isDarkBg = backgroundColor === "navy";
-
-  const plugin = React.useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
-  );
 
   return (
     <section className={cn("py-16 md:py-24", getBgClass())}>
@@ -63,16 +67,9 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlock> = ({
         )}
 
         {/* Carousel Section */}
-        <div className="px-4 md:px-12">
-          <Carousel
-            plugins={[plugin.current]}
-            className="w-full"
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-          >
-            <CarouselContent className="-ml-4 md:-ml-6">
+        <div className="px-4 md:px-12 relative group">
+          <div className="overflow-hidden w-full" ref={emblaRef}>
+            <div className="flex -ml-4 md:-ml-6">
               {companies.map((company, index) => {
                 const logoUrl =
                   typeof company.logo === "object" && company.logo !== null
@@ -84,7 +81,7 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlock> = ({
                     : company.name;
 
                 return (
-                  <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
+                  <div key={index} className="flex-none min-w-0 pl-4 md:pl-6 w-full md:w-1/2 lg:w-1/3">
                     <div className="p-1 h-full">
                       <div className="bg-white rounded-xl shadow-lg p-8 h-full flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                         {/* Logo */}
@@ -132,23 +129,35 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlock> = ({
                         </div>
                       </div>
                     </div>
-                  </CarouselItem>
+                  </div>
                 );
               })}
-            </CarouselContent>
-            
-            {/* Navigation arrows for desktop */}
-            <div className="hidden md:block">
-              <CarouselPrevious className={cn(
-                "w-12 h-12 -left-4 md:-left-12 border-none",
-                isDarkBg ? "bg-white/10 text-white hover:bg-white/20" : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-              )} />
-              <CarouselNext className={cn(
-                "w-12 h-12 -right-4 md:-right-12 border-none",
-                isDarkBg ? "bg-white/10 text-white hover:bg-white/20" : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-              )} />
             </div>
-          </Carousel>
+          </div>
+            
+          {/* Navigation arrows for desktop */}
+          <div className="hidden md:block">
+            <button
+              type="button"
+              onClick={scrollPrev}
+              className={cn(
+                "absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full -left-4 md:-left-8 border-none transition-colors",
+                isDarkBg ? "bg-white/10 text-white hover:bg-white/20" : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+              )}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              type="button"
+              onClick={scrollNext}
+              className={cn(
+                "absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full -right-4 md:-right-8 border-none transition-colors",
+                isDarkBg ? "bg-white/10 text-white hover:bg-white/20" : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+              )}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
