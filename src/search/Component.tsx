@@ -13,31 +13,40 @@ export const Search: React.FC = () => {
 
   const [value, setValue] = useState(initialQuery);
   const router = useRouter();
+  const lastPushed = React.useRef<string>(initialQuery);
 
-  const debouncedValue = useDebounce(value, 350);
+  const debouncedValue = useDebounce(value, 600);
 
-  // Sync value if the URL param changes (e.g. browser back/forward)
+  // Safely sync value if URL changes externally (i.e. clicking a Link badge)
   useEffect(() => {
-    setValue(searchParams.get("q") ?? "");
+    const urlQuery = searchParams.get("q") ?? "";
+    if (urlQuery !== lastPushed.current) {
+      setValue(urlQuery);
+      lastPushed.current = urlQuery;
+    }
   }, [searchParams]);
 
   useEffect(() => {
-    router.push(
-      `/search${debouncedValue ? `?q=${encodeURIComponent(debouncedValue)}` : ""}` as Parameters<typeof router.push>[0],
-      { scroll: false },
-    );
+    // Prevent redundant pushing if the query hasn't fundamentally changed from our last push
+    if (debouncedValue !== lastPushed.current) {
+      lastPushed.current = debouncedValue;
+      router.push(
+        `/search${debouncedValue ? `?q=${encodeURIComponent(debouncedValue)}` : ""}` as Parameters<typeof router.push>[0],
+        { scroll: false },
+      );
+    }
   }, [debouncedValue, router]);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto">
+    <div className="relative w-full">
       <div className="relative flex items-center">
-        <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/60 pointer-events-none" />
+        <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
         <Input
           id="search"
           value={value}
           onChange={(event) => setValue(event.target.value)}
-          placeholder="Search posts, articles, news…"
-          className="pl-12 pr-12 h-14 text-base rounded-xl border-2 border-white/30 bg-white/10 text-white placeholder:text-white/50 focus-visible:border-white/70 focus-visible:ring-0 shadow-none transition-colors"
+          placeholder="Search products, medicines, medical equipments…"
+          className="pl-12 pr-12 h-14 text-base rounded-xl border border-gray-200 bg-white text-gray-900 placeholder:text-gray-500 focus-visible:border-[#0870b8] focus-visible:ring-1 focus-visible:ring-[#0870b8] shadow-sm transition-colors"
           autoComplete="off"
         />
         {value && (
@@ -45,7 +54,7 @@ export const Search: React.FC = () => {
             type="button"
             variant="ghost"
             size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 text-white/60 hover:text-white hover:bg-white/10"
+            className="absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full"
             onClick={() => setValue("")}
             aria-label="Clear search"
           >
