@@ -68,12 +68,6 @@ export const HomepageContactUs: Block = {
           label: "URL",
           required: true,
         },
-      ],
-      defaultValue: [
-        { platform: "facebook", url: "https://facebook.com" },
-        { platform: "twitter", url: "https://twitter.com" },
-        { platform: "linkedin", url: "https://linkedin.com" },
-      ],
     },
     {
       name: "backgroundColor",
