@@ -71,30 +71,45 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<
             const CardContent = (
               <div
                 className={cn(
-                  "h-full flex flex-col items-center justify-center p-6 text-center bg-white rounded-xl shadow-sm border border-gray-100/50 transition-all duration-300",
+                  "group h-full flex flex-col items-center p-4 md:p-6 text-center bg-white rounded-xl shadow-sm border border-gray-100/50 transition-all duration-300",
                   hasLink && "hover:shadow-lg hover:-translate-y-1 cursor-pointer",
                   !hasLink && "hover:shadow-md"
                 )}
                 style={{ fontFamily: "'Open Sans', sans-serif" }}
               >
                 {logoUrl ? (
-                  <div className="relative w-full aspect-4/3 mb-4">
+                  <div className="relative w-full aspect-4/3 mb-4 shrink-0">
                     <Image
                       src={logoUrl}
                       alt={distributor.name}
                       fill
-                      className="object-contain p-2 filter grayscale hover:grayscale-0 transition-all duration-300"
+                      className="object-contain p-1 md:p-3 filter grayscale group-hover:grayscale-0 transition-all duration-300"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
                   </div>
                 ) : (
-                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4 text-[#0870b8]">
+                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4 text-[#0870b8] shrink-0">
                     <Building2 className="w-8 h-8 opacity-80" />
                   </div>
                 )}
-                <h3 className="text-[14px] font-bold text-gray-800 leading-snug line-clamp-3">
-                  {distributor.name}
-                </h3>
+                
+                <div className="flex flex-col flex-1 w-full items-center">
+                  <h3 className="text-[14px] md:text-[15px] font-bold text-gray-800 leading-relaxed line-clamp-3 mb-2 w-full px-1">
+                    {distributor.name}
+                  </h3>
+                  
+                  {/* Dedicated space for the button ensures perfect vertical alignment even if a card lacks a link */}
+                  <div className="mt-auto pt-2 h-[28px] flex items-center justify-center w-full">
+                    {hasLink && (
+                      <span className="inline-flex items-center text-[13px] font-semibold text-[#0870b8] group-hover:text-[#065b96] transition-colors">
+                        Visit Website
+                        <svg className="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
             );
 

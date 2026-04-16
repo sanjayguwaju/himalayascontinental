@@ -84,10 +84,10 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
               >
                 {/* Icon Container */}
                 {category.icon && (
-                  <div className="w-[80px] h-[80px] rounded-full bg-[#0F365A] flex items-center justify-center mb-4 overflow-hidden">
+                  <div className="w-[100px] h-[100px] rounded-full bg-[#0F365A] flex items-center justify-center mb-5 overflow-hidden shadow-sm transition-transform duration-300 group-hover:scale-105">
                     <Media
                       resource={category.icon}
-                      className="w-[50px] h-[50px] object-contain"
+                      className="w-[64px] h-[64px] object-contain brightness-0 invert"
                     />
                   </div>
                 )}
