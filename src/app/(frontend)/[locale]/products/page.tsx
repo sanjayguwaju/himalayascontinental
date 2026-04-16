@@ -81,17 +81,18 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
               >
                 <Card className="overflow-hidden border-2 border-transparent transition-all duration-500 group-hover:border-primary/20 group-hover:shadow-2xl bg-card rounded-2xl h-full">
                   <CardContent className="p-0">
-                    <div className="relative h-48 bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
+                    <div className="relative h-48 bg-gradient-to-br from-primary/5 to-primary/10 overflow-hidden">
                       {iconUrl ? (
                         <Image
                           src={iconUrl}
                           alt={typedCategory.name}
-                          width={120}
-                          height={120}
-                          className="object-contain transition-transform duration-500 group-hover:scale-110"
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       ) : (
-                        <Package className="w-20 h-20 text-primary/30" />
+                        <div className="flex items-center justify-center h-full">
+                          <Package className="w-20 h-20 text-primary/30" />
+                        </div>
                       )}
                       
                       {/* Hover overlay */}

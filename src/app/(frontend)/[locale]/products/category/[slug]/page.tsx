@@ -197,17 +197,18 @@ export default async function CategoryPage({ params }: Args) {
               >
                 <Card className="overflow-hidden border-2 border-transparent transition-all duration-500 group-hover:border-primary/20 group-hover:shadow-2xl bg-card rounded-2xl h-full">
                   <CardContent className="p-0">
-                    <div className="relative h-48 bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center">
+                    <div className="relative h-48 bg-gradient-to-br from-primary/5 to-primary/10 overflow-hidden">
                       {imageUrl ? (
                         <Image
                           src={imageUrl}
                           alt={typedSubCategory.name}
-                          width={150}
-                          height={150}
-                          className="object-contain transition-transform duration-500 group-hover:scale-110"
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                       ) : (
-                        <FolderOpen className="w-20 h-20 text-primary/30" />
+                        <div className="flex items-center justify-center h-full">
+                          <FolderOpen className="w-20 h-20 text-primary/30" />
+                        </div>
                       )}
                       
                       <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
