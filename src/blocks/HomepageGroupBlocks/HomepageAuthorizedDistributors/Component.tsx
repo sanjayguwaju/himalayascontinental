@@ -40,7 +40,7 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<
                 "text-[28px] md:text-[34px] font-bold mb-4 uppercase tracking-wide",
                 isPrimary ? "text-white" : "text-gray-900"
               )}
-              style={{ fontFamily: "'Poppins', sans-serif" }}
+              style={{ fontFamily: "var(--font-roboto-condensed), sans-serif" }}
             >
               {title}
             </h2>
@@ -51,7 +51,7 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<
                 "text-[15px] md:text-[16px] leading-relaxed",
                 isPrimary ? "text-white/85" : "text-gray-600"
               )}
-              style={{ fontFamily: "'Open Sans', sans-serif" }}
+              style={{ fontFamily: "var(--font-roboto), sans-serif" }}
             >
               {subtitle}
             </p>
@@ -75,7 +75,7 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<
                   hasLink && "hover:shadow-lg hover:-translate-y-1 cursor-pointer",
                   !hasLink && "hover:shadow-md"
                 )}
-                style={{ fontFamily: "'Open Sans', sans-serif" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif" }}
               >
                 {logoUrl ? (
                   <div className="relative w-full aspect-4/3 mb-4 shrink-0">

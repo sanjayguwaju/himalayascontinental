@@ -37,7 +37,7 @@ export const HomepageOurAssociatesBlock: React.FC<HomepageOurAssociatesBlockType
                 "text-[32px] md:text-[40px] mb-6 font-normal tracking-wide text-center",
                 isDarkBg ? "text-white" : "text-gray-900"
               )}
-              style={{ fontFamily: "Arial, sans-serif" }}
+              style={{ fontFamily: "var(--font-roboto), sans-serif" }}
             >
               {title}
             </h2>

@@ -92,7 +92,7 @@ const MessageDialog: React.FC<MessageDialogProps> = ({ open, onOpenChange, membe
           {/* Name */}
           <DialogTitle
             className="text-white text-[19px] font-semibold leading-snug flex-1 text-left"
-            style={{ fontFamily: "'Open Sans', sans-serif" }}
+            style={{ fontFamily: "var(--font-roboto), sans-serif" }}
           >
             {member.name}
           </DialogTitle>
@@ -114,7 +114,7 @@ const MessageDialog: React.FC<MessageDialogProps> = ({ open, onOpenChange, membe
             {member.message ? (
               <p
                 className="text-[15px] text-gray-800 leading-relaxed whitespace-pre-line"
-                style={{ fontFamily: "'Open Sans', sans-serif" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif" }}
               >
                 {member.message}
               </p>
@@ -154,7 +154,7 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
     <>
       <div
         className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col sm:flex-row gap-5 transition-shadow duration-200 hover:shadow-md"
-        style={{ fontFamily: "'Open Sans', sans-serif" }}
+        style={{ fontFamily: "var(--font-roboto), sans-serif" }}
       >
         {/* Photo */}
         <div className="shrink-0 hidden sm:block">
@@ -200,7 +200,7 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
             {/* Name */}
             <h3
               className="text-[17px] font-bold text-gray-900 leading-snug mb-0.5"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
+              style={{ fontFamily: "var(--font-roboto-condensed), sans-serif" }}
             >
               {member.name}
             </h3>
@@ -290,7 +290,7 @@ export const OurTeamBlock: React.FC<OurTeamBlockProps> = ({
             {sectionTitle && (
               <h2
                 className={cn("text-[26px] md:text-[30px] font-bold mb-2", titleColor)}
-                style={{ fontFamily: "'Poppins', sans-serif" }}
+                style={{ fontFamily: "var(--font-roboto-condensed), sans-serif" }}
               >
                 {sectionTitle}
               </h2>
@@ -298,7 +298,7 @@ export const OurTeamBlock: React.FC<OurTeamBlockProps> = ({
             {subtitle && (
               <p
                 className={cn("text-[15px] max-w-2xl", subtitleColor)}
-                style={{ fontFamily: "'Open Sans', sans-serif" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif" }}
               >
                 {subtitle}
               </p>

@@ -64,7 +64,7 @@ export const ProductCarouselBlock: React.FC<ProductCarouselBlockProps> = ({
             {sectionTitle && (
               <h2 
                 className="text-[28px] md:text-[32px] font-bold mb-2"
-                style={{ fontFamily: "'Playfair Display', serif", color: "#003087" }}
+                style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#003087" }}
               >
                 {sectionTitle}
               </h2>
@@ -72,7 +72,7 @@ export const ProductCarouselBlock: React.FC<ProductCarouselBlockProps> = ({
             {subtitle && (
               <p 
                 className="text-[16px]"
-                style={{ fontFamily: "'Open Sans', sans-serif", color: "#555555" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#555555" }}
               >
                 {subtitle}
               </p>
@@ -138,7 +138,7 @@ export const ProductCarouselBlock: React.FC<ProductCarouselBlockProps> = ({
                       </div>
                       <h4 
                         className="text-[13px] font-semibold transition-colors duration-300 group-hover:text-[#e8a020]"
-                        style={{ fontFamily: "'Open Sans', sans-serif", color: "#1a1a2e" }}
+                        style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#1a1a2e" }}
                       >
                         {product.name}
                       </h4>
@@ -165,7 +165,7 @@ export const ProductCarouselBlock: React.FC<ProductCarouselBlockProps> = ({
                       </div>
                       <h4 
                         className="text-[13px] font-semibold"
-                        style={{ fontFamily: "'Open Sans', sans-serif", color: "#1a1a2e" }}
+                        style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#1a1a2e" }}
                       >
                         {product.name}
                       </h4>
@@ -183,7 +183,7 @@ export const ProductCarouselBlock: React.FC<ProductCarouselBlockProps> = ({
               href={viewAllLink}
               className="inline-block px-7 py-2.5 text-[14px] font-semibold border-2 rounded transition-all duration-300 hover:text-white"
               style={{ 
-                fontFamily: "'Open Sans', sans-serif",
+                fontFamily: "var(--font-roboto), sans-serif",
                 borderColor: "#003087",
                 color: "#003087",
               }}

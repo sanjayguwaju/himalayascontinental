@@ -23,7 +23,7 @@ export const WelcomeSectionBlock: React.FC<WelcomeSectionBlockProps> = ({
         {preHeading && (
           <h3 
             className="text-[28px] font-normal mb-2"
-            style={{ fontFamily: "'Playfair Display', serif", color: "#003087" }}
+            style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#003087" }}
           >
             {preHeading}
           </h3>
@@ -32,7 +32,7 @@ export const WelcomeSectionBlock: React.FC<WelcomeSectionBlockProps> = ({
         {heading && (
           <h2 
             className="text-[32px] md:text-[36px] font-bold mb-4"
-            style={{ fontFamily: "'Playfair Display', serif", color: "#003087" }}
+            style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#003087" }}
           >
             {heading}
           </h2>
@@ -41,7 +41,7 @@ export const WelcomeSectionBlock: React.FC<WelcomeSectionBlockProps> = ({
         {tagline && (
           <p 
             className="text-[15px] font-semibold mb-6"
-            style={{ fontFamily: "'Open Sans', sans-serif", color: "#003087" }}
+            style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#003087" }}
           >
             {tagline}
           </p>
@@ -51,7 +51,7 @@ export const WelcomeSectionBlock: React.FC<WelcomeSectionBlockProps> = ({
           <div 
             className="text-[15px] leading-[1.7]"
             style={{ 
-              fontFamily: "'Open Sans', sans-serif", 
+              fontFamily: "var(--font-roboto), sans-serif", 
               color: "#555555",
             }}
             dangerouslySetInnerHTML={{ 

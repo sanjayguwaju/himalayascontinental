@@ -76,7 +76,7 @@ export const CarouselWrapper: React.FC<Props> = ({ stats, isDarkBg }) => {
                     "text-[40px] md:text-[46px] font-bold leading-none mb-3",
                     isDarkBg ? "text-white" : "text-[#10375c]"
                   )}
-                  style={{ fontFamily: "'Oswald', Impact, sans-serif" }}
+                  style={{ fontFamily: "var(--font-roboto-condensed), sans-serif" }}
                 >
                   {stat.value}
                 </div>
@@ -85,7 +85,7 @@ export const CarouselWrapper: React.FC<Props> = ({ stats, isDarkBg }) => {
                     "text-[13px] md:text-[14px] font-medium px-2 leading-tight",
                     isDarkBg ? "text-blue-100" : "text-[#333333]"
                   )}
-                  style={{ fontFamily: "Arial, sans-serif" }}
+                  style={{ fontFamily: "var(--font-roboto), sans-serif" }}
                 >
                   {stat.label}
                 </div>

@@ -56,7 +56,7 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
                 "text-[32px] md:text-[40px] mb-6 font-normal tracking-wide text-center",
                 isDarkBg ? "text-white" : "text-gray-900"
               )}
-              style={{ fontFamily: "Arial, sans-serif" }}
+              style={{ fontFamily: "var(--font-roboto), sans-serif" }}
             >
               {title}
             </h2>
@@ -109,7 +109,7 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
                         {/* Company Name */}
                         <h3
                           className="text-[18px] md:text-[20px] font-medium text-[#2e91db] mb-4 min-h-[56px] flex items-center justify-center"
-                          style={{ fontFamily: "Arial, sans-serif" }}
+                          style={{ fontFamily: "var(--font-roboto), sans-serif" }}
                         >
                           {company.name}
                         </h3>
@@ -117,7 +117,7 @@ export const HomepageOurCompaniesBlock: React.FC<HomepageOurCompaniesBlockType> 
                         {/* Description */}
                         <p
                           className="text-[14px] text-gray-500 leading-relaxed mb-8 grow"
-                          style={{ fontFamily: "'Open Sans', sans-serif" }}
+                          style={{ fontFamily: "var(--font-roboto), sans-serif" }}
                         >
                           {company.description}
                         </p>

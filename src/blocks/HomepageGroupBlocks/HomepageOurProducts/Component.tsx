@@ -72,7 +72,7 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
               <h2
                 className="text-[28px] md:text-[32px] font-bold tracking-widest uppercase"
                 style={{
-                  fontFamily: "'Figtree', 'Open Sans', sans-serif",
+                  fontFamily: "'Figtree', var(--font-roboto), sans-serif",
                   color: "#1a1a2e",
                   letterSpacing: "0.15em",
                 }}
@@ -95,7 +95,7 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
               <p
                 className="text-[15px] mt-3 max-w-[600px] mx-auto"
                 style={{
-                  fontFamily: "'Figtree', 'Noto Sans', sans-serif",
+                  fontFamily: "var(--font-roboto), sans-serif",
                   color: "#555555",
                 }}
               >
@@ -181,7 +181,7 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
                   <span
                     className="text-[13px] leading-snug font-medium transition-colors duration-200 group-hover:text-[#0F365A]"
                     style={{
-                      fontFamily: "'Figtree', 'Noto Sans', sans-serif",
+                      fontFamily: "var(--font-roboto), sans-serif",
                       color: "#2d3748",
                     }}
                   >
@@ -212,7 +212,7 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
               href={viewAllButton.link || "/products"}
               className="inline-flex items-center gap-2 px-8 py-3 rounded-sm font-medium text-[14px] tracking-wide transition-all duration-200 hover:shadow-md hover:-translate-y-[1px]"
               style={{
-                fontFamily: "'Figtree', 'Noto Sans', sans-serif",
+                fontFamily: "var(--font-roboto), sans-serif",
                 backgroundColor: "#0F365A",
                 color: "#ffffff",
                 letterSpacing: "0.04em",

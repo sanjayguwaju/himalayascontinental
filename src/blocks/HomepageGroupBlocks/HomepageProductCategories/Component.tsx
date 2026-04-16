@@ -50,7 +50,7 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
                   "text-[32px] md:text-[36px] font-bold mb-4",
                   textColorClasses[backgroundColor as keyof typeof textColorClasses]
                 )}
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                style={{ fontFamily: "var(--font-roboto-condensed), sans-serif" }}
               >
                 {title}
               </h2>
@@ -61,7 +61,7 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
                   "text-[16px] max-w-[600px] mx-auto",
                   textColorClasses[backgroundColor as keyof typeof textColorClasses]
                 )}
-                style={{ fontFamily: "'Open Sans', sans-serif", opacity: 0.8 }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif", opacity: 0.8 }}
               >
                 {subtitle}
               </p>
@@ -99,7 +99,7 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
                       "text-[18px] font-semibold text-center",
                       cardTextClasses[backgroundColor as keyof typeof cardTextClasses]
                     )}
-                    style={{ fontFamily: "'Open Sans', sans-serif" }}
+                    style={{ fontFamily: "var(--font-roboto), sans-serif" }}
                   >
                     {category.title}
                   </h3>
@@ -112,7 +112,7 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
                       "text-[14px] text-center mt-2",
                       cardTextClasses[backgroundColor as keyof typeof cardTextClasses]
                     )}
-                    style={{ fontFamily: "'Open Sans', sans-serif", opacity: 0.7 }}
+                    style={{ fontFamily: "var(--font-roboto), sans-serif", opacity: 0.7 }}
                   >
                     {category.description}
                   </p>
@@ -133,7 +133,7 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
                   ? "bg-white text-[#0F365A] hover:bg-gray-100"
                   : "bg-[#1DA1F2] text-white hover:bg-[#1a91da]"
               )}
-              style={{ fontFamily: "'Open Sans', sans-serif" }}
+              style={{ fontFamily: "var(--font-roboto), sans-serif" }}
             >
               {viewAllButton.label}
             </a>

@@ -41,7 +41,7 @@ export const HomepageWelcomeSectionBlock: React.FC<HomepageWelcomeSectionBlockPr
         {preHeading && (
           <h3
             className="text-[28px] font-normal mb-2"
-            style={{ fontFamily: "'Playfair Display', serif", color: "#000000" }}
+            style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#000000" }}
           >
             {preHeading}
           </h3>
@@ -50,7 +50,7 @@ export const HomepageWelcomeSectionBlock: React.FC<HomepageWelcomeSectionBlockPr
         {heading && (
           <h2
             className="text-[32px] md:text-[42px] font-bold mb-4"
-            style={{ fontFamily: "'Playfair Display', serif", color: "#1DA1F2" }}
+            style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#1DA1F2" }}
           >
             {heading}
           </h2>
@@ -68,7 +68,7 @@ export const HomepageWelcomeSectionBlock: React.FC<HomepageWelcomeSectionBlockPr
         {tagline && (
           <p
             className="text-[15px] font-semibold mb-6"
-            style={{ fontFamily: "'Open Sans', sans-serif", color: "#000000" }}
+            style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#000000" }}
           >
             {tagline}
           </p>
@@ -78,7 +78,7 @@ export const HomepageWelcomeSectionBlock: React.FC<HomepageWelcomeSectionBlockPr
           <p
             className="text-[15px] leading-[1.7] max-w-[700px] whitespace-pre-wrap"
             style={{
-              fontFamily: "'Open Sans', sans-serif",
+              fontFamily: "var(--font-roboto), sans-serif",
               color: "#555555",
             }}
           >
@@ -91,7 +91,7 @@ export const HomepageWelcomeSectionBlock: React.FC<HomepageWelcomeSectionBlockPr
           <a
             href={ctaButton.link || "#"}
             className="mt-8 px-6 py-3 bg-[#1DA1F2] text-white rounded hover:bg-[#1a91da] transition-colors"
-            style={{ fontFamily: "'Open Sans', sans-serif" }}
+            style={{ fontFamily: "var(--font-roboto), sans-serif" }}
           >
             {ctaButton.label}
           </a>

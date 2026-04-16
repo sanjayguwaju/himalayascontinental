@@ -89,7 +89,7 @@ export const AssociatesBlock: React.FC<AssociatesBlockProps> = ({
             {sectionTitle && (
               <h2 
                 className="text-[28px] md:text-[32px] font-bold mb-2"
-                style={{ fontFamily: "'Playfair Display', serif", color: "#003087" }}
+                style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#003087" }}
               >
                 {sectionTitle}
               </h2>
@@ -97,7 +97,7 @@ export const AssociatesBlock: React.FC<AssociatesBlockProps> = ({
             {subtitle && (
               <p 
                 className="text-[16px]"
-                style={{ fontFamily: "'Open Sans', sans-serif", color: "#555555" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#555555" }}
               >
                 {subtitle}
               </p>
@@ -110,7 +110,7 @@ export const AssociatesBlock: React.FC<AssociatesBlockProps> = ({
             {nationalSectionTitle && (
               <h3 
                 className="text-[14px] uppercase tracking-[2px] text-center mb-6"
-                style={{ fontFamily: "'Open Sans', sans-serif", color: "#555555" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#555555" }}
               >
                 {nationalSectionTitle}
               </h3>
@@ -124,7 +124,7 @@ export const AssociatesBlock: React.FC<AssociatesBlockProps> = ({
             {internationalSectionTitle && (
               <h3 
                 className="text-[14px] uppercase tracking-[2px] text-center mb-6"
-                style={{ fontFamily: "'Open Sans', sans-serif", color: "#555555" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#555555" }}
               >
                 {internationalSectionTitle}
               </h3>

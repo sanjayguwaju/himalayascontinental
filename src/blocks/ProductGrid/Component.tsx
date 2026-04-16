@@ -35,7 +35,7 @@ export const ProductGridBlock: React.FC<ProductGridBlockProps> = ({
             {sectionTitle && (
               <h2 
                 className="text-[28px] md:text-[32px] font-bold mb-2"
-                style={{ fontFamily: "'Playfair Display', serif", color: "#003087" }}
+                style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#003087" }}
               >
                 {sectionTitle}
               </h2>
@@ -43,7 +43,7 @@ export const ProductGridBlock: React.FC<ProductGridBlockProps> = ({
             {subtitle && (
               <p 
                 className="text-[16px]"
-                style={{ fontFamily: "'Open Sans', sans-serif", color: "#555555" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#555555" }}
               >
                 {subtitle}
               </p>
@@ -81,7 +81,7 @@ export const ProductGridBlock: React.FC<ProductGridBlockProps> = ({
                 </div>
                 <h4 
                   className="text-[14px] font-semibold transition-colors duration-300 group-hover:text-[#e8a020]"
-                  style={{ fontFamily: "'Open Sans', sans-serif", color: "#003087" }}
+                  style={{ fontFamily: "var(--font-roboto), sans-serif", color: "#003087" }}
                 >
                   {product.title}
                 </h4>

@@ -55,7 +55,7 @@ export const HomepageContactUsBlock: React.FC<HomepageContactUsBlockType> = ({
           <div className="flex flex-col items-center mb-10">
             <h2
               className="text-[32px] md:text-[40px] text-gray-900 mb-6 font-normal tracking-wide text-center"
-              style={{ fontFamily: "Arial, sans-serif" }}
+              style={{ fontFamily: "var(--font-roboto), sans-serif" }}
             >
               {title}
             </h2>
@@ -84,7 +84,7 @@ export const HomepageContactUsBlock: React.FC<HomepageContactUsBlockType> = ({
           {/* Company Name */}
           <h3
             className="text-xl md:text-2xl font-bold text-[#1e3a5f] uppercase mb-8 tracking-wider"
-            style={{ fontFamily: "Arial, sans-serif" }}
+            style={{ fontFamily: "var(--font-roboto), sans-serif" }}
           >
             {companyName}
           </h3>

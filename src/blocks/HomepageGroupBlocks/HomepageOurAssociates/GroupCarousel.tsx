@@ -42,7 +42,7 @@ export const GroupCarousel = ({
     <div className="flex flex-col w-full h-full">
       <h3
         className="text-[#88b1cc] text-[15px] font-semibold tracking-wider text-center mb-6 uppercase"
-        style={{ fontFamily: "'Open Sans', sans-serif" }}
+        style={{ fontFamily: "var(--font-roboto), sans-serif" }}
       >
         {group.groupTitle}
       </h3>

@@ -45,14 +45,14 @@ const StatItem: React.FC<StatItemProps> = ({ numericValue, suffix, label, inView
     <div className="text-center">
       <div 
         className="text-[36px] md:text-[44px] font-bold"
-        style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff" }}
+        style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#ffffff" }}
       >
         {count}{suffix || ""}
       </div>
       <div 
         className="text-[14px] mt-2"
         style={{ 
-          fontFamily: "'Open Sans', sans-serif", 
+          fontFamily: "var(--font-roboto), sans-serif", 
           color: "rgba(255,255,255,0.8)",
         }}
       >
@@ -117,7 +117,7 @@ export const StatsCounterBlock: React.FC<StatsCounterBlockProps> = ({
             {sectionTitle && (
               <h2 
                 className="text-[28px] md:text-[32px] font-bold mb-2"
-                style={{ fontFamily: "'Playfair Display', serif", color: "#ffffff" }}
+                style={{ fontFamily: "var(--font-roboto-condensed), sans-serif", color: "#ffffff" }}
               >
                 {sectionTitle}
               </h2>
@@ -125,7 +125,7 @@ export const StatsCounterBlock: React.FC<StatsCounterBlockProps> = ({
             {subtitle && (
               <p 
                 className="text-[16px]"
-                style={{ fontFamily: "'Open Sans', sans-serif", color: "rgba(255,255,255,0.8)" }}
+                style={{ fontFamily: "var(--font-roboto), sans-serif", color: "rgba(255,255,255,0.8)" }}
               >
                 {subtitle}
               </p>
