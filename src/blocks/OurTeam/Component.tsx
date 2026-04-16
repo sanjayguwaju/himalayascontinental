@@ -66,7 +66,6 @@ const MessageDialog: React.FC<MessageDialogProps> = ({ open, onOpenChange, membe
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="p-0 gap-0 overflow-hidden border-0 shadow-2xl max-w-[640px] w-[95vw] rounded-xl"
-        lockScroll
       >
         {/* ── Blue Header ───────────────────────────────────── */}
         <DialogHeader className="relative flex-row items-center gap-4 px-6 pt-5 pb-5 bg-[#1a3f6f] rounded-t-xl">
