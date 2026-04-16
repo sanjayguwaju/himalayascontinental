@@ -140,13 +140,13 @@ export const ContactUsClient: React.FC = () => {
         {/* Logo */}
         <div className="mb-4">
           <Image
-            src="/himalayas-logo.png"
+            src="/contactlogo.png"
             alt="Himalayas Continental Pvt. Ltd."
-            width={90}
-            height={90}
-            className="rounded-full object-contain"
+            width={100}
+            height={100}
+            className="object-contain"
             onError={(e) => {
-              // Fallback circle if logo not found
+              // Fallback if logo not found
               (e.target as HTMLImageElement).style.display = "none";
             }}
           />
