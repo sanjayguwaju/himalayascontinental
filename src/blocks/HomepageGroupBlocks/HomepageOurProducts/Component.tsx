@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Media, Product } from "@/payload-types";
@@ -9,14 +7,7 @@ import { cn } from "@/utilities/ui";
 type HomepageOurProductsBlockProps = {
   title?: string | null;
   subtitle?: string | null;
-  productSource?: "manual" | "collection" | null;
   relatedProducts?: (string | Product)[] | null;
-  products?: {
-    image: string | Media;
-    title: string;
-    link?: string | null;
-    id?: string | null;
-  }[];
   columns?: "3" | "4" | "5" | null;
   backgroundColor?: "white" | "lightGray" | "lightBlue" | null;
   showViewAllButton?: boolean | null;
@@ -30,16 +21,12 @@ type HomepageOurProductsBlockProps = {
 export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> = ({
   title,
   subtitle,
-  productSource = "manual",
   relatedProducts,
-  products,
   columns = "5",
   backgroundColor = "white",
   showViewAllButton,
   viewAllButton,
 }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   const bgClasses = {
     white: "bg-white",
     lightGray: "bg-[#f6f8fa]",
@@ -52,32 +39,24 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
     "5": "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5",
   };
 
-  // Normalize products data from either source
-  const normalizedProducts = React.useMemo(() => {
-    if (productSource === "collection" && relatedProducts && relatedProducts.length > 0) {
-      return relatedProducts
-        .map((product) => {
-          // If product is a string (ID), we can't display it without population
-          if (typeof product === "string") {
-            return null;
-          }
-          const p = product as Product;
-          return {
-            id: p.id,
-            title: p.name || "Unnamed Product",
-            link: `/products/${p.slug}`,
-            image: p.thumbnail || null,
-          };
-        })
-        .filter(Boolean) as {
-        id: string;
-        title: string;
-        link: string;
-        image: string | Media | null;
-      }[];
-    }
-    return products || [];
-  }, [productSource, relatedProducts, products]);
+  const normalizedProducts = (relatedProducts || [])
+      .map((product) => {
+        if (typeof product === "string") return null;
+        
+        const p = product as Product;
+        return {
+          id: p.id,
+          title: (p as any).title || (p as any).name || "Unnamed Product",
+          link: `/products/${p.slug}`,
+          image: p.thumbnail || (p as any).featuredImage || null,
+        };
+      })
+      .filter(Boolean) as {
+      id: string;
+      title: string;
+      link: string;
+      image: string | Media | null;
+    }[];
 
   if (!normalizedProducts || normalizedProducts.length === 0) return null;
 
@@ -138,27 +117,18 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
                   ? product.image
                   : null;
 
-            const isHovered = hoveredIndex === index;
-
             const CardContent = () => (
               <div
                 className="group cursor-pointer flex flex-col"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
                 aria-label={`View ${product.title}`}
               >
                 {/* Image Container */}
                 <div
-                  className="relative overflow-hidden mb-4 transition-all duration-300"
+                  className="relative overflow-hidden mb-4 transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.07)] group-hover:shadow-[0_8px_24px_rgba(0,0,0,0.14)] group-hover:-translate-y-1"
                   style={{
                     borderRadius: "4px",
                     aspectRatio: "1 / 1",
                     backgroundColor: "#f0f4f8",
-                    boxShadow: isHovered
-                      ? "0 8px 24px rgba(0,0,0,0.14)"
-                      : "0 2px 8px rgba(0,0,0,0.07)",
-                    transform: isHovered ? "translateY(-4px)" : "translateY(0px)",
-                    transition: "box-shadow 0.3s ease, transform 0.3s ease",
                   }}
                 >
                   {imageUrl ? (
@@ -188,11 +158,9 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
 
                   {/* Hover overlay */}
                   <div
-                    className="absolute inset-0 transition-opacity duration-300"
+                    className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pointer-events-none"
                     style={{
                       backgroundColor: "rgba(8, 145, 178, 0.08)",
-                      opacity: isHovered ? 1 : 0,
-                      pointerEvents: "none",
                     }}
                   />
                 </div>
@@ -211,7 +179,7 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
                     }}
                   />
                   <span
-                    className="text-[13px] leading-snug font-medium transition-colors duration-200 group-hover:text-[#0891B2]"
+                    className="text-[13px] leading-snug font-medium transition-colors duration-200 group-hover:text-[#0F365A]"
                     style={{
                       fontFamily: "'Figtree', 'Noto Sans', sans-serif",
                       color: "#2d3748",
@@ -245,7 +213,7 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
               className="inline-flex items-center gap-2 px-8 py-3 rounded-sm font-medium text-[14px] tracking-wide transition-all duration-200 hover:shadow-md hover:-translate-y-[1px]"
               style={{
                 fontFamily: "'Figtree', 'Noto Sans', sans-serif",
-                backgroundColor: "#0891B2",
+                backgroundColor: "#0F365A",
                 color: "#ffffff",
                 letterSpacing: "0.04em",
               }}

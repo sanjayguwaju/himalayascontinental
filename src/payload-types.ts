@@ -1946,19 +1946,7 @@ export interface HomepageProductCategoriesBlock {
 export interface HomepageOurProductsBlock {
   title?: string | null;
   subtitle?: string | null;
-  productSource?: ('manual' | 'collection') | null;
-  /**
-   * Select products from the Products collection
-   */
   relatedProducts?: (string | Product)[] | null;
-  products?:
-    | {
-        image: string | Media;
-        title: string;
-        link?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   columns?: ('3' | '4' | '5') | null;
   backgroundColor?: ('white' | 'lightGray' | 'lightBlue') | null;
   showViewAllButton?: boolean | null;
@@ -4066,16 +4054,7 @@ export interface HomepageProductCategoriesBlockSelect<T extends boolean = true> 
 export interface HomepageOurProductsBlockSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
-  productSource?: T;
   relatedProducts?: T;
-  products?:
-    | T
-    | {
-        image?: T;
-        title?: T;
-        link?: T;
-        id?: T;
-      };
   columns?: T;
   backgroundColor?: T;
   showViewAllButton?: T;

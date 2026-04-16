@@ -17,12 +17,12 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
   const bgColorClasses = {
     lightBlue: "bg-[#d4e6f1]",
     white: "bg-white",
-    darkBlue: "bg-[#003087]",
+    darkBlue: "bg-[#0F365A]",
   };
 
   const textColorClasses = {
-    lightBlue: "text-[#003087]",
-    white: "text-[#003087]",
+    lightBlue: "text-[#0F365A]",
+    white: "text-[#0F365A]",
     darkBlue: "text-white",
   };
 
@@ -33,9 +33,9 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
   };
 
   const cardTextClasses = {
-    lightBlue: "text-[#003087]",
-    white: "text-[#003087]",
-    darkBlue: "text-[#003087]",
+    lightBlue: "text-[#0F365A]",
+    white: "text-[#0F365A]",
+    darkBlue: "text-[#0F365A]",
   };
 
   return (
@@ -84,7 +84,7 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
               >
                 {/* Icon Container */}
                 {category.icon && (
-                  <div className="w-[80px] h-[80px] rounded-full bg-[#003087] flex items-center justify-center mb-4 overflow-hidden">
+                  <div className="w-[80px] h-[80px] rounded-full bg-[#0F365A] flex items-center justify-center mb-4 overflow-hidden">
                     <Media
                       resource={category.icon}
                       className="w-[50px] h-[50px] object-contain"
@@ -130,7 +130,7 @@ export const HomepageProductCategoriesBlock: React.FC<HomepageProductCategoriesB
               className={cn(
                 "inline-block px-8 py-3 rounded transition-colors",
                 backgroundColor === "darkBlue"
-                  ? "bg-white text-[#003087] hover:bg-gray-100"
+                  ? "bg-white text-[#0F365A] hover:bg-gray-100"
                   : "bg-[#1DA1F2] text-white hover:bg-[#1a91da]"
               )}
               style={{ fontFamily: "'Open Sans', sans-serif" }}
