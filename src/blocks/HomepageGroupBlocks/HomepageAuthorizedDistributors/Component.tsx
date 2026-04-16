@@ -71,9 +71,8 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<
             const CardContent = (
               <div
                 className={cn(
-                  "group h-full flex flex-col items-center p-4 md:p-6 text-center bg-white rounded-xl shadow-sm border border-gray-100/50 transition-all duration-300",
-                  hasLink && "hover:shadow-lg hover:-translate-y-1 cursor-pointer",
-                  !hasLink && "hover:shadow-md"
+                  "h-full flex flex-col items-center p-4 md:p-6 text-center bg-white rounded-xl shadow-sm border border-gray-100/50",
+                  hasLink && "cursor-pointer"
                 )}
                 style={{ fontFamily: "var(--font-roboto), sans-serif" }}
               >
@@ -83,7 +82,7 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<
                       src={logoUrl}
                       alt={distributor.name}
                       fill
-                      className="object-contain p-1 md:p-3 filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                      className="object-contain p-1 md:p-3"
                       sizes="(max-width: 768px) 50vw, 25vw"
                     />
                   </div>
@@ -101,7 +100,7 @@ export const HomepageAuthorizedDistributorsBlock: React.FC<
                   {/* Dedicated space for the button ensures perfect vertical alignment even if a card lacks a link */}
                   <div className="mt-auto pt-2 h-[28px] flex items-center justify-center w-full">
                     {hasLink && (
-                      <span className="inline-flex items-center text-[13px] font-semibold text-[#0870b8] group-hover:text-[#065b96] transition-colors">
+                      <span className="inline-flex items-center text-[13px] font-semibold text-[#0870b8]">
                         Visit Website
                         <svg className="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
