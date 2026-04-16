@@ -1820,7 +1820,7 @@ export interface CompanyProfileBlock {
         id?: string | null;
       }[]
     | null;
-  backgroundColor?: ('primary' | 'white' | 'gray') | null;
+  backgroundColor?: ('primary' | 'white' | 'light') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'companyProfile';
@@ -1847,7 +1847,7 @@ export interface CompanyBlock {
     };
     [k: string]: unknown;
   };
-  backgroundColor?: ('primary' | 'white' | 'gray') | null;
+  backgroundColor?: ('primary' | 'white' | 'light') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'company';
@@ -1960,6 +1960,11 @@ export interface HomepageProductCategoriesBlock {
 export interface HomepageOurProductsBlock {
   title?: string | null;
   subtitle?: string | null;
+  productSource?: ('manual' | 'collection') | null;
+  /**
+   * Select products from the Products collection
+   */
+  relatedProducts?: (string | Product)[] | null;
   products?:
     | {
         image: string | Media;
@@ -1978,6 +1983,178 @@ export interface HomepageOurProductsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'homepageOurProducts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: string;
+  name: string;
+  /**
+   * Auto-generate from name. e.g. "owgels-oxygen-concentrator-10l"
+   */
+  slug: string;
+  brand?: string | null;
+  sku?: string | null;
+  /**
+   * Top-level category: Medical Equipments / International Business / Medicines
+   */
+  category: string | ProductCategory;
+  /**
+   * Only required if the category has sub-categories (e.g. Medical Equipments)
+   */
+  subCategory?: (string | null) | ProductSubCategory;
+  /**
+   * Square thumbnail shown in product grid (150x150px ideal)
+   */
+  thumbnail: string | Media;
+  gallery?:
+    | {
+        image: string | Media;
+        alt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Brief summary shown in listing cards (1–2 sentences)
+   */
+  shortDescription?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  specifications?:
+    | {
+        label?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Show in homepage product carousel/slider
+   */
+  featured?: boolean | null;
+  inStock?: boolean | null;
+  isNew?: boolean | null;
+  hasBrochure?: boolean | null;
+  /**
+   * Select a brochure for this product
+   */
+  brochure?: (string | null) | Brochure;
+  /**
+   * Enable to show a detailed specifications table
+   */
+  hasSpecificationsTable?: boolean | null;
+  specificationsTable?: {
+    tableTitle?: string | null;
+    headers?:
+      | {
+          header: string;
+          id?: string | null;
+        }[]
+      | null;
+    rows?:
+      | {
+          cells?:
+            | {
+                value?: string | null;
+                id?: string | null;
+              }[]
+            | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-categories".
+ */
+export interface ProductCategory {
+  id: string;
+  name: string;
+  /**
+   * URL-safe identifier. e.g. "medical-equipments"
+   */
+  slug: string;
+  /**
+   * Enable if this category contains sub-categories (e.g. Medical Equipments)
+   */
+  hasSubCategories?: boolean | null;
+  description?: string | null;
+  icon?: (string | null) | Media;
+  /**
+   * Controls the order shown in nav and listings (1 = first)
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-sub-categories".
+ */
+export interface ProductSubCategory {
+  id: string;
+  name: string;
+  /**
+   * e.g. "critical-care-equipment"
+   */
+  slug: string;
+  /**
+   * Which top-level category does this belong to?
+   */
+  parentCategory: string | ProductCategory;
+  description?: string | null;
+  image?: (string | null) | Media;
+  /**
+   * Controls order within the parent category listing
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brochures".
+ */
+export interface Brochure {
+  id: string;
+  /**
+   * URL-safe identifier. e.g. "owgels-oxygen-concentrator-brochure"
+   */
+  slug: string;
+  title: string;
+  description?: string | null;
+  /**
+   * Alternative text for accessibility (e.g. "Download OWGELS Oxygen Concentrator Brochure PDF")
+   */
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2598,178 +2775,6 @@ export interface Album {
   slug: string;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-categories".
- */
-export interface ProductCategory {
-  id: string;
-  name: string;
-  /**
-   * URL-safe identifier. e.g. "medical-equipments"
-   */
-  slug: string;
-  /**
-   * Enable if this category contains sub-categories (e.g. Medical Equipments)
-   */
-  hasSubCategories?: boolean | null;
-  description?: string | null;
-  icon?: (string | null) | Media;
-  /**
-   * Controls the order shown in nav and listings (1 = first)
-   */
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-sub-categories".
- */
-export interface ProductSubCategory {
-  id: string;
-  name: string;
-  /**
-   * e.g. "critical-care-equipment"
-   */
-  slug: string;
-  /**
-   * Which top-level category does this belong to?
-   */
-  parentCategory: string | ProductCategory;
-  description?: string | null;
-  image?: (string | null) | Media;
-  /**
-   * Controls order within the parent category listing
-   */
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "products".
- */
-export interface Product {
-  id: string;
-  name: string;
-  /**
-   * Auto-generate from name. e.g. "owgels-oxygen-concentrator-10l"
-   */
-  slug: string;
-  brand?: string | null;
-  sku?: string | null;
-  /**
-   * Top-level category: Medical Equipments / International Business / Medicines
-   */
-  category: string | ProductCategory;
-  /**
-   * Only required if the category has sub-categories (e.g. Medical Equipments)
-   */
-  subCategory?: (string | null) | ProductSubCategory;
-  /**
-   * Square thumbnail shown in product grid (150x150px ideal)
-   */
-  thumbnail: string | Media;
-  gallery?:
-    | {
-        image: string | Media;
-        alt?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Brief summary shown in listing cards (1–2 sentences)
-   */
-  shortDescription?: string | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  specifications?:
-    | {
-        label?: string | null;
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Show in homepage product carousel/slider
-   */
-  featured?: boolean | null;
-  inStock?: boolean | null;
-  isNew?: boolean | null;
-  hasBrochure?: boolean | null;
-  /**
-   * Select a brochure for this product
-   */
-  brochure?: (string | null) | Brochure;
-  /**
-   * Enable to show a detailed specifications table
-   */
-  hasSpecificationsTable?: boolean | null;
-  specificationsTable?: {
-    tableTitle?: string | null;
-    headers?:
-      | {
-          header: string;
-          id?: string | null;
-        }[]
-      | null;
-    rows?:
-      | {
-          cells?:
-            | {
-                value?: string | null;
-                id?: string | null;
-              }[]
-            | null;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "brochures".
- */
-export interface Brochure {
-  id: string;
-  /**
-   * URL-safe identifier. e.g. "owgels-oxygen-concentrator-brochure"
-   */
-  slug: string;
-  title: string;
-  description?: string | null;
-  /**
-   * Alternative text for accessibility (e.g. "Download OWGELS Oxygen Concentrator Brochure PDF")
-   */
-  alt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -4075,6 +4080,8 @@ export interface HomepageProductCategoriesBlockSelect<T extends boolean = true> 
 export interface HomepageOurProductsBlockSelect<T extends boolean = true> {
   title?: T;
   subtitle?: T;
+  productSource?: T;
+  relatedProducts?: T;
   products?:
     | T
     | {

@@ -18,11 +18,36 @@ export const HomepageOurProducts: Block = {
       localized: true,
     },
     {
+      name: "productSource",
+      type: "radio",
+      label: "Product Source",
+      defaultValue: "manual",
+      options: [
+        { label: "Manual Entry", value: "manual" },
+        { label: "From Products Collection", value: "collection" },
+      ],
+    },
+    {
+      name: "relatedProducts",
+      type: "relationship",
+      relationTo: "products",
+      label: "Select Products",
+      hasMany: true,
+      maxDepth: 2,
+      admin: {
+        condition: (data) => data?.productSource === "collection",
+        description: "Select products from the Products collection",
+      },
+    },
+    {
       name: "products",
       type: "array",
-      label: "Products",
+      label: "Manual Products",
       minRows: 1,
       maxRows: 20,
+      admin: {
+        condition: (data) => data?.productSource === "manual",
+      },
       fields: [
         {
           name: "image",
