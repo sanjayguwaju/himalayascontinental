@@ -75,16 +75,15 @@ export const HomepageWelcomeSectionBlock: React.FC<HomepageWelcomeSectionBlockPr
         )}
 
         {description && (
-          <div
-            className="text-[15px] leading-[1.7] max-w-[700px]"
+          <p
+            className="text-[15px] leading-[1.7] max-w-[700px] whitespace-pre-wrap"
             style={{
               fontFamily: "'Open Sans', sans-serif",
               color: "#555555",
             }}
-            dangerouslySetInnerHTML={{
-              __html: typeof description === "string" ? description : JSON.stringify(description),
-            }}
-          />
+          >
+            {typeof description === "string" ? description : String(description)}
+          </p>
         )}
 
         {/* CTA Button */}

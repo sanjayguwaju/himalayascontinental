@@ -29,7 +29,7 @@ export const HomepageWelcomeSection: Block = {
     },
     {
       name: "description",
-      type: "richText",
+      type: "textarea",
       label: "Description",
       localized: true,
     },
