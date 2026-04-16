@@ -68,6 +68,7 @@ export const HomepageContactUs: Block = {
           label: "URL",
           required: true,
         },
+      ],
     },
     {
       name: "backgroundColor",
