@@ -24,8 +24,7 @@ import { Media } from "@/components/Media";
 import type { Post } from "@/payload-types";
 import { cn } from "@/utilities/ui";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 type Args = {
   params: Promise<{

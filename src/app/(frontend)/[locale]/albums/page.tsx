@@ -20,8 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { Image as ImageIcon, Camera } from "lucide-react";
 import type { Media } from "@/payload-types";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 export default async function AlbumsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

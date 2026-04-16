@@ -19,8 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Package, ChevronRight } from "lucide-react";
 import type { Media, ProductCategory } from "@/payload-types";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -69,14 +68,15 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.docs.map((category) => {
             const typedCategory = category as ProductCategory;
-            const iconUrl = typedCategory.icon && typeof typedCategory.icon === "object" 
-              ? (typedCategory.icon as Media).url 
-              : null;
+            const iconUrl =
+              typedCategory.icon && typeof typedCategory.icon === "object"
+                ? (typedCategory.icon as Media).url
+                : null;
 
             return (
-              <Link 
-                key={typedCategory.id} 
-                href={`/products/category/${typedCategory.slug}`} 
+              <Link
+                key={typedCategory.id}
+                href={`/products/category/${typedCategory.slug}`}
                 className="group block"
               >
                 <Card className="overflow-hidden border-2 border-transparent transition-all duration-500 group-hover:border-primary/20 group-hover:shadow-2xl bg-card rounded-2xl h-full">
@@ -94,7 +94,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                           <Package className="w-20 h-20 text-primary/30" />
                         </div>
                       )}
-                      
+
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
@@ -106,7 +106,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                         </h2>
                         <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                       </div>
-                      
+
                       {typedCategory.description && (
                         <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
                           {typedCategory.description}

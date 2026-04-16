@@ -20,8 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { Package } from "lucide-react";
 import type { Media, ProductCategory, ProductSubCategory, Product } from "@/payload-types";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 type Args = {
   params: Promise<{
@@ -30,27 +29,6 @@ type Args = {
     locale: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise });
-  
-  // Get all sub-categories
-  const subCategories = await payload.find({
-    collection: "product-sub-categories",
-    limit: 1000,
-    depth: 1,
-  });
-
-  return subCategories.docs
-    .filter((doc) => doc.slug && doc.parentCategory && typeof doc.parentCategory === "object")
-    .map((doc) => {
-      const parentCategory = doc.parentCategory as ProductCategory;
-      return {
-        slug: parentCategory.slug,
-        subSlug: doc.slug,
-      };
-    });
-}
 
 export default async function SubCategoryPage({ params }: Args) {
   const { slug, subSlug, locale } = await params;
@@ -169,14 +147,15 @@ export default async function SubCategoryPage({ params }: Args) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {productsResult.docs.map((product) => {
               const typedProduct = product as Product;
-              const thumbnailUrl = typedProduct.thumbnail && typeof typedProduct.thumbnail === "object" 
-                ? (typedProduct.thumbnail as Media).url 
-                : null;
+              const thumbnailUrl =
+                typedProduct.thumbnail && typeof typedProduct.thumbnail === "object"
+                  ? (typedProduct.thumbnail as Media).url
+                  : null;
 
               return (
-                <Link 
-                  key={typedProduct.id} 
-                  href={`/products/${typedProduct.slug}`} 
+                <Link
+                  key={typedProduct.id}
+                  href={`/products/${typedProduct.slug}`}
                   className="group block"
                 >
                   <Card className="overflow-hidden border-2 border-transparent transition-all duration-500 group-hover:border-primary/20 group-hover:shadow-xl bg-card rounded-xl h-full">
@@ -194,13 +173,13 @@ export default async function SubCategoryPage({ params }: Args) {
                             <Package className="w-12 h-12 text-muted-foreground/30" />
                           </div>
                         )}
-                        
+
                         {typedProduct.featured && (
                           <Badge className="absolute top-3 left-3 bg-primary text-white">
                             Featured
                           </Badge>
                         )}
-                        
+
                         {typedProduct.isNew && (
                           <Badge className="absolute top-3 right-3 bg-green-500 text-white">
                             New
@@ -212,11 +191,11 @@ export default async function SubCategoryPage({ params }: Args) {
                         <h3 className="font-bold text-lg group-hover:text-primary transition-colors line-clamp-1">
                           {typedProduct.name}
                         </h3>
-                        
+
                         {typedProduct.brand && (
                           <p className="text-sm text-muted-foreground">{typedProduct.brand}</p>
                         )}
-                        
+
                         {typedProduct.shortDescription && (
                           <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
                             {typedProduct.shortDescription}
@@ -251,7 +230,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   });
 
   const category = categoryResult.docs[0] as ProductCategory | undefined;
-  
+
   const subCategoryResult = await payload.find({
     collection: "product-sub-categories",
     where: {
@@ -266,8 +245,8 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const subCategory = subCategoryResult.docs[0] as ProductSubCategory | undefined;
 
   return {
-    title: subCategory 
-      ? `${subCategory.name} | ${category?.name || ""} | Himalayas Continental` 
+    title: subCategory
+      ? `${subCategory.name} | ${category?.name || ""} | Himalayas Continental`
       : "Sub-Category | Himalayas Continental",
     description: subCategory?.description || "Explore our product sub-categories.",
   };

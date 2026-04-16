@@ -20,8 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { FolderOpen, ChevronRight, Package } from "lucide-react";
 import type { Media, ProductCategory, ProductSubCategory } from "@/payload-types";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 type Args = {
   params: Promise<{
@@ -29,21 +28,6 @@ type Args = {
     locale: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise });
-  const categories = await payload.find({
-    collection: "product-categories",
-    limit: 1000,
-    select: {
-      slug: true,
-    },
-  });
-
-  return categories.docs
-    .filter((doc) => doc.slug)
-    .map(({ slug }) => ({ slug }));
-}
 
 export default async function CategoryPage({ params }: Args) {
   const { slug, locale } = await params;
@@ -166,9 +150,7 @@ export default async function CategoryPage({ params }: Args) {
             </BreadcrumbList>
           </Breadcrumb>
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              {category.name}
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">{category.name}</h1>
             <div className="flex justify-center">
               <Separator className="w-24 h-1.5 bg-primary rounded-full" />
             </div>
@@ -185,14 +167,15 @@ export default async function CategoryPage({ params }: Args) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {subCategoriesResult.docs.map((subCategory) => {
             const typedSubCategory = subCategory as ProductSubCategory;
-            const imageUrl = typedSubCategory.image && typeof typedSubCategory.image === "object" 
-              ? (typedSubCategory.image as Media).url 
-              : null;
+            const imageUrl =
+              typedSubCategory.image && typeof typedSubCategory.image === "object"
+                ? (typedSubCategory.image as Media).url
+                : null;
 
             return (
-              <Link 
-                key={typedSubCategory.id} 
-                href={`/products/category/${category.slug}/subcategory/${typedSubCategory.slug}`} 
+              <Link
+                key={typedSubCategory.id}
+                href={`/products/category/${category.slug}/subcategory/${typedSubCategory.slug}`}
                 className="group block"
               >
                 <Card className="overflow-hidden border-2 border-transparent transition-all duration-500 group-hover:border-primary/20 group-hover:shadow-2xl bg-card rounded-2xl h-full">
@@ -210,7 +193,7 @@ export default async function CategoryPage({ params }: Args) {
                           <FolderOpen className="w-20 h-20 text-primary/30" />
                         </div>
                       )}
-                      
+
                       <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
 
@@ -221,7 +204,7 @@ export default async function CategoryPage({ params }: Args) {
                         </h2>
                         <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                       </div>
-                      
+
                       {typedSubCategory.description && (
                         <p className="text-muted-foreground text-sm mt-3 line-clamp-2">
                           {typedSubCategory.description}
@@ -266,16 +249,13 @@ function ProductGrid({ products, locale }: { products: any[]; locale: string }) 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {products.map((product) => {
-        const thumbnailUrl = product.thumbnail && typeof product.thumbnail === "object" 
-          ? (product.thumbnail as Media).url 
-          : null;
+        const thumbnailUrl =
+          product.thumbnail && typeof product.thumbnail === "object"
+            ? (product.thumbnail as Media).url
+            : null;
 
         return (
-          <Link 
-            key={product.id} 
-            href={`/products/${product.slug}`} 
-            className="group block"
-          >
+          <Link key={product.id} href={`/products/${product.slug}`} className="group block">
             <Card className="overflow-hidden border-2 border-transparent transition-all duration-500 group-hover:border-primary/20 group-hover:shadow-xl bg-card rounded-xl h-full">
               <CardContent className="p-0">
                 <div className="relative aspect-square bg-muted">
@@ -291,17 +271,13 @@ function ProductGrid({ products, locale }: { products: any[]; locale: string }) 
                       <Package className="w-12 h-12 text-muted-foreground/30" />
                     </div>
                   )}
-                  
+
                   {product.featured && (
-                    <Badge className="absolute top-3 left-3 bg-primary text-white">
-                      Featured
-                    </Badge>
+                    <Badge className="absolute top-3 left-3 bg-primary text-white">Featured</Badge>
                   )}
-                  
+
                   {product.isNew && (
-                    <Badge className="absolute top-3 right-3 bg-green-500 text-white">
-                      New
-                    </Badge>
+                    <Badge className="absolute top-3 right-3 bg-green-500 text-white">New</Badge>
                   )}
                 </div>
 
@@ -309,11 +285,11 @@ function ProductGrid({ products, locale }: { products: any[]; locale: string }) 
                   <h3 className="font-bold text-lg group-hover:text-primary transition-colors line-clamp-1">
                     {product.name}
                   </h3>
-                  
+
                   {product.brand && (
                     <p className="text-sm text-muted-foreground">{product.brand}</p>
                   )}
-                  
+
                   {product.shortDescription && (
                     <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
                       {product.shortDescription}
@@ -347,7 +323,9 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const category = categoryResult.docs[0] as ProductCategory | undefined;
 
   return {
-    title: category ? `${category.name} | Himalayas Continental` : "Category | Himalayas Continental",
+    title: category
+      ? `${category.name} | Himalayas Continental`
+      : "Category | Himalayas Continental",
     description: category?.description || "Explore our product categories.",
   };
 }

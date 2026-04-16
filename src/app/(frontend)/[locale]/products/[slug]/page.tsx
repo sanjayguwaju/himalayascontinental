@@ -19,19 +19,17 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Package, 
-  FileText, 
-  Download, 
-  Check, 
-  ArrowLeft,
-  Star,
-  Sparkles
-} from "lucide-react";
+import { Package, FileText, Download, Check, ArrowLeft, Star, Sparkles } from "lucide-react";
 import { PayloadRedirects } from "@/components/PayloadRedirects";
 import { LivePreviewListener } from "@/components/LivePreviewListener";
 import RichText from "@/components/RichText";
-import type { Media, Brochure, Product, ProductCategory, ProductSubCategory } from "@/payload-types";
+import type {
+  Media,
+  Brochure,
+  Product,
+  ProductCategory,
+  ProductSubCategory,
+} from "@/payload-types";
 import {
   Table,
   TableBody,
@@ -41,8 +39,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export const dynamic = "force-static";
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 type Args = {
   params: Promise<{
@@ -50,21 +47,6 @@ type Args = {
     locale: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise });
-  const products = await payload.find({
-    collection: "products",
-    limit: 1000,
-    select: {
-      slug: true,
-    },
-  });
-
-  return products.docs
-    .filter((doc) => doc.slug)
-    .map(({ slug }) => ({ slug }));
-}
 
 export default async function ProductPage({ params }: Args) {
   const { isEnabled: draft } = await draftMode();
@@ -79,25 +61,29 @@ export default async function ProductPage({ params }: Args) {
     notFound();
   }
 
-  const thumbnailUrl = product.thumbnail && typeof product.thumbnail === "object" 
-    ? (product.thumbnail as Media).url 
-    : null;
+  const thumbnailUrl =
+    product.thumbnail && typeof product.thumbnail === "object"
+      ? (product.thumbnail as Media).url
+      : null;
 
-  const category = product.category && typeof product.category === "object" 
-    ? product.category as ProductCategory 
-    : null;
+  const category =
+    product.category && typeof product.category === "object"
+      ? (product.category as ProductCategory)
+      : null;
 
-  const subCategory = product.subCategory && typeof product.subCategory === "object" 
-    ? product.subCategory as ProductSubCategory 
-    : null;
+  const subCategory =
+    product.subCategory && typeof product.subCategory === "object"
+      ? (product.subCategory as ProductSubCategory)
+      : null;
 
-  const brochureFile = product.brochure && typeof product.brochure === "object" 
-    ? product.brochure as Brochure 
-    : null;
+  const brochureFile =
+    product.brochure && typeof product.brochure === "object"
+      ? (product.brochure as Brochure)
+      : null;
 
-  const galleryImages = product.gallery?.map((item) => 
-    item.image && typeof item.image === "object" ? (item.image as Media) : null
-  ).filter(Boolean) as Media[];
+  const galleryImages = product.gallery
+    ?.map((item) => (item.image && typeof item.image === "object" ? (item.image as Media) : null))
+    .filter(Boolean) as Media[];
 
   const hasTable = product.hasSpecificationsTable && product.specificationsTable;
   const tableData = hasTable ? product.specificationsTable : null;
@@ -134,7 +120,9 @@ export default async function ProductPage({ params }: Args) {
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
                     <BreadcrumbLink asChild>
-                      <Link href={`/products/category/${category?.slug}/subcategory/${subCategory.slug}`}>
+                      <Link
+                        href={`/products/category/${category?.slug}/subcategory/${subCategory.slug}`}
+                      >
                         {subCategory.name}
                       </Link>
                     </BreadcrumbLink>
@@ -143,9 +131,7 @@ export default async function ProductPage({ params }: Args) {
               )}
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage className="max-w-[200px] truncate">
-                  {product.name}
-                </BreadcrumbPage>
+                <BreadcrumbPage className="max-w-[200px] truncate">{product.name}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -156,8 +142,14 @@ export default async function ProductPage({ params }: Args) {
       <PayloadRedirects disableNotFound url={`/products/${slug}`} />
 
       <div className="container py-12">
-        <Link 
-          href={subCategory ? `/products/category/${category?.slug}/subcategory/${subCategory.slug}` : category ? `/products/category/${category.slug}` : "/products"}
+        <Link
+          href={
+            subCategory
+              ? `/products/category/${category?.slug}/subcategory/${subCategory.slug}`
+              : category
+                ? `/products/category/${category.slug}`
+                : "/products"
+          }
           className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -196,9 +188,7 @@ export default async function ProductPage({ params }: Args) {
                     New Arrival
                   </Badge>
                 )}
-                {!product.inStock && (
-                  <Badge variant="destructive">Out of Stock</Badge>
-                )}
+                {!product.inStock && <Badge variant="destructive">Out of Stock</Badge>}
               </div>
             </div>
 
@@ -206,7 +196,7 @@ export default async function ProductPage({ params }: Args) {
             {galleryImages.length > 0 && (
               <div className="grid grid-cols-4 gap-3">
                 {galleryImages.map((image, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="relative aspect-square rounded-lg overflow-hidden bg-muted border cursor-pointer hover:border-primary transition-colors"
                   >
@@ -226,17 +216,11 @@ export default async function ProductPage({ params }: Args) {
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex flex-wrap gap-2">
-                {category && (
-                  <Badge variant="secondary">{category.name}</Badge>
-                )}
-                {subCategory && (
-                  <Badge variant="outline">{subCategory.name}</Badge>
-                )}
+                {category && <Badge variant="secondary">{category.name}</Badge>}
+                {subCategory && <Badge variant="outline">{subCategory.name}</Badge>}
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-                {product.name}
-              </h1>
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{product.name}</h1>
 
               {product.brand && (
                 <p className="text-lg text-muted-foreground">
@@ -307,9 +291,9 @@ export default async function ProductPage({ params }: Args) {
                       </div>
                     </div>
                     <Button asChild variant="default" size="sm">
-                      <a 
-                        href={brochureFile.url || "#"} 
-                        target="_blank" 
+                      <a
+                        href={brochureFile.url || "#"}
+                        target="_blank"
                         rel="noopener noreferrer"
                         download
                       >
@@ -374,10 +358,7 @@ export default async function ProductPage({ params }: Args) {
             <h2 className="text-2xl font-bold mb-6">All Specifications</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {product.specifications.map((spec, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-start gap-3 p-4 rounded-lg border bg-card"
-                >
+                <div key={index} className="flex items-start gap-3 p-4 rounded-lg border bg-card">
                   <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-sm text-muted-foreground">{spec.label}</p>
@@ -393,26 +374,28 @@ export default async function ProductPage({ params }: Args) {
   );
 }
 
-const queryProductBySlug = cache(async ({ slug, locale }: { slug: string; locale: TypedLocale }) => {
-  const { isEnabled: draft } = await draftMode();
-  const payload = await getPayload({ config: configPromise });
+const queryProductBySlug = cache(
+  async ({ slug, locale }: { slug: string; locale: TypedLocale }) => {
+    const { isEnabled: draft } = await draftMode();
+    const payload = await getPayload({ config: configPromise });
 
-  const result = await payload.find({
-    collection: "products",
-    draft,
-    limit: 1,
-    pagination: false,
-    overrideAccess: draft,
-    locale,
-    where: {
-      slug: {
-        equals: slug,
+    const result = await payload.find({
+      collection: "products",
+      draft,
+      limit: 1,
+      pagination: false,
+      overrideAccess: draft,
+      locale,
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-  });
+    });
 
-  return result.docs?.[0] as Product | undefined;
-});
+    return result.docs?.[0] as Product | undefined;
+  }
+);
 
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { slug, locale } = await params;
@@ -429,6 +412,8 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
 
   return {
     title: `${product.name} | Himalayas Continental`,
-    description: product.shortDescription || `Explore ${product.name} - Medical Equipment from Himalayas Continental.`,
+    description:
+      product.shortDescription ||
+      `Explore ${product.name} - Medical Equipment from Himalayas Continental.`,
   };
 }
