@@ -83,7 +83,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = (props) => {
                   <div
                     className={cn(
                       "relative w-full overflow-hidden",
-                      "aspect-4/3 md:aspect-video lg:aspect-[21/9] min-h-[400px] md:min-h-[500px] lg:min-h-[600px]"
+                      "aspect-auto md:aspect-video lg:aspect-[21/9] min-h-[300px] md:min-h-[500px] lg:min-h-[600px]"
                     )}
                   >
                     {slide.image && typeof slide.image === "object" && (
@@ -95,7 +95,7 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = (props) => {
                       >
                         <Media
                           fill
-                          imgClassName="object-cover"
+                          imgClassName="object-contain md:object-cover"
                           priority={index === 0}
                           resource={slide.image}
                         />
