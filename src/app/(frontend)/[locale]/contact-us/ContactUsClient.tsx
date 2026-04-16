@@ -140,7 +140,7 @@ export const ContactUsClient: React.FC = () => {
         {/* Logo */}
         <div className="mb-4">
           <Image
-            src="/himalayas-logo.png"
+            src="/conatctlogo.png"
             alt="Himalayas Continental Pvt. Ltd."
             width={90}
             height={90}
