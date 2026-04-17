@@ -9,7 +9,6 @@ import { MediaBlock } from "../../blocks/MediaBlock/config";
 import { Gallery } from "../../blocks/Gallery/config";
 import { hero } from "@/heros/config";
 import { AboutUs } from "@/blocks/AboutUs/config";
-import { Staffs } from "@/blocks/Staffs/config";
 import { Feedback } from "@/blocks/Feedback/config";
 import { OurServices } from "@/blocks/OurServices/config";
 import { Highlights } from "../../blocks/Highlights/config";
@@ -118,7 +117,6 @@ export const Pages: CollectionConfig<"pages"> = {
                 FormBlock,
                 Gallery,
                 AboutUs,
-                Staffs,
                 Feedback,
                 OurServices,
                 Highlights,

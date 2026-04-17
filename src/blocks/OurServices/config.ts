@@ -99,14 +99,6 @@ export const OurServices: Block = {
                   label: "Detailed Description",
                 },
                 {
-                  name: "availableDoctors",
-                  type: "relationship",
-                  relationTo: "staffs",
-                  hasMany: true,
-                  localized: true,
-                  label: "Doctors Specialized in this Service",
-                },
-                {
                   name: "timings",
                   type: "textarea",
                   label: "Service Timings / Availability",

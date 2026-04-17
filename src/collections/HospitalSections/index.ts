@@ -123,34 +123,7 @@ export const HospitalSections: CollectionConfig = {
           ],
         },
 
-        // TAB 2 — Staffs
-        {
-          label: "Staffs",
-          fields: [
-            {
-              name: "staffs",
-              type: "relationship",
-              relationTo: "staffs",
-              hasMany: true,
-              label: "Assign Staff Members",
-              admin: {
-                description:
-                  "Select staff members who work in this section. They will appear on the section detail page.",
-              },
-            },
-            {
-              name: "sectionHead",
-              type: "relationship",
-              relationTo: "staffs",
-              label: "Section Head / In-Charge",
-              admin: {
-                description: "The lead doctor or administrator for this section",
-              },
-            },
-          ],
-        },
-
-        // TAB 3 — Details
+        // TAB 2 — Details
         {
           label: "Details",
           fields: [

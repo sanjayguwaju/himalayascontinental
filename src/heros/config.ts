@@ -35,39 +35,6 @@ export const hero: Field = {
       required: true,
     },
     {
-      name: "showStaff",
-      type: "checkbox",
-      label: "Show Staff List",
-      admin: {
-        condition: (_, { type } = {}) => type === "heroCarousel",
-      },
-    },
-    {
-      name: "staffLayout",
-      type: "select",
-      defaultValue: "left",
-      label: "Staff List Layout",
-      options: [
-        { label: "Left", value: "left" },
-        { label: "Right", value: "right" },
-      ],
-      admin: {
-        condition: (_, siblingData = {}) =>
-          siblingData.type === "heroCarousel" && siblingData.showStaff === true,
-      },
-    },
-    {
-      name: "staffs",
-      type: "relationship",
-      relationTo: "staffs",
-      hasMany: true,
-      maxRows: 3,
-      admin: {
-        condition: (_, siblingData = {}) =>
-          siblingData.type === "heroCarousel" && siblingData.showStaff === true,
-      },
-    },
-    {
       name: "slides",
       type: "array",
       admin: {

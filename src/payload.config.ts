@@ -20,8 +20,6 @@ import { Navigation } from "./globals/Navigation/config";
 import { Footer } from "./globals/Footer/config";
 import { defaultLexical } from "./fields/defaultLexical";
 import { getServerSideURL } from "./utilities/getURL";
-import { Staffs } from "./collections/Staffs";
-import { SuchiDarta } from "./collections/SuchiDarta";
 import { HospitalSections } from "./collections/HospitalSections";
 import { Albums } from "./collections/Albums";
 import { Files } from "./collections/Files";
@@ -108,9 +106,7 @@ export default buildConfig({
     Posts,
     Categories,
     List,
-    Staffs,
     CommonFormSubmissions,
-    SuchiDarta,
     HospitalSections,
     Albums,
     Files,

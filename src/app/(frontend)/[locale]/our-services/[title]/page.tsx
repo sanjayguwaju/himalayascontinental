@@ -6,7 +6,7 @@ import { getPayload } from "payload";
 import { Clock, User, ExternalLink, ShieldPlus } from "lucide-react";
 import RichText from "@/components/RichText";
 import Image from "next/image";
-import type { Media, Staff } from "@/payload-types";
+import type { Media } from "@/payload-types";
 import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
@@ -142,50 +142,6 @@ export default async function ServiceDetailsPage({
                 <h4 className="font-bold text-[#1a5c2e] text-lg mb-2">Availability & Timings</h4>
 
                 <p className="text-gray-700 whitespace-pre-wrap">{service.timings}</p>
-              </div>
-            </div>
-          )}
-
-          {/* Doctors */}
-          {service.availableDoctors && service.availableDoctors.length > 0 && (
-            <div className="border-t pt-10">
-              <h4 className="text-2xl font-bold flex items-center gap-3 mb-6">
-                <User className="w-7 h-7 text-[#1a5c2e]" />
-                Specialized Doctors
-              </h4>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {service.availableDoctors.map((doc: Staff | string, idx: number) => {
-                  const doctor = doc as Staff;
-                  if (!doctor?.fullName) return null;
-
-                  const photo = doctor.profilePhoto as Media;
-
-                  return (
-                    <div key={idx} className="flex gap-4 p-5 rounded-2xl border bg-white shadow-sm">
-                      <div className="w-16 h-16 rounded-full overflow-hidden relative">
-                        {photo?.url ? (
-                          <Image
-                            src={photo.url}
-                            alt={doctor.fullName}
-                            fill
-                            className="object-cover"
-                          />
-                        ) : (
-                          <User />
-                        )}
-                      </div>
-
-                      <div>
-                        <p className="font-bold">
-                          {doctor.titlePrefix}. {doctor.fullName}
-                        </p>
-
-                        <p className="text-sm text-[#1a5c2e] font-semibold">{doctor.designation}</p>
-                      </div>
-                    </div>
-                  );
-                })}
               </div>
             </div>
           )}

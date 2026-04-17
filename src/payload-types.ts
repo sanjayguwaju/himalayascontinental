@@ -73,9 +73,7 @@ export interface Config {
     posts: Post;
     categories: Category;
     list: List;
-    staffs: Staff;
     'common-form-submissions': CommonFormSubmission;
-    'suchi-darta': SuchiDarta;
     'hospital-sections': HospitalSection;
     albums: Album;
     files: File;
@@ -106,9 +104,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     list: ListSelect<false> | ListSelect<true>;
-    staffs: StaffsSelect<false> | StaffsSelect<true>;
     'common-form-submissions': CommonFormSubmissionsSelect<false> | CommonFormSubmissionsSelect<true>;
-    'suchi-darta': SuchiDartaSelect<false> | SuchiDartaSelect<true>;
     'hospital-sections': HospitalSectionsSelect<false> | HospitalSectionsSelect<true>;
     albums: AlbumsSelect<false> | AlbumsSelect<true>;
     files: FilesSelect<false> | FilesSelect<true>;
@@ -342,9 +338,6 @@ export interface Page {
       | 'donateHero'
       | 'storyHero'
       | 'minimalHero';
-    showStaff?: boolean | null;
-    staffLayout?: ('left' | 'right') | null;
-    staffs?: (string | Staff)[] | null;
     slides?:
       | {
           image: string | Media;
@@ -430,7 +423,6 @@ export interface Page {
     | FormBlock
     | GalleryBlock
     | AboutUsBlock
-    | StaffsBlock
     | FeedbackBlock
     | OurServicesBlock
     | HighlightsBlock
@@ -484,114 +476,6 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "staffs".
- */
-export interface Staff {
-  id: string;
-  titlePrefix: 'dr' | 'mr' | 'ms' | 'mrs' | 'prof';
-  roleType: 'chief_consultant' | 'consultant' | 'medical_officer' | 'administrator' | 'nurse' | 'support_staff';
-  department?:
-    | (
-        | 'anaesthesiology'
-        | 'orthopedics'
-        | 'obs_gynae'
-        | 'general_surgery'
-        | 'general_medicine'
-        | 'ophthalmology'
-        | 'ent'
-        | 'paediatrics'
-        | 'nursing_admin'
-        | 'internal_medicine'
-      )
-    | null;
-  employmentType?: ('full_time' | 'part_time' | 'visiting_consultant' | 'on_call') | null;
-  isActive?: boolean | null;
-  showOnWebsite?: boolean | null;
-  nmcVerified?: boolean | null;
-  /**
-   * Lower number appears first on the staff page
-   */
-  displayOrder?: number | null;
-  fullName: string;
-  /**
-   * e.g. dr-kiran-tiwari
-   */
-  slug?: string | null;
-  designation: string;
-  specialization?: string | null;
-  joinDate?: string | null;
-  /**
-   * Nepal Medical Council registration number
-   */
-  nmcNumber?: string | null;
-  profilePhoto?: (string | null) | Media;
-  biography?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  phone?: string | null;
-  email: string;
-  address?: {
-    street?: string | null;
-    city?: string | null;
-    district?: string | null;
-    province?: string | null;
-    zipCode?: string | null;
-  };
-  emergencyContact?: {
-    name?: string | null;
-    /**
-     * e.g. Spouse, Parent, Sibling
-     */
-    relationship?: string | null;
-    emergencyPhone?: string | null;
-    emergencyEmail?: string | null;
-  };
-  qualifications?:
-    | {
-        degree: string;
-        institution?: string | null;
-        year?: number | null;
-        id?: string | null;
-      }[]
-    | null;
-  languagesSpoken?:
-    | {
-        language: string;
-        id?: string | null;
-      }[]
-    | null;
-  availabilitySchedule?:
-    | {
-        day?: ('sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday') | null;
-        /**
-         * e.g. 9AM - 1PM
-         */
-        hours?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  nmcCertificate?: (string | null) | Media;
-  /**
-   * Used for renewal reminders
-   */
-  nmcExpiryDate?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1058,48 +942,6 @@ export interface AboutUsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StaffsBlock".
- */
-export interface StaffsBlock {
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Choose which staffs to display based on department, or show all structured by hierarchy.
-   */
-  staffsSelection?: ('all' | 'department') | null;
-  departments?:
-    | (
-        | 'anaesthesiology'
-        | 'orthopedics'
-        | 'obs_gynae'
-        | 'general_surgery'
-        | 'general_medicine'
-        | 'ophthalmology'
-        | 'ent'
-        | 'paediatrics'
-        | 'nursing_admin'
-        | 'internal_medicine'
-      )[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'staffsBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FeedbackBlock".
  */
 export interface FeedbackBlock {
@@ -1183,7 +1025,6 @@ export interface OurServicesBlock {
           };
           [k: string]: unknown;
         } | null;
-        availableDoctors?: (string | Staff)[] | null;
         timings?: string | null;
         link?: string | null;
         id?: string | null;
@@ -2542,7 +2383,6 @@ export interface File {
     | (
         | 'admin'
         | 'notices'
-        | 'suchi-darta'
         | 'common-form-submissions'
         | 'grievance-complaints'
         | 'medical-records-requests'
@@ -2550,7 +2390,6 @@ export interface File {
         | 'referral-forms'
         | 'discharge-feedback'
         | 'patient-feedback'
-        | 'staffs'
       )
     | null;
   uploadedBy?: (string | null) | User;
@@ -2561,10 +2400,6 @@ export interface File {
    */
   fiscalYear?: string | null;
   expiryDate?: string | null;
-  /**
-   * e.g. SDC-A3KF92PQ
-   */
-  relatedTrackingCode?: string | null;
   isVerified?: boolean | null;
   verifiedBy?: (string | null) | User;
   verificationNotes?: string | null;
@@ -2580,114 +2415,6 @@ export interface File {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * Suchi Darta Form — Vendor/Supplier registration applications
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "suchi-darta".
- */
-export interface SuchiDarta {
-  id: string;
-  /**
-   * Auto-generated. Share this with the applicant.
-   */
-  trackingCode?: string | null;
-  approvalStatus?: ('pending' | 'under_review' | 'approved' | 'rejected' | 'more_info_required') | null;
-  submittedDate?: string | null;
-  /**
-   * Admin who reviewed this application
-   */
-  reviewedBy?: (string | null) | User;
-  reviewedDate?: string | null;
-  applicantName: string;
-  permanentAddress: string;
-  correspondenceAddress: string;
-  contactPersonName: string;
-  telephone: string;
-  mobile: string;
-  /**
-   * Optional, used for status notifications
-   */
-  email?: string | null;
-  /**
-   * Document Attachments (Max 5MB PDF/Image)
-   */
-  firmRegistrationCertificate: string | Media;
-  /**
-   * Document Attachments (Max 5MB PDF/Image)
-   */
-  taxClearanceCertificate: string | Media;
-  /**
-   * Document Attachments (Max 5MB PDF/Image)
-   */
-  taxPaymentCertificate: string | Media;
-  /**
-   * If required for specific procurement
-   */
-  authorizationLetter?: (string | null) | Media;
-  goodsSupply: string;
-  constructionWork: string;
-  consultancyServices: string;
-  otherServices: string;
-  /**
-   * Fiscal year in Bikram Sambat
-   */
-  submissionDateBS: string;
-  applicantSignatureName: string;
-  /**
-   * Visible only to admins. Never shown to the applicant.
-   */
-  internalNotes?: string | null;
-  /**
-   * Write in both EN and NE — this is shown to the applicant when they track their application.
-   */
-  remarks?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Select the primary reason for rejection
-   */
-  rejectionReason?:
-    | ('incomplete_documents' | 'invalid_certificate' | 'expired_tax' | 'duplicate' | 'criteria_not_met' | 'other')
-    | null;
-  /**
-   * Write in both EN and NE — applicant sees this when tracking.
-   */
-  additionalInfoRequested?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Official certificate number issued upon approval
-   */
-  approvalCertificateNumber?: string | null;
-  approvalValidUntil?: string | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2736,14 +2463,6 @@ export interface HospitalSection {
    * Short summary shown on cards or listings
    */
   excerpt?: string | null;
-  /**
-   * Select staff members who work in this section. They will appear on the section detail page.
-   */
-  staffs?: (string | Staff)[] | null;
-  /**
-   * The lead doctor or administrator for this section
-   */
-  sectionHead?: (string | null) | Staff;
   /**
    * e.g. 2075
    */
@@ -3006,16 +2725,8 @@ export interface PayloadLockedDocument {
         value: string | List;
       } | null)
     | ({
-        relationTo: 'staffs';
-        value: string | Staff;
-      } | null)
-    | ({
         relationTo: 'common-form-submissions';
         value: string | CommonFormSubmission;
-      } | null)
-    | ({
-        relationTo: 'suchi-darta';
-        value: string | SuchiDarta;
       } | null)
     | ({
         relationTo: 'hospital-sections';
@@ -3236,9 +2947,6 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
-        showStaff?: T;
-        staffLayout?: T;
-        staffs?: T;
         slides?:
           | T
           | {
@@ -3291,7 +2999,6 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
         aboutUs?: T | AboutUsBlockSelect<T>;
-        staffsBlock?: T | StaffsBlockSelect<T>;
         feedback?: T | FeedbackBlockSelect<T>;
         ourServices?: T | OurServicesBlockSelect<T>;
         highlights?: T | HighlightsBlockSelect<T>;
@@ -3468,17 +3175,6 @@ export interface AboutUsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "StaffsBlock_select".
- */
-export interface StaffsBlockSelect<T extends boolean = true> {
-  introContent?: T;
-  staffsSelection?: T;
-  departments?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FeedbackBlock_select".
  */
 export interface FeedbackBlockSelect<T extends boolean = true> {
@@ -3503,7 +3199,6 @@ export interface OurServicesBlockSelect<T extends boolean = true> {
         description?: T;
         icon?: T;
         longDescription?: T;
-        availableDoctors?: T;
         timings?: T;
         link?: T;
         id?: T;
@@ -4352,72 +4047,6 @@ export interface ListSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "staffs_select".
- */
-export interface StaffsSelect<T extends boolean = true> {
-  titlePrefix?: T;
-  roleType?: T;
-  department?: T;
-  employmentType?: T;
-  isActive?: T;
-  showOnWebsite?: T;
-  nmcVerified?: T;
-  displayOrder?: T;
-  fullName?: T;
-  slug?: T;
-  designation?: T;
-  specialization?: T;
-  joinDate?: T;
-  nmcNumber?: T;
-  profilePhoto?: T;
-  biography?: T;
-  phone?: T;
-  email?: T;
-  address?:
-    | T
-    | {
-        street?: T;
-        city?: T;
-        district?: T;
-        province?: T;
-        zipCode?: T;
-      };
-  emergencyContact?:
-    | T
-    | {
-        name?: T;
-        relationship?: T;
-        emergencyPhone?: T;
-        emergencyEmail?: T;
-      };
-  qualifications?:
-    | T
-    | {
-        degree?: T;
-        institution?: T;
-        year?: T;
-        id?: T;
-      };
-  languagesSpoken?:
-    | T
-    | {
-        language?: T;
-        id?: T;
-      };
-  availabilitySchedule?:
-    | T
-    | {
-        day?: T;
-        hours?: T;
-        id?: T;
-      };
-  nmcCertificate?: T;
-  nmcExpiryDate?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "common-form-submissions_select".
  */
 export interface CommonFormSubmissionsSelect<T extends boolean = true> {
@@ -4456,42 +4085,6 @@ export interface CommonFormSubmissionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "suchi-darta_select".
- */
-export interface SuchiDartaSelect<T extends boolean = true> {
-  trackingCode?: T;
-  approvalStatus?: T;
-  submittedDate?: T;
-  reviewedBy?: T;
-  reviewedDate?: T;
-  applicantName?: T;
-  permanentAddress?: T;
-  correspondenceAddress?: T;
-  contactPersonName?: T;
-  telephone?: T;
-  mobile?: T;
-  email?: T;
-  firmRegistrationCertificate?: T;
-  taxClearanceCertificate?: T;
-  taxPaymentCertificate?: T;
-  authorizationLetter?: T;
-  goodsSupply?: T;
-  constructionWork?: T;
-  consultancyServices?: T;
-  otherServices?: T;
-  submissionDateBS?: T;
-  applicantSignatureName?: T;
-  internalNotes?: T;
-  remarks?: T;
-  rejectionReason?: T;
-  additionalInfoRequested?: T;
-  approvalCertificateNumber?: T;
-  approvalValidUntil?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "hospital-sections_select".
  */
 export interface HospitalSectionsSelect<T extends boolean = true> {
@@ -4504,8 +4097,6 @@ export interface HospitalSectionsSelect<T extends boolean = true> {
   coverImage?: T;
   description?: T;
   excerpt?: T;
-  staffs?: T;
-  sectionHead?: T;
   establishedYear?: T;
   totalBeds?: T;
   totalStaffCount?: T;
@@ -4553,7 +4144,6 @@ export interface FilesSelect<T extends boolean = true> {
   description?: T;
   fiscalYear?: T;
   expiryDate?: T;
-  relatedTrackingCode?: T;
   isVerified?: T;
   verifiedBy?: T;
   verificationNotes?: T;

@@ -138,14 +138,6 @@ async function seedHomePage(): Promise<void> {
           ],
         },
         {
-          blockType: "staffsBlock",
-          introContent: createLexicalText(
-            "Meet our experts who make it happen.",
-            "Our Dedicated Doctors"
-          ),
-          staffsSelection: "all",
-        },
-        {
           blockType: "aboutUs",
           title: "About Himalayas Continental",
           content: createLexicalText(

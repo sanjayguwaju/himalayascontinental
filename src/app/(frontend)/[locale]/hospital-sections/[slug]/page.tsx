@@ -4,11 +4,10 @@ import { getPayload } from "payload";
 import React from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Building2, Clock, MapPin, Phone, Users, ShieldPlus, ChevronRight } from "lucide-react";
+import { Building2, Clock, MapPin, Phone, ShieldPlus, ChevronRight } from "lucide-react";
 import RichText from "@/components/RichText";
 import { Badge } from "@/components/ui/badge";
-import { StaffCard } from "@/components/StaffCard";
-import type { Media, Staff } from "@/payload-types";
+import type { Media } from "@/payload-types";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -62,7 +61,7 @@ export default async function HospitalSectionPage({
 
   const payload = await getPayload({ config: configPromise });
 
-  // Fetch section data with staffs fully populated
+  // Fetch section data
   const response = await payload.find({
     collection: "hospital-sections",
     where: { slug: { equals: decodedSlug } },
@@ -84,15 +83,6 @@ export default async function HospitalSectionPage({
     section.coverImage && typeof section.coverImage === "object"
       ? (section.coverImage as Media).alt || section.title
       : section.title;
-
-  const headStaff =
-    section.sectionHead && typeof section.sectionHead === "object"
-      ? (section.sectionHead as Staff)
-      : null;
-
-  const assignedStaffs = (section.staffs || [])
-    .map((s) => (typeof s === "object" ? (s as Staff) : null))
-    .filter((s): s is Staff => s !== null);
 
   return (
     <div className="pb-16">
@@ -172,42 +162,6 @@ export default async function HospitalSectionPage({
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
-
-            {/* Staff Directory Section */}
-            {(headStaff || assignedStaffs.length > 0) && (
-              <div className="space-y-8 pt-8 border-t">
-                <div className="flex items-center gap-3">
-                  <Users className="w-6 h-6 text-primary" />
-                  <h2 className="text-2xl font-bold">Section Team</h2>
-                </div>
-
-                {headStaff && (
-                  <div className="space-y-4">
-                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                      Section Head
-                    </h3>
-                    <div className="max-w-sm">
-                      <StaffCard staff={headStaff} />
-                    </div>
-                  </div>
-                )}
-
-                {assignedStaffs.length > 0 && (
-                  <div className="space-y-4">
-                    {headStaff && (
-                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider pt-4">
-                        Assigned Medical Staff
-                      </h3>
-                    )}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                      {assignedStaffs.map((staff) => (
-                        <StaffCard key={staff.id} staff={staff} />
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             )}
           </div>

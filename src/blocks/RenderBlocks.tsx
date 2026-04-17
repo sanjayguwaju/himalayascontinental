@@ -10,7 +10,6 @@ import { FormBlock } from "@/blocks/Form/Component";
 import { MediaBlock } from "@/blocks/MediaBlock/Component";
 import { GalleryBlock } from "@/blocks/Gallery/Component";
 import { AboutUsBlock } from "@/blocks/AboutUs/Component";
-import { StaffsBlock } from "@/blocks/Staffs/Component";
 import { FeedbackBlock } from "@/blocks/Feedback/Component";
 import { OurServicesBlock } from "@/blocks/OurServices/Component";
 import { HighlightsBlock } from "@/blocks/Highlights/Component";
@@ -55,7 +54,6 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   gallery: GalleryBlock,
   aboutUs: AboutUsBlock,
-  staffsBlock: StaffsBlock,
   feedback: FeedbackBlock,
   ourServices: OurServicesBlock,
   highlights: HighlightsBlock,

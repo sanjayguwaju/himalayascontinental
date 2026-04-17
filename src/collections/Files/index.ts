@@ -172,7 +172,6 @@ export const Files: CollectionConfig = {
       options: [
         { label: "Admin Panel", value: "admin" },
         { label: "Notices", value: "notices" },
-        { label: "Suchi Darta", value: "suchi-darta" },
         { label: "Common Form Submission", value: "common-form-submissions" },
         { label: "Grievance / Complaint", value: "grievance-complaints" },
         { label: "Medical Records Request", value: "medical-records-requests" },
@@ -180,7 +179,6 @@ export const Files: CollectionConfig = {
         { label: "Referral Form", value: "referral-forms" },
         { label: "Discharge Feedback", value: "discharge-feedback" },
         { label: "Patient Feedback", value: "patient-feedback" },
-        { label: "Staff Profile", value: "staffs" },
       ],
     },
     {
@@ -230,15 +228,6 @@ export const Files: CollectionConfig = {
                   },
                 },
               ],
-            },
-            {
-              name: "relatedTrackingCode",
-              type: "text",
-              label: "Related Tracking Code",
-              admin: {
-                readOnly: true,
-                description: "e.g. SDC-A3KF92PQ",
-              },
             },
           ],
         },
