@@ -74,7 +74,6 @@ export interface Config {
     categories: Category;
     'common-form-submissions': CommonFormSubmission;
     albums: Album;
-    files: File;
     'product-categories': ProductCategory;
     'product-sub-categories': ProductSubCategory;
     products: Product;
@@ -103,7 +102,6 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'common-form-submissions': CommonFormSubmissionsSelect<false> | CommonFormSubmissionsSelect<true>;
     albums: AlbumsSelect<false> | AlbumsSelect<true>;
-    files: FilesSelect<false> | FilesSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     'product-sub-categories': ProductSubCategoriesSelect<false> | ProductSubCategoriesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
@@ -2113,7 +2111,7 @@ export interface CommonFormSubmission {
   attachments?:
     | {
         label?: string | null;
-        file?: (string | null) | File;
+        file?: (string | null) | Media;
         id?: string | null;
       }[]
     | null;
@@ -2169,70 +2167,6 @@ export interface CommonFormSubmission {
   isSpam?: boolean | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * Central file storage — notices, PDFs, form attachments, staff documents, certificates
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "files".
- */
-export interface File {
-  id: string;
-  /**
-   * Private files are only accessible to admins and staff. Sensitive categories are auto-set to private.
-   */
-  isPrivate?: boolean | null;
-  fileCategory:
-    | 'notice_pdf'
-    | 'notice_image'
-    | 'hospital_photo'
-    | 'staff_photo'
-    | 'report'
-    | 'tender'
-    | 'form_attachment'
-    | 'nmc_certificate'
-    | 'academic_certificate'
-    | 'identity_document'
-    | 'authorization_letter'
-    | 'staff_contract'
-    | 'medical_report'
-    | 'other';
-  uploadedFrom?:
-    | (
-        | 'admin'
-        | 'notices'
-        | 'common-form-submissions'
-        | 'grievance-complaints'
-        | 'medical-records-requests'
-        | 'opd-registration'
-        | 'referral-forms'
-        | 'discharge-feedback'
-        | 'patient-feedback'
-      )
-    | null;
-  uploadedBy?: (string | null) | User;
-  title: string;
-  description?: string | null;
-  /**
-   * e.g. 2081/2082
-   */
-  fiscalYear?: string | null;
-  expiryDate?: string | null;
-  isVerified?: boolean | null;
-  verifiedBy?: (string | null) | User;
-  verificationNotes?: string | null;
-  prefix?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2474,10 +2408,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'albums';
         value: string | Album;
-      } | null)
-    | ({
-        relationTo: 'files';
-        value: string | File;
       } | null)
     | ({
         relationTo: 'product-categories';
@@ -3768,35 +3698,6 @@ export interface AlbumsSelect<T extends boolean = true> {
   slug?: T;
   updatedAt?: T;
   createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "files_select".
- */
-export interface FilesSelect<T extends boolean = true> {
-  isPrivate?: T;
-  fileCategory?: T;
-  uploadedFrom?: T;
-  uploadedBy?: T;
-  title?: T;
-  description?: T;
-  fiscalYear?: T;
-  expiryDate?: T;
-  isVerified?: T;
-  verifiedBy?: T;
-  verificationNotes?: T;
-  prefix?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

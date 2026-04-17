@@ -6,7 +6,15 @@ export const CommonFormSubmissions: CollectionConfig = {
   slug: "common-form-submissions",
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["ticketCode", "name", "email", "subjectText", "status", "priority", "createdAt"],
+    defaultColumns: [
+      "ticketCode",
+      "name",
+      "email",
+      "subjectText",
+      "status",
+      "priority",
+      "createdAt",
+    ],
     description: "Public contact form submissions from the Himalayas Continental website",
   },
   access: {
@@ -268,12 +276,9 @@ export const CommonFormSubmissions: CollectionConfig = {
                     {
                       name: "file",
                       type: "upload",
-                      relationTo: "files",
+                      relationTo: "media",
                       label: "File",
                       admin: { width: "60%" },
-                      filterOptions: {
-                        fileCategory: { equals: "form_attachment" },
-                      },
                     },
                   ],
                 },
