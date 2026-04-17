@@ -420,7 +420,6 @@ export interface Page {
     | GalleryBlock
     | AboutUsBlock
     | FeedbackBlock
-    | OurServicesBlock
     | HighlightsBlock
     | CarouselBlock
     | NewsActivitiesBlock
@@ -950,85 +949,6 @@ export interface FeedbackBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'feedback';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "OurServicesBlock".
- */
-export interface OurServicesBlock {
-  isVisibleOnHomepage?: boolean | null;
-  title: string;
-  subtitle?: string | null;
-  services?:
-    | {
-        title: string;
-        description?: string | null;
-        icon?:
-          | (
-              | 'stethoscope'
-              | 'activity'
-              | 'eye'
-              | 'baby'
-              | 'microscope'
-              | 'syringe'
-              | 'ambulance'
-              | 'pill'
-              | 'bone'
-              | 'scan'
-              | 'heart'
-              | 'brain'
-              | 'lungs'
-              | 'stomach'
-              | 'kidney'
-              | 'liver'
-              | 'ear'
-              | 'nose'
-              | 'tooth'
-              | 'skin'
-              | 'muscle'
-              | 'nerve'
-              | 'blood'
-              | 'dna'
-              | 'virus'
-              | 'bacteria'
-              | 'fungus'
-              | 'parasite'
-              | 'allergy'
-              | 'immune'
-              | 'cancer'
-              | 'diabetes'
-              | 'education'
-              | 'disability'
-              | 'insurance'
-              | 'surgery'
-              | 'nutrition'
-              | 'lab'
-              | 'icu'
-            )
-          | null;
-        longDescription?: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        timings?: string | null;
-        link?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'ourServices';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2819,7 +2739,6 @@ export interface PagesSelect<T extends boolean = true> {
         gallery?: T | GalleryBlockSelect<T>;
         aboutUs?: T | AboutUsBlockSelect<T>;
         feedback?: T | FeedbackBlockSelect<T>;
-        ourServices?: T | OurServicesBlockSelect<T>;
         highlights?: T | HighlightsBlockSelect<T>;
         carouselBlock?: T | CarouselBlockSelect<T>;
         newsActivities?: T | NewsActivitiesBlockSelect<T>;
@@ -3000,28 +2919,6 @@ export interface FeedbackBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   viewCount?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "OurServicesBlock_select".
- */
-export interface OurServicesBlockSelect<T extends boolean = true> {
-  isVisibleOnHomepage?: T;
-  title?: T;
-  subtitle?: T;
-  services?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        longDescription?: T;
-        timings?: T;
-        link?: T;
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }

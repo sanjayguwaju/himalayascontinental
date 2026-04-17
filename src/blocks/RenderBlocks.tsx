@@ -11,7 +11,6 @@ import { MediaBlock } from "@/blocks/MediaBlock/Component";
 import { GalleryBlock } from "@/blocks/Gallery/Component";
 import { AboutUsBlock } from "@/blocks/AboutUs/Component";
 import { FeedbackBlock } from "@/blocks/Feedback/Component";
-import { OurServicesBlock } from "@/blocks/OurServices/Component";
 import { HighlightsBlock } from "@/blocks/Highlights/Component";
 import { CarouselBlockComponent } from "@/blocks/Carousel/Component";
 import { NewsActivitiesBlock } from "./NewsActivities/Component";
@@ -55,7 +54,6 @@ const blockComponents = {
   gallery: GalleryBlock,
   aboutUs: AboutUsBlock,
   feedback: FeedbackBlock,
-  ourServices: OurServicesBlock,
   highlights: HighlightsBlock,
   carouselBlock: CarouselBlockComponent,
   newsActivities: NewsActivitiesBlock,

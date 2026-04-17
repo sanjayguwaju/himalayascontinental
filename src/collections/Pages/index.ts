@@ -10,7 +10,6 @@ import { Gallery } from "../../blocks/Gallery/config";
 import { hero } from "@/heros/config";
 import { AboutUs } from "@/blocks/AboutUs/config";
 import { Feedback } from "@/blocks/Feedback/config";
-import { OurServices } from "@/blocks/OurServices/config";
 import { Highlights } from "../../blocks/Highlights/config";
 import { CarouselBlock } from "@/blocks/Carousel/config";
 import { NewsActivities } from "@/blocks/NewsActivities/config";
@@ -118,7 +117,6 @@ export const Pages: CollectionConfig<"pages"> = {
                 Gallery,
                 AboutUs,
                 Feedback,
-                OurServices,
                 Highlights,
                 CarouselBlock,
                 NewsActivities,

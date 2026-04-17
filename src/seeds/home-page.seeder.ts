@@ -116,28 +116,6 @@ async function seedHomePage(): Promise<void> {
           width: "full",
         },
         {
-          blockType: "ourServices",
-          title: "Our Medical Services",
-          subtitle: "We offer a wide range of medical services to community.",
-          services: [
-            {
-              title: "Cardiology",
-              description: "Expert cardiology consultations and care.",
-              icon: "heart",
-            },
-            {
-              title: "24/7 Emergency",
-              description: "We are always ready to help you.",
-              icon: "ambulance",
-            },
-            {
-              title: "Pediatrics",
-              description: "Child and newborn care.",
-              icon: "baby",
-            },
-          ],
-        },
-        {
           blockType: "aboutUs",
           title: "About Himalayas Continental",
           content: createLexicalText(
