@@ -465,6 +465,7 @@ export interface Page {
     | HomepageProductsCarouselBlock
     | HomepageStatsCounterBlock
     | HomepageOurAssociatesBlock
+    | OperationTheaterBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2280,6 +2281,44 @@ export interface HomepageOurAssociatesBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OperationTheaterBlock".
+ */
+export interface OperationTheaterBlock {
+  sectionTitle: string;
+  subtitle?: string | null;
+  image: string | Media;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  equipmentCategories?:
+    | {
+        icon: 'surgicalLight' | 'monitor' | 'bed' | 'anesthesia' | 'pendant' | 'ventilator' | 'ivStand' | 'scrub';
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('white' | 'light' | 'primary') | null;
+  ctaText?: string | null;
+  ctaLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'operationTheater';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "list".
  */
 export interface List {
@@ -3287,6 +3326,7 @@ export interface PagesSelect<T extends boolean = true> {
         homepageProductsCarousel?: T | HomepageProductsCarouselBlockSelect<T>;
         homepageStatsCounter?: T | HomepageStatsCounterBlockSelect<T>;
         homepageOurAssociates?: T | HomepageOurAssociatesBlockSelect<T>;
+        operationTheater?: T | OperationTheaterBlockSelect<T>;
       };
   meta?:
     | T
@@ -4193,6 +4233,29 @@ export interface HomepageOurAssociatesBlockSelect<T extends boolean = true> {
         id?: T;
       };
   backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OperationTheaterBlock_select".
+ */
+export interface OperationTheaterBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  subtitle?: T;
+  image?: T;
+  description?: T;
+  equipmentCategories?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  ctaText?: T;
+  ctaLink?: T;
   id?: T;
   blockName?: T;
 }

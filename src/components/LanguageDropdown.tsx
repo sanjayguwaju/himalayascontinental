@@ -16,9 +16,9 @@ import { Globe, ChevronDown, Check } from "lucide-react";
 
 // Language configuration
 const languages = [
-  { code: "en", label: "English", nativeLabel: "English", flag: "🇺🇸" },
-  { code: "ne", label: "Nepali", nativeLabel: "नेपाली", flag: "🇳🇵" },
-  { code: "hr", label: "Croatian", nativeLabel: "Hrvatski", flag: "🇭🇷" },
+  { code: "en", label: "English", nativeLabel: "English", flag: "🇺🇸", shortCode: "ENG" },
+  { code: "ne", label: "Nepali", nativeLabel: "नेपाली", flag: "🇳🇵", shortCode: "NEP" },
+  { code: "hr", label: "Croatian", nativeLabel: "Hrvatski", flag: "🇭🇷", shortCode: "HRV" },
 ];
 
 export function LanguageDropdown() {
@@ -56,7 +56,7 @@ export function LanguageDropdown() {
         >
           <Globe className="h-4 w-4 text-muted-foreground" />
           <span className="hidden sm:inline">{currentLang.nativeLabel}</span>
-          <span className="sm:hidden">{currentLang.flag}</span>
+          <span className="sm:hidden">{currentLang.shortCode}</span>
           <ChevronDown className="h-3.5 w-3.5 text-muted-foreground transition-transform duration-200" />
         </Button>
       </DropdownMenuTrigger>
@@ -75,9 +75,7 @@ export function LanguageDropdown() {
               <span className="text-sm">{lang.nativeLabel}</span>
               <span className="text-xs text-muted-foreground">{lang.label}</span>
             </div>
-            {locale === lang.code && (
-              <Check className="h-4 w-4 ml-auto text-accent" />
-            )}
+            {locale === lang.code && <Check className="h-4 w-4 ml-auto text-accent" />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

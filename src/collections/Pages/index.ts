@@ -56,6 +56,7 @@ import { HomepageMap } from "@/blocks/HomepageGroupBlocks/HomepageMap/config";
 import { HomepageProductsCarousel } from "@/blocks/HomepageGroupBlocks/HomepageProductsCarousel/config";
 import { HomepageStatsCounter } from "@/blocks/HomepageGroupBlocks/HomepageStatsCounter/config";
 import { HomepageOurAssociates } from "@/blocks/HomepageGroupBlocks/HomepageOurAssociates/config";
+import { OperationTheater } from "@/blocks/OperationTheater/config";
 
 export const Pages: CollectionConfig<"pages"> = {
   slug: "pages",
@@ -152,6 +153,7 @@ export const Pages: CollectionConfig<"pages"> = {
                 HomepageProductsCarousel,
                 HomepageStatsCounter,
                 HomepageOurAssociates,
+                OperationTheater,
               ],
               required: true,
               localized: true,

@@ -45,6 +45,7 @@ import { HomepageMapBlockComponent } from "./HomepageGroupBlocks/HomepageMap/Com
 import { HomepageProductsCarouselBlock } from "./HomepageGroupBlocks/HomepageProductsCarousel/Component";
 import { HomepageStatsCounterBlock } from "./HomepageGroupBlocks/HomepageStatsCounter/Component";
 import { HomepageOurAssociatesBlock } from "./HomepageGroupBlocks/HomepageOurAssociates/Component";
+import { OperationTheaterBlock } from "./OperationTheater/Component";
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -89,6 +90,7 @@ const blockComponents = {
   homepageProductsCarousel: HomepageProductsCarouselBlock,
   homepageStatsCounter: HomepageStatsCounterBlock,
   homepageOurAssociates: HomepageOurAssociatesBlock,
+  operationTheater: OperationTheaterBlock,
 };
 
 export const RenderBlocks: React.FC<{
