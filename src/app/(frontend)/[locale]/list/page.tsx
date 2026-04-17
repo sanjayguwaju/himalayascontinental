@@ -17,8 +17,8 @@ type Args = {
 };
 
 export const metadata: Metadata = {
-  title: "List | Amipal Hospital",
-  description: "View all public documents and notices from Amipal Hospital.",
+  title: "List | Himalayas Continental",
+  description: "View all public documents and notices from Himalayas Continental.",
 };
 
 export default async function Page({ searchParams: rawSearchParams }: Args) {

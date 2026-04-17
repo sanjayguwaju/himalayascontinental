@@ -230,8 +230,8 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   return {
     title,
     description: staff.specialization
-      ? `Specialist in ${staff.specialization} at Amipal Hospital`
-      : `Staff at Amipal Hospital`,
+      ? `Specialist in ${staff.specialization} at Himalayas Continental`
+      : `Staff at Himalayas Continental`,
   };
 }
 

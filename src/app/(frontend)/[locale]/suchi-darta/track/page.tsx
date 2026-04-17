@@ -7,7 +7,7 @@ import { SuchiDartaTrackClient } from "./SuchiDartaTrackClient";
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("suchi-darta.track");
   return {
-    title: `${t("title")} | Amipal Hospital`,
+    title: `${t("title")} | Himalayas Continental`,
     description: t("description"),
   };
 }

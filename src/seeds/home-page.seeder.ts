@@ -78,7 +78,11 @@ async function seedHomePage(): Promise<void> {
     if (existing.docs.length > 0) {
       console.log(`🗑️  Deleting existing home page...`);
       for (const doc of existing.docs) {
-        await payload.delete({ collection: "pages", id: doc.id, context: { disableRevalidate: true } });
+        await payload.delete({
+          collection: "pages",
+          id: doc.id,
+          context: { disableRevalidate: true },
+        });
       }
     }
 
@@ -100,7 +104,7 @@ async function seedHomePage(): Promise<void> {
           },
           {
             image: imageId,
-            title: "Welcome to Amipal Hospital - Serving Baglung since 2010",
+            title: "Welcome to Himalayas Continental - Serving Baglung since 2010",
           },
         ],
       },
@@ -130,18 +134,24 @@ async function seedHomePage(): Promise<void> {
               title: "Pediatrics",
               description: "Child and newborn care.",
               icon: "baby",
-            }
-          ]
+            },
+          ],
         },
         {
           blockType: "staffsBlock",
-          introContent: createLexicalText("Meet our experts who make it happen.", "Our Dedicated Doctors"),
+          introContent: createLexicalText(
+            "Meet our experts who make it happen.",
+            "Our Dedicated Doctors"
+          ),
           staffsSelection: "all",
         },
         {
           blockType: "aboutUs",
-          title: "About Amipal Hospital",
-          content: createLexicalText("Amipal Hospital was founded with a mission to bring world-class healthcare to Baglung.", "Our History & Mission"),
+          title: "About Himalayas Continental",
+          content: createLexicalText(
+            "Himalayas Continental was founded with a mission to bring world-class healthcare to Baglung.",
+            "Our History & Mission"
+          ),
           historyTitle: "Our Milestones",
           historyTimeline: [
             {
@@ -151,8 +161,8 @@ async function seedHomePage(): Promise<void> {
             {
               year: "2015",
               description: "Expanded to 50 beds",
-            }
-          ]
+            },
+          ],
         },
         {
           blockType: "feedback",
@@ -166,8 +176,8 @@ async function seedHomePage(): Promise<void> {
           populateBy: "collection",
           relationTo: "posts",
           limit: 3,
-        }
-      ]
+        },
+      ],
     };
 
     if (imageId) {
@@ -179,16 +189,16 @@ async function seedHomePage(): Promise<void> {
         images: [
           {
             image: imageId,
-            caption: "Modern Equipments"
-          }
-        ]
+            caption: "Modern Equipments",
+          },
+        ],
       });
     }
 
     const created = await payload.create({
       collection: "pages",
       data: homePageData,
-      context: { disableRevalidate: true }
+      context: { disableRevalidate: true },
     });
 
     console.log(`✅ Successfully created home page (ID: ${created.id})!`);

@@ -37,7 +37,7 @@ const noticesSeedData = [
     slug: "public-holiday-fagu-purnima",
     priority: "high",
     description: createLexicalText(
-      "This is to notify all patients and staff that Amipal Hospital will remain closed for OPD services on the occasion of Fagu Purnima. Emergency services will continue to run 24/7."
+      "This is to notify all patients and staff that Himalayas Continental will remain closed for OPD services on the occasion of Fagu Purnima. Emergency services will continue to run 24/7."
     ),
     publishedDate: "2026-03-03T00:00:00.000Z",
     showInPopup: false,
@@ -71,7 +71,7 @@ const noticesSeedData = [
     slug: "advertisement-staff-nurse",
     priority: "high",
     description: createLexicalText(
-      "Amipal Hospital is looking for dedicated and qualified Staff Nurses to join our growing team. Eligible candidates can apply before the deadline."
+      "Himalayas Continental is looking for dedicated and qualified Staff Nurses to join our growing team. Eligible candidates can apply before the deadline."
     ),
     publishedDate: "2026-01-13T00:00:00.000Z",
     showInPopup: true,
@@ -93,7 +93,7 @@ const noticesSeedData = [
     slug: "annual-general-meeting-notice",
     priority: "low",
     description: createLexicalText(
-      "Notice is hereby given that the Annual General Meeting of Amipal Hospital will be held in the main auditorium to discuss the yearly progress and future plans."
+      "Notice is hereby given that the Annual General Meeting of Himalayas Continental will be held in the main auditorium to discuss the yearly progress and future plans."
     ),
     publishedDate: "2025-11-10T00:00:00.000Z",
     showInPopup: false,

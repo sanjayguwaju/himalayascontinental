@@ -16,7 +16,11 @@ async function seedFooter() {
         { label: "About Us", url: "/about", icon: "company" as const },
         { label: "Our Services", url: "/services", icon: "medical" as const },
         { label: "Health News", url: "/news", icon: "link" as const },
-        { label: "Official Email", url: "mailto:info@amipalhospital.gov.np", icon: "link" as const },
+        {
+          label: "Official Email",
+          url: "mailto:info@himalayascontinental.com",
+          icon: "link" as const,
+        },
       ],
     },
     productsSection: {
@@ -31,7 +35,7 @@ async function seedFooter() {
       title: "Contact Info",
       address: "Baglung-01, Baglung, Gandaki Province, Nepal",
       phoneNumbers: "068-520123 / 522345",
-      email: "info@amipalhospital.gov.np",
+      email: "info@himalayascontinental.com",
       website: "https://himalayascontinental.com",
     },
   };
