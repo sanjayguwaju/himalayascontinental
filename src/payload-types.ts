@@ -73,7 +73,6 @@ export interface Config {
     posts: Post;
     categories: Category;
     'common-form-submissions': CommonFormSubmission;
-    'hospital-sections': HospitalSection;
     albums: Album;
     files: File;
     'product-categories': ProductCategory;
@@ -103,7 +102,6 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'common-form-submissions': CommonFormSubmissionsSelect<false> | CommonFormSubmissionsSelect<true>;
-    'hospital-sections': HospitalSectionsSelect<false> | HospitalSectionsSelect<true>;
     albums: AlbumsSelect<false> | AlbumsSelect<true>;
     files: FilesSelect<false> | FilesSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
@@ -2318,77 +2316,6 @@ export interface File {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hospital-sections".
- */
-export interface HospitalSection {
-  id: string;
-  isActive?: boolean | null;
-  /**
-   * Lower number appears first
-   */
-  displayOrder?: number | null;
-  /**
-   * e.g. nutrition, paediatric-ward, pcr-lab
-   */
-  slug: string;
-  title: string;
-  /**
-   * e.g. MPDSR, OCMC, PCR
-   */
-  shortName?: string | null;
-  /**
-   * Icon shown on the sections grid card
-   */
-  icon?: (string | null) | Media;
-  coverImage?: (string | null) | Media;
-  /**
-   * Full description shown on the section detail page (like the Nutrition paragraph)
-   */
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Short summary shown on cards or listings
-   */
-  excerpt?: string | null;
-  /**
-   * e.g. 2075
-   */
-  establishedYear?: number | null;
-  totalBeds?: number | null;
-  totalStaffCount?: number | null;
-  /**
-   * e.g. 24 hours / 9AM - 5PM
-   */
-  operatingHours?: string | null;
-  services?:
-    | {
-        service: string;
-        id?: string | null;
-      }[]
-    | null;
-  contactPhone?: string | null;
-  /**
-   * e.g. Ground Floor, Block B
-   */
-  locationInHospital?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "albums".
  */
 export interface Album {
@@ -2623,10 +2550,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'common-form-submissions';
         value: string | CommonFormSubmission;
-      } | null)
-    | ({
-        relationTo: 'hospital-sections';
-        value: string | HospitalSection;
       } | null)
     | ({
         relationTo: 'albums';
@@ -3927,35 +3850,6 @@ export interface CommonFormSubmissionsSelect<T extends boolean = true> {
   ipAddress?: T;
   userAgent?: T;
   isSpam?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hospital-sections_select".
- */
-export interface HospitalSectionsSelect<T extends boolean = true> {
-  isActive?: T;
-  displayOrder?: T;
-  slug?: T;
-  title?: T;
-  shortName?: T;
-  icon?: T;
-  coverImage?: T;
-  description?: T;
-  excerpt?: T;
-  establishedYear?: T;
-  totalBeds?: T;
-  totalStaffCount?: T;
-  operatingHours?: T;
-  services?:
-    | T
-    | {
-        service?: T;
-        id?: T;
-      };
-  contactPhone?: T;
-  locationInHospital?: T;
   updatedAt?: T;
   createdAt?: T;
 }

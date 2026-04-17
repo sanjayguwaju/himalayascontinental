@@ -19,7 +19,6 @@ import { Navigation } from "./globals/Navigation/config";
 import { Footer } from "./globals/Footer/config";
 import { defaultLexical } from "./fields/defaultLexical";
 import { getServerSideURL } from "./utilities/getURL";
-import { HospitalSections } from "./collections/HospitalSections";
 import { Albums } from "./collections/Albums";
 import { Files } from "./collections/Files";
 import { ProductCategories } from "./collections/ProductCategories";
@@ -105,7 +104,6 @@ export default buildConfig({
     Posts,
     Categories,
     CommonFormSubmissions,
-    HospitalSections,
     Albums,
     Files,
     ProductCategories,
