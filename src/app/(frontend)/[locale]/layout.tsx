@@ -43,7 +43,6 @@ import type {
   Footer as FooterType,
   Header as HeaderType,
 } from "@/payload-types";
-import { NoticeModalServer } from "@/components/NoticeModal/NoticeModalServer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { InitTheme } from "@/providers/Theme/InitTheme";
 
@@ -100,7 +99,6 @@ export default async function RootLayout({ children, params }: Args) {
             <NuqsAdapter>
               <Header data={headerData} />
               <Navbar data={navData} />
-              <NoticeModalServer />
               <ScrollToTop />
               {children}
               <Footer data={footerData} />

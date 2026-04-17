@@ -1,11 +1,6 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
-import type {
-  HighlightsBlock as HighlightsBlockProps,
-  Post,
-  List,
-  Category,
-} from "@/payload-types";
+import type { HighlightsBlock as HighlightsBlockProps, Post, Category } from "@/payload-types";
 import { HighlightsClient } from "./HighlightsClient";
 import { getTranslations } from "next-intl/server";
 
@@ -17,21 +12,7 @@ export const HighlightsBlock = async ({ width, label, limit = 10 }: HighlightsBl
   const safeLimit = limit ?? 10;
   const safeLabel = label && label !== "Highlights" ? label : t("highlights");
 
-  // 1. Fetch Pinned Notices/Items from 'list'
-  const pinnedListItems = await payload.find({
-    collection: "list",
-    limit: 5,
-    where: {
-      and: [{ status: { equals: "published" } }, { isPinned: { equals: true } }],
-    },
-    select: {
-      title: true,
-      slug: true,
-      category: true,
-    },
-  });
-
-  // 2. Fetch Latest Posts
+  // Fetch Latest Posts
   const latestPosts = await payload.find({
     collection: "posts",
     limit: safeLimit,
@@ -43,23 +24,13 @@ export const HighlightsBlock = async ({ width, label, limit = 10 }: HighlightsBl
     },
   });
 
-  // Combine items: Pinned notices first, then posts
-  const combinedItems = [
-    ...(pinnedListItems.docs as List[]).map((item) => ({
-      id: `list-${item.id}`,
-      title: item.title,
-      url: `/list/${item.slug}`,
-      isPinned: true,
-      categoryName: typeof item.category !== "string" ? item.category?.title : undefined,
-    })),
-    ...(latestPosts.docs as Post[]).map((post) => ({
-      id: `post-${post.id}`,
-      title: post.title,
-      url: `/posts/${post.slug}`,
-      isPinned: false,
-      categoryName: (post.categories?.[0] as Category)?.title,
-    })),
-  ].slice(0, safeLimit * 2);
+  const combinedItems = latestPosts.docs.map((post) => ({
+    id: `post-${post.id}`,
+    title: post.title,
+    url: `/posts/${post.slug}`,
+    isPinned: false,
+    categoryName: (post.categories?.[0] as Category)?.title,
+  }));
 
   if (!combinedItems.length) return null;
 

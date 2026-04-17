@@ -10,7 +10,6 @@ import { Users } from "./collections/Users";
 import { Pages } from "./collections/Pages";
 import { Posts } from "./collections/Posts";
 import { Categories } from "./collections/Categories";
-import { List } from "./collections/List";
 import { CommonFormSubmissions } from "./collections/CommonFormSubmissions";
 import { plugins } from "./plugins";
 import localization from "./i18n/localization";
@@ -105,7 +104,6 @@ export default buildConfig({
     Pages,
     Posts,
     Categories,
-    List,
     CommonFormSubmissions,
     HospitalSections,
     Albums,

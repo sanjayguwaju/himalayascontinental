@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { List, Category } from "@/payload-types";
+import type { Post, Category } from "@/payload-types";
 import { Link } from "@/i18n/routing";
 import { formatBSDate } from "@/lib/bs-date";
 import { FileText, ArrowRight } from "lucide-react";
@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 
 type NewsTabsProps = {
   categories: Category[];
-  groupedItems: Record<string, List[]>;
+  groupedItems: Record<string, Post[]>;
   viewAllText: string;
 };
 
@@ -63,19 +63,19 @@ export function NewsTabs({ categories, groupedItems, viewAllText }: NewsTabsProp
                       {/* Info */}
                       <div className="flex flex-col">
                         <Link
-                          href={`/list/${item.slug}`}
+                          href={`/posts/${item.slug}`}
                           className="font-bold text-[15px] text-foreground group-hover:text-primary transition-colors line-clamp-1"
                         >
                           {item.title}
                         </Link>
                         <div className="inline-flex w-fit items-center text-[10px] bg-muted text-muted-foreground font-bold px-2.5 py-1 rounded-full uppercase tracking-wider mt-1.5 border border-border">
-                          {formatBSDate(item.publishedDate, "en", "full")}
+                          {item.publishedAt ? formatBSDate(item.publishedAt, "en", "full") : "—"}
                         </div>
                       </div>
                     </div>
 
                     <Link
-                      href={`/list/${item.slug}`}
+                      href={`/posts/${item.slug}`}
                       className="bg-accent hover:bg-accent-hover text-white text-[11px] font-bold px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-accent/20 active:scale-95 hidden sm:flex items-center gap-2"
                     >
                       {t("view-all") || "View All"}
@@ -95,7 +95,7 @@ export function NewsTabs({ categories, groupedItems, viewAllText }: NewsTabsProp
 
             <div className="mt-8 flex justify-center">
               <Link
-                href={`/list?category=${cat.id}`}
+                href={`/posts?category=${cat.id}`}
                 className="text-primary hover:text-accent font-bold text-sm flex items-center gap-2 transition-colors duration-300 group"
               >
                 {viewAllText}

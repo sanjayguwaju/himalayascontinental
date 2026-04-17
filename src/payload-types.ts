@@ -72,7 +72,6 @@ export interface Config {
     pages: Page;
     posts: Post;
     categories: Category;
-    list: List;
     'common-form-submissions': CommonFormSubmission;
     'hospital-sections': HospitalSection;
     albums: Album;
@@ -103,7 +102,6 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
-    list: ListSelect<false> | ListSelect<true>;
     'common-form-submissions': CommonFormSubmissionsSelect<false> | CommonFormSubmissionsSelect<true>;
     'hospital-sections': HospitalSectionsSelect<false> | HospitalSectionsSelect<true>;
     albums: AlbumsSelect<false> | AlbumsSelect<true>;
@@ -2159,104 +2157,6 @@ export interface OperationTheaterBlock {
   blockType: 'operationTheater';
 }
 /**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "list".
- */
-export interface List {
-  id: string;
-  status?: ('draft' | 'published' | 'archived') | null;
-  priority?: ('high' | 'medium' | 'low') | null;
-  category?: (string | null) | Category;
-  targetAudience?: ('public' | 'staff_only' | 'patients') | null;
-  isPinned?: boolean | null;
-  showInPopup?: boolean | null;
-  title: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  /**
-   * Upload the actual notice file here. This will be automatically displayed in the PDF viewer.
-   */
-  mainDocument?: (string | null) | Media;
-  tags?:
-    | ('vacancy' | 'tender' | 'health_camp' | 'emergency' | 'holiday' | 'training' | 'announcement' | 'result')[]
-    | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Brief summary shown in listing cards. Shown per language.
-   */
-  excerpt?: string | null;
-  /**
-   * Upload a photo or thumbnail to represent this notice in listings.
-   */
-  image?: (string | null) | Media;
-  /**
-   * Direct URL to a scanned notice image.
-   */
-  externalImage?: string | null;
-  /**
-   * You can upload different PDF versions per language (e.g. Nepali notice PDF vs English PDF).
-   */
-  attachments?:
-    | {
-        /**
-         * e.g. Application Form, Result PDF
-         */
-        label?: string | null;
-        file?: (string | null) | Media;
-        externalFileUrl?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  publishedDate: string;
-  /**
-   * Hidden from frontend after this date.
-   */
-  expiryDate?: string | null;
-  /**
-   * For vacancy/tender notices only.
-   */
-  applicationDeadline?: string | null;
-  popupSettings?: {
-    popupStartDate?: string | null;
-    popupEndDate?: string | null;
-    displayMode?: ('full' | 'image_only' | 'image_title') | null;
-    /**
-     * Direct URL or Base64 for the PDF if different from attachment.
-     */
-    pdf?: string | null;
-  };
-  seo?: {
-    /**
-     * Defaults to notice title if left empty.
-     */
-    metaTitle?: string | null;
-    /**
-     * Recommended: 150–160 characters.
-     */
-    metaDescription?: string | null;
-    ogImage?: (string | null) | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * Public contact form submissions from the Himalayas Continental website
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2719,10 +2619,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: string | Category;
-      } | null)
-    | ({
-        relationTo: 'list';
-        value: string | List;
       } | null)
     | ({
         relationTo: 'common-form-submissions';
@@ -3993,55 +3889,6 @@ export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   generateSlug?: T;
   slug?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "list_select".
- */
-export interface ListSelect<T extends boolean = true> {
-  status?: T;
-  priority?: T;
-  category?: T;
-  targetAudience?: T;
-  isPinned?: T;
-  showInPopup?: T;
-  title?: T;
-  generateSlug?: T;
-  slug?: T;
-  mainDocument?: T;
-  tags?: T;
-  description?: T;
-  excerpt?: T;
-  image?: T;
-  externalImage?: T;
-  attachments?:
-    | T
-    | {
-        label?: T;
-        file?: T;
-        externalFileUrl?: T;
-        id?: T;
-      };
-  publishedDate?: T;
-  expiryDate?: T;
-  applicationDeadline?: T;
-  popupSettings?:
-    | T
-    | {
-        popupStartDate?: T;
-        popupEndDate?: T;
-        displayMode?: T;
-        pdf?: T;
-      };
-  seo?:
-    | T
-    | {
-        metaTitle?: T;
-        metaDescription?: T;
-        ogImage?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }

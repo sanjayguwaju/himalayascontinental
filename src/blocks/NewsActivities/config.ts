@@ -45,7 +45,7 @@ export const NewsActivities: Block = {
       name: "viewAllUrl",
       type: "text",
       label: "View All URL",
-      defaultValue: "/list",
+      defaultValue: "/posts",
     },
   ],
   labels: {
