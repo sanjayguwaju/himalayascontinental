@@ -19,10 +19,7 @@ Himalayas Continental provides comprehensive healthcare solutions including medi
 - [Site Search](#search)
 - [URL Redirects](#redirects)
 - [Scheduled Publishing](#jobs-and-scheduled-publish)
-- [Staff Management](#staff-management)
-- [Hospital Sections](#hospital-sections)
 - [Product Catalog](#products)
-- [Photo Albums](#albums)
 
 ## Quick Start
 
@@ -70,33 +67,13 @@ See the [Collections](https://payloadcms.com/docs/configuration/collections) doc
 
   Hierarchical product classification system for organizing the medical equipment catalog.
 
-- #### HospitalSections
-
-  Manage hospital department sections and specialized healthcare unit information.
-
-- #### Staffs
-
-  Staff directory and team management for showcasing medical professionals and administrative team.
-
-- #### Albums
-
-  Photo galleries and image collections for events, facilities, and activities.
-
 - #### Media
 
   Image and file uploads with S3 storage integration. Features pre-configured sizes and focal point management.
 
-- #### Files
+- #### Brochures
 
   Document management for downloadable resources like brochures and medical documents.
-
-- #### SuchiDarta
-
-  A specialized collection for managing hospital records and official documents (Nepali: "सुची दर्ता").
-
-- #### List
-
-  Custom list management for various data needs.
 
 - #### CommonFormSubmissions
 
@@ -131,8 +108,8 @@ See the [Globals](https://payloadcms.com/docs/configuration/globals) docs for de
 Role-based access control is configured to manage content permissions:
 
 - `users`: Authenticated users can access the admin panel based on their assigned roles.
-- `posts`, `pages`, `products`, `staffs`, `hospitalSections`, `albums`: Public access to published content; authenticated users with appropriate roles can create, update, or delete.
-- `suchiDarta`, `files`, `commonFormSubmissions`: Restricted access based on user roles.
+- `posts`, `pages`, `products`, `brochures`: Public access to published content; authenticated users with appropriate roles can create, update, or delete.
+- `commonFormSubmissions`: Restricted access based on user roles.
 
 For more details, see the [Payload Access Control](https://payloadcms.com/docs/access-control/overview#access-control) docs.
 
@@ -197,24 +174,6 @@ We have configured [Scheduled Publish](https://payloadcms.com/docs/versions/draf
 
 > Note: When deployed on Vercel, depending on the plan tier, you may be limited to daily cron only.
 
-## Staff Management
-
-Manage and showcase your healthcare team with the Staffs collection. Features include:
-
-- Staff profiles with photos, positions, and qualifications
-- Department categorization
-- Bilingual support for staff information
-- Department-specific listings
-
-## Hospital Sections
-
-Organize hospital departments and specialized healthcare units:
-
-- Section-specific pages with detailed descriptions
-- Equipment and service listings per department
-- Staff assignments to departments
-- Gallery support for each section
-
 ## Products
 
 Comprehensive medical equipment and healthcare products catalog:
@@ -223,23 +182,6 @@ Comprehensive medical equipment and healthcare products catalog:
 - Product details with specifications and images
 - Related products and recommendations
 - Inquiry forms for product information
-
-## Albums
-
-Photo gallery management for showcasing facilities, events, and activities:
-
-- Multiple album support
-- Image captions and descriptions
-- Cover image selection
-- Gallery layouts for frontend display
-
-## Suchi Darta
-
-A specialized record-keeping system for hospital documentation (Nepali: "सुची दर्ता"):
-
-- Official document management
-- Record tracking and archival
-- Date-based organization with Nepali calendar support
 
 ## Website
 
@@ -258,9 +200,6 @@ Core features:
 - User authentication
 - Blog and news system
 - Product catalog with categories
-- Staff directory
-- Hospital sections showcase
-- Photo galleries
 - Contact forms
 - SEO optimization
 - Site search
@@ -291,26 +230,14 @@ Alternatively, you can use Docker to run the application locally:
 Available seed scripts for populating the database:
 
 ```bash
-# Seed staff members
-pnpm seed:staffs
-
-# Seed lists
-pnpm seed:list
+# Seed products
+pnpm seed:products
 
 # Seed contact submissions
 pnpm seed:contact-submissions
 
-# Seed hospital sections
-pnpm seed:hospital-sections
-
-# Seed photo albums
-pnpm seed:albums
-
 # Seed home page
 pnpm seed:home
-
-# Seed services page
-pnpm seed:our-services
 ```
 
 > NOTICE: Seeding may be destructive. Only run these commands when starting a new project or when data loss is acceptable.

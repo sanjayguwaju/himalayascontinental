@@ -9,7 +9,7 @@ export function bsDateDisplay(linkedFieldName: string, label?: string): Field {
         Field: {
           // ✅ Correct Payload v3 path format: relative to src/ + #ExportName
           // Source: https://joeyates.info/posts/create-a-payloadcms-custom-slug-field/
-          path: "/components/admin/BSDateDisplay#BSDateDisplay",
+          path: "/components/admin/nepali-date-picker/bs-date-display#BSDateDisplay",
           // ✅ clientProps verified — serializable props only
           clientProps: { linkedFieldName, label },
         },
