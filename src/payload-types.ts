@@ -132,6 +132,9 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: 'en' | 'ne' | 'hr';
+  widgets: {
+    collections: CollectionsWidget;
+  };
   user: User;
   jobs: {
     tasks: {
@@ -1775,7 +1778,7 @@ export interface Product {
    */
   featured?: boolean | null;
   inStock?: boolean | null;
-  isNew?: boolean | null;
+  isNewArrival?: boolean | null;
   hasBrochure?: boolean | null;
   /**
    * Select a brochure for this product
@@ -3711,7 +3714,7 @@ export interface ProductsSelect<T extends boolean = true> {
       };
   featured?: T;
   inStock?: T;
-  isNew?: T;
+  isNewArrival?: T;
   hasBrochure?: T;
   brochure?: T;
   hasSpecificationsTable?: T;
@@ -4346,6 +4349,16 @@ export interface FooterSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

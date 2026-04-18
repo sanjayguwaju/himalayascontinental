@@ -33,16 +33,10 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import localization from "@/i18n/localization";
 import { getCachedGlobal } from "@/utilities/getGlobals";
-import { TopBar } from "@/components/TopBar";
 import { Header } from "@/components/Header";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import type {
-  Navigation,
-  TopBar as TopBarType,
-  Footer as FooterType,
-  Header as HeaderType,
-} from "@/payload-types";
+import type { Navigation, Footer as FooterType, Header as HeaderType } from "@/payload-types";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { InitTheme } from "@/providers/Theme/InitTheme";
 
@@ -73,8 +67,7 @@ export default async function RootLayout({ children, params }: Args) {
 
   const messages = await getMessages();
 
-  const [topBarData, headerData, navData, footerData] = await Promise.all([
-    getCachedGlobal("top-bar", 1, locale)() as Promise<TopBarType>,
+  const [headerData, navData, footerData] = await Promise.all([
     getCachedGlobal("header", 1, locale)() as Promise<HeaderType>,
     getCachedGlobal("navigation", 1, locale)() as Promise<Navigation>,
     getCachedGlobal("footer", 1, locale)() as Promise<FooterType>,

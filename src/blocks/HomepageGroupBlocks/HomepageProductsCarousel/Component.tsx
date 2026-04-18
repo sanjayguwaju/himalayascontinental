@@ -7,7 +7,7 @@ import {
   type Media,
   type HomepageProductsCarouselBlock as HomepageProductsCarouselBlockType,
 } from "@/payload-types";
-import { cn } from "@/utilities/ui";
+
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { ChevronLeft, ChevronRight } from "lucide-react";

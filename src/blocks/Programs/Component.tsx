@@ -38,7 +38,7 @@ export const ProgramsBlock: React.FC<ProgramsBlockProps> = ({
   showViewAllButton,
   viewAllLink,
 }) => {
-  const [expandedProgram, setExpandedProgram] = useState<number | null>(null);
+  const [_expandedProgram, _setExpandedProgram] = useState<number | null>(null);
 
   if (!programs?.length) return null;
 

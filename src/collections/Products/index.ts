@@ -162,7 +162,7 @@ export const Products: CollectionConfig = {
       defaultValue: true,
     },
     {
-      name: "isNew",
+      name: "isNewArrival",
       type: "checkbox",
       label: "New Arrival?",
       defaultValue: false,

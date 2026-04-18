@@ -182,7 +182,7 @@ export default async function ProductPage({ params }: Args) {
                     Featured
                   </Badge>
                 )}
-                {product.isNew && (
+                {product.isNewArrival && (
                   <Badge className="bg-green-500 text-white flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
                     New Arrival

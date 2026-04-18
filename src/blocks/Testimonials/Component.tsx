@@ -12,7 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Quote, Play, Heart, Users, HandHeart, Building2 } from "lucide-react";
+import { Quote, Play, Heart, Users, HandHeart, Building2, Icon } from "lucide-react";
 import { cn } from "@/utilities/ui";
 import Image from "next/image";
 
@@ -54,7 +54,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
   const types = [...new Set(testimonials.map((t) => t.type))];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/50">
+    <section className="py-16 md:py-24 bg-linear-to-b from-background to-muted/50">
       <div className="container">
         {(title || subtitle) && (
           <div className="text-center mb-10">
@@ -77,7 +77,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
               All Stories
             </Button>
             {types.map((type) => {
-              const Icon = typeIcons[type as keyof typeof typeIcons];
+              const _Icon = typeIcons[type as keyof typeof typeIcons];
               return (
                 <Button
                   key={type}
@@ -86,7 +86,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
                   onClick={() => setActiveFilter(type ?? "all")}
                   className="gap-2"
                 >
-                  {Icon && <Icon className="w-4 h-4" />}
+                  {Icon && <Icon className="w-4 h-4" iconNode={[]} />}
                   {typeLabels[type as keyof typeof typeLabels] || type}
                 </Button>
               );
@@ -104,7 +104,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
           >
             <CarouselContent className="-ml-4">
               {filteredTestimonials.map((testimonial, index) => {
-                const Icon = typeIcons[testimonial.type as keyof typeof typeIcons];
+                const _Icon = typeIcons[testimonial.type as keyof typeof typeIcons];
                 return (
                   <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                     <Card className="h-full border-border overflow-hidden">
@@ -118,7 +118,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
                               fill
                               className="object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
                             {testimonial.videoUrl && (
                               <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
@@ -131,14 +131,14 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
 
                       <CardContent className="p-6">
                         <div className="flex items-start gap-3 mb-4">
-                          <Quote className="w-8 h-8 text-accent/50 flex-shrink-0" />
+                          <Quote className="w-8 h-8 text-accent/50 shrink-0" />
                           <div
                             className={cn(
                               "px-3 py-1 rounded-full text-xs font-medium capitalize",
                               typeColors[testimonial.type || "beneficiary"]
                             )}
                           >
-                            {Icon && <Icon className="w-3 h-3 inline mr-1" />}
+                            {Icon && <Icon className="w-3 h-3 inline mr-1" iconNode={[]} />}
                             {testimonial.type}
                           </div>
                         </div>
@@ -153,7 +153,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
                           {testimonial.authorImage &&
                             typeof testimonial.authorImage === "object" &&
                             testimonial.authorImage.url && (
-                              <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-border">
+                              <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-border">
                                 <Image
                                   src={testimonial.authorImage.url}
                                   alt={testimonial.authorName}
@@ -189,7 +189,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
         {layout === "grid" && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredTestimonials.map((testimonial, index) => {
-              const Icon = typeIcons[testimonial.type as keyof typeof typeIcons];
+              const _Icon = typeIcons[testimonial.type as keyof typeof typeIcons];
               return (
                 <Card key={index} className="border-border overflow-hidden">
                   <CardContent className="p-6">
@@ -215,7 +215,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
                       {testimonial.authorImage &&
                         typeof testimonial.authorImage === "object" &&
                         testimonial.authorImage.url && (
-                          <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                          <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
                             <Image
                               src={testimonial.authorImage.url}
                               alt={testimonial.authorName}
@@ -243,7 +243,7 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
         {layout === "masonry" && (
           <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
             {filteredTestimonials.map((testimonial, index) => {
-              const Icon = typeIcons[testimonial.type as keyof typeof typeIcons];
+              const _Icon = typeIcons[testimonial.type as keyof typeof typeIcons];
               return (
                 <Card key={index} className="break-inside-avoid border-border overflow-hidden">
                   {testimonial.featuredImage &&

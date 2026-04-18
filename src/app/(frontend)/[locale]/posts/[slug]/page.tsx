@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { RelatedPosts } from "@/blocks/RelatedPosts/Component";
 import { PayloadRedirects } from "@/components/PayloadRedirects";
 import configPromise from "@payload-config";
 import { getPayload, TypedLocale } from "payload";
@@ -16,7 +15,6 @@ import PageClient from "./page.client";
 import { LivePreviewListener } from "@/components/LivePreviewListener";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, Clock, Hash, ChevronLeft, CalendarDays } from "lucide-react";
 import Link from "next/link";
 import { ActionButtons } from "./ActionButtons";

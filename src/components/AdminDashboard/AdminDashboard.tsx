@@ -7,12 +7,12 @@ import {
   Package,
   ShoppingCart,
   TrendingUp,
-  Calendar,
-  AlertCircle,
-  CheckCircle,
-  Clock,
+  
+  
+  
+  
   Boxes,
-  Building2,
+  
 } from "lucide-react";
 import "./styles/admin-tailwind.css";
 import { Button } from "../admin-ui/button";

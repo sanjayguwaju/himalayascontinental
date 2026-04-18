@@ -42,13 +42,13 @@ export const HomepageOurProductsBlock: React.FC<HomepageOurProductsBlockProps> =
   const normalizedProducts = (relatedProducts || [])
       .map((product) => {
         if (typeof product === "string") return null;
-        
-        const p = product as Product;
+
+        const p = product as Product & { title?: string; featuredImage?: string | Media };
         return {
           id: p.id,
-          title: (p as any).title || (p as any).name || "Unnamed Product",
+          title: p.title || p.name || "Unnamed Product",
           link: `/products/${p.slug}`,
-          image: p.thumbnail || (p as any).featuredImage || null,
+          image: p.thumbnail || p.featuredImage || null,
         };
       })
       .filter(Boolean) as {

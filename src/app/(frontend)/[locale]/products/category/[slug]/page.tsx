@@ -18,7 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FolderOpen, ChevronRight, Package } from "lucide-react";
-import type { Media, ProductCategory, ProductSubCategory } from "@/payload-types";
+import type { Media, Product, ProductCategory, ProductSubCategory } from "@/payload-types";
 
 export const dynamic = "force-dynamic";
 
@@ -106,7 +106,7 @@ export default async function CategoryPage({ params }: Args) {
         </div>
 
         <div className="container">
-          <ProductGrid products={productsResult.docs} locale={locale} />
+          <ProductGrid products={productsResult.docs as Product[]} />
         </div>
       </div>
     );
@@ -233,7 +233,7 @@ export default async function CategoryPage({ params }: Args) {
 }
 
 // Product Grid Component for categories without sub-categories
-function ProductGrid({ products, locale }: { products: any[]; locale: string }) {
+function ProductGrid({ products }: { products: Product[] }) {
   if (products.length === 0) {
     return (
       <div className="text-center py-32 bg-muted/20 rounded-3xl border-2 border-dashed border-muted max-w-3xl mx-auto">
@@ -276,7 +276,7 @@ function ProductGrid({ products, locale }: { products: any[]; locale: string }) 
                     <Badge className="absolute top-3 left-3 bg-primary text-white">Featured</Badge>
                   )}
 
-                  {product.isNew && (
+                  {product.isNewArrival && (
                     <Badge className="absolute top-3 right-3 bg-green-500 text-white">New</Badge>
                   )}
                 </div>

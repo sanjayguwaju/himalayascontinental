@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import type { UpcomingEventsBlock as UpcomingEventsBlockProps } from "@/payload-types";
 import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 import RichText from "@/components/RichText";
@@ -15,8 +15,6 @@ import {
   Users,
   ArrowRight,
   Star,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import { cn } from "@/utilities/ui";
 import Image from "next/image";
@@ -74,7 +72,7 @@ export const UpcomingEventsBlock: React.FC<UpcomingEventsBlockProps> = ({
   viewAllLink,
   maxEventsToShow = 6,
 }) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
+  
 
   if (!events?.length) return null;
 
@@ -114,7 +112,7 @@ export const UpcomingEventsBlock: React.FC<UpcomingEventsBlockProps> = ({
                       className="object-cover"
                     />
                   ) : (
-                    <div className="h-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+                    <div className="h-full bg-linear-to-br from-accent/20 to-primary/20 flex items-center justify-center">
                       <Calendar className="w-20 h-20 text-accent/50" />
                     </div>
                   )}
@@ -280,7 +278,7 @@ function EventCard({
               className="object-cover"
             />
           ) : (
-            <div className="h-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+            <div className="h-full bg-linear-to-br from-accent/20 to-primary/20 flex items-center justify-center">
               <Calendar className="w-10 h-10 text-accent/50" />
             </div>
           )}
@@ -303,7 +301,7 @@ function EventCard({
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
       <CardContent className="p-0">
         <div className="flex flex-col md:flex-row">
-          <div className="flex items-center gap-4 p-6 bg-muted/50 md:w-48 flex-shrink-0">
+          <div className="flex items-center gap-4 p-6 bg-muted/50 md:w-48 shrink-0">
             <div className="text-center">
               <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                 {month}
@@ -377,7 +375,7 @@ function EventCard({
               </div>
 
               {event.registrationLink && (
-                <Link href={event.registrationLink} className="flex-shrink-0">
+                <Link href={event.registrationLink} className="shrink-0">
                   <Button variant="outline" size="sm" className="gap-1">
                     {event.registrationRequired ? "Register" : "Details"}
                     <ArrowRight className="w-4 h-4" />

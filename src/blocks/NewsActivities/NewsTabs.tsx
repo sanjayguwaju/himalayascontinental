@@ -6,7 +6,6 @@ import { Link } from "@/i18n/routing";
 import { formatBSDate } from "@/lib/bs-date";
 import { FileText, ArrowRight } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 
 type NewsTabsProps = {

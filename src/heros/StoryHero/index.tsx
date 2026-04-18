@@ -59,6 +59,7 @@ export const StoryHero: React.FC<
                 typeof story.authorImage === "object" &&
                 "url" in story.authorImage ? (
                   <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={story.authorImage.url as string}
                       alt={story.author || "Story author"}
@@ -91,7 +92,7 @@ export const StoryHero: React.FC<
               {media && typeof media === "object" && (
                 <Media fill imgClassName="object-cover" priority resource={media} />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
 
               {/* Floating Stats */}
               <div className="absolute bottom-6 left-6 right-6 flex gap-4">

@@ -1,11 +1,7 @@
 import type { Block } from "payload";
 
 import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from "@payloadcms/richtext-lexical";
+  } from "@payloadcms/richtext-lexical";
 
 export const Contact: Block = {
   slug: "contact",

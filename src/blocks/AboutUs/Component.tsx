@@ -3,37 +3,8 @@ import type { AboutUsBlock as AboutUsBlockProps } from "@/payload-types";
 import RichText from "@/components/RichText";
 import { Facebook, Twitter, Share2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/utilities/ui";
-
-// ─── Sub-components ──────────────────────────────────────────────────────────
-
-const SectionHeading = ({ text, level = 2 }: { text: string; level?: 1 | 2 }) => {
-  const Tag = `h${level}` as const;
-  return (
-    <div className={`mb-${level === 1 ? 10 : 8} flex flex-col items-center`}>
-      <Tag className={`section-heading text-${level === 1 ? "4xl" : "2xl"} font-bold text-primary`}>
-        {text}
-      </Tag>
-    </div>
-  );
-};
-
-const SocialShareButtons = () => (
-  <div className="flex gap-4 justify-center mt-4">
-    {[
-      { bg: "bg-[#3b5998] hover:bg-[#2d4373]", Icon: Facebook, label: "Share" },
-      { bg: "bg-[#55acee] hover:bg-[#2795e9]", Icon: Twitter, label: "Tweet" },
-      { bg: "bg-[#dd4b39] hover:bg-[#c23321]", Icon: Share2, label: "Share" },
-    ].map(({ bg, Icon, label }) => (
-      <Button key={label + bg} className={`${bg} text-white flex items-center gap-2`}>
-        <Icon size={18} />
-        {label}
-      </Button>
-    ))}
-  </div>
-);
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
@@ -47,7 +18,7 @@ export const AboutUsBlock: React.FC<AboutUsBlockProps> = ({
   facebookPageUrl,
   iframePosition = "right",
 }) => {
-  const t = useTranslations();
+  
 
   // ── Homepage variant ────────────────────────────────────────────────────────
   if (isVisibleOnHomepage) {

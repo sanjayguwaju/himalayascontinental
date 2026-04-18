@@ -104,8 +104,8 @@ export const FeedbackBlock: React.FC<FeedbackBlockProps> = ({
       setTicketCode(parsedRes.doc.ticketCode);
       toast.success("Feedback sent successfully!");
       form.reset();
-    } catch (error: any) {
-      toast.error(error.message || "An unexpected error occurred.");
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : "An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);
     }

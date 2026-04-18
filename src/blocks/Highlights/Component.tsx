@@ -1,6 +1,6 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
-import type { HighlightsBlock as HighlightsBlockProps, Post, Category } from "@/payload-types";
+import type { HighlightsBlock as HighlightsBlockProps, Category } from "@/payload-types";
 import { HighlightsClient } from "./HighlightsClient";
 import { getTranslations } from "next-intl/server";
 

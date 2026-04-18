@@ -2,7 +2,7 @@ import React from "react";
 import { getPayload } from "payload";
 import type { Where } from "payload";
 import configPromise from "@payload-config";
-import type { HighlightsAndNewsBlock as Props, Post } from "@/payload-types";
+import type { HighlightsAndNewsBlock as Props } from "@/payload-types";
 import { getTranslations } from "next-intl/server";
 import { HighlightsAndNewsClient } from "./HighlightsAndNewsClient";
 

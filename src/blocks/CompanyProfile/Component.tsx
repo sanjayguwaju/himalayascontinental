@@ -3,10 +3,11 @@
 import React, { useState } from "react";
 import RichText from "@/components/RichText";
 import { cn } from "@/utilities/ui";
+import type { DefaultTypedEditorState } from "@payloadcms/richtext-lexical";
 
 interface Tab {
   tabLabel?: string | null;
-  content?: any;
+  content?: DefaultTypedEditorState | null;
 }
 
 interface CompanyProfileBlockProps {

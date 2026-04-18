@@ -16,7 +16,7 @@ export const NewsActivitiesBlock: React.FC<Props> = async ({
   sectionTitle: _sectionTitle,
   limit,
   viewAllLabel,
-  filterByCategory,
+  filterByCategory: _filterByCategory,
 }) => {
   if (!isVisibleOnHomepage) return null;
 

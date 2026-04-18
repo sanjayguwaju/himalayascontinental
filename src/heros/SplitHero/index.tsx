@@ -7,7 +7,7 @@ import { CMSLink } from "@/components/Link";
 import { Media } from "@/components/Media";
 import RichText from "@/components/RichText";
 import { cn } from "@/utilities/ui";
-import Image from "next/image";
+
 
 export const SplitHero: React.FC<Page["hero"] & { layout?: "left" | "right" }> = ({
   links,

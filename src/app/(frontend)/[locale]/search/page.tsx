@@ -1,3 +1,4 @@
+import type { Product } from "@/payload-types";
 import type { Metadata } from "next/types";
 
 import configPromise from "@payload-config";
@@ -5,24 +6,13 @@ import { getPayload } from "payload";
 import React from "react";
 import { Search } from "@/search/Component";
 import PageClient from "./page.client";
-import type { Post } from "@/payload-types";
 
-type SearchPostData = Pick<Post, "slug" | "categories" | "meta" | "title" | "publishedAt">;
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Search as SearchIcon,
-  FileText,
-  TrendingUp,
-  Sparkles,
-  ArrowRight,
-  Clock,
-  Hash,
-} from "lucide-react";
+import { Search as SearchIcon, FileText, Sparkles, ArrowRight, Hash } from "lucide-react";
 import Link from "next/link";
-import { Media } from "@/components/Media";
+import { Media as MediaComponent } from "@/components/Media";
 import { cn } from "@/utilities/ui";
 
 type Args = {
@@ -62,7 +52,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
       : {}),
   });
 
-  const results = posts.docs as unknown as any[];
+  const results = posts.docs as unknown as Product[];
   const hasResults = results.length > 0;
   const hasQuery = Boolean(query);
 
@@ -89,13 +79,16 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
           {/* Title */}
           <div className="mb-10">
-            <h1 
+            <h1
               className="text-4xl md:text-5xl font-bold text-white tracking-wide mb-4"
               style={{ fontFamily: "'Roboto Condensed', Arial, sans-serif" }}
             >
               What are you looking for?
             </h1>
-            <p className="text-white/70 text-[16px] md:text-lg" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+            <p
+              className="text-white/70 text-[16px] md:text-lg"
+              style={{ fontFamily: "'Open Sans', sans-serif" }}
+            >
               Search our complete medical product catalog
             </p>
           </div>
@@ -117,7 +110,9 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
                 {query}
               </Badge>
               <span className="text-white/60 text-sm">
-                {hasResults ? `${results.length} item${results.length !== 1 ? 's' : ''} found` : "No matches"}
+                {hasResults
+                  ? `${results.length} item${results.length !== 1 ? "s" : ""} found`
+                  : "No matches"}
               </span>
             </div>
           )}
@@ -125,9 +120,15 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
           {/* Popular Searches */}
           {!hasQuery && (
             <div className="mt-8 flex flex-wrap justify-center items-center">
-              <span className="text-white/50 text-[13px] mr-3 mb-2 md:mb-0 uppercase tracking-wider">Popular:</span>
+              <span className="text-white/50 text-[13px] mr-3 mb-2 md:mb-0 uppercase tracking-wider">
+                Popular:
+              </span>
               <div className="flex flex-wrap gap-2 justify-center">
-                {["Ventilator V8800", "Resplus Non-Invasive Ventilator", "Sunfusion Semi I Syringe Pump"].map((term) => (
+                {[
+                  "Ventilator V8800",
+                  "Resplus Non-Invasive Ventilator",
+                  "Sunfusion Semi I Syringe Pump",
+                ].map((term) => (
                   <Link
                     key={term}
                     href={`/search?q=${term}`}
@@ -152,11 +153,18 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
               <div className="w-20 h-20 mx-auto rounded-full bg-[#0870b8]/5 flex items-center justify-center mb-6">
                 <SearchIcon className="w-10 h-10 text-[#0870b8]/50" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-3" style={{ fontFamily: "Arial, sans-serif" }}>
+              <h2
+                className="text-2xl font-bold text-gray-800 mb-3"
+                style={{ fontFamily: "Arial, sans-serif" }}
+              >
                 Start your catalog search
               </h2>
-              <p className="text-gray-500 max-w-md mx-auto" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                Enter product names, brands, or categories above to explore our extensive range of medical equipment and solutions.
+              <p
+                className="text-gray-500 max-w-md mx-auto"
+                style={{ fontFamily: "'Open Sans', sans-serif" }}
+              >
+                Enter product names, brands, or categories above to explore our extensive range of
+                medical equipment and solutions.
               </p>
             </CardContent>
           </Card>
@@ -169,15 +177,28 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
               <div className="w-20 h-20 mx-auto rounded-full bg-gray-200/50 flex items-center justify-center mb-6">
                 <FileText className="w-10 h-10 text-gray-400" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-3" style={{ fontFamily: "Arial, sans-serif" }}>
+              <h2
+                className="text-2xl font-bold text-gray-800 mb-3"
+                style={{ fontFamily: "Arial, sans-serif" }}
+              >
                 No results found
               </h2>
-              <p className="text-gray-500 max-w-md mx-auto mb-8" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                We couldn&apos;t find any products matching &quot;<strong className="text-gray-800">{query}</strong>&quot;.
+              <p
+                className="text-gray-500 max-w-md mx-auto mb-8"
+                style={{ fontFamily: "'Open Sans', sans-serif" }}
+              >
+                We couldn&apos;t find any products matching &quot;
+                <strong className="text-gray-800">{query}</strong>&quot;.
               </p>
               <div className="flex flex-wrap justify-center items-center gap-3">
-                <span className="text-[13px] uppercase tracking-wider text-gray-400 font-medium">Try searching for:</span>
-                {["Ventilator V8800", "Resplus Non-Invasive Ventilator", "Sunfusion Semi I Syringe Pump"].map((suggestion) => (
+                <span className="text-[13px] uppercase tracking-wider text-gray-400 font-medium">
+                  Try searching for:
+                </span>
+                {[
+                  "Ventilator V8800",
+                  "Resplus Non-Invasive Ventilator",
+                  "Sunfusion Semi I Syringe Pump",
+                ].map((suggestion) => (
                   <Link
                     key={suggestion}
                     href={`/search?q=${suggestion}`}
@@ -197,13 +218,16 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-4">
-                <h2 
+                <h2
                   className="text-2xl font-bold text-gray-800"
                   style={{ fontFamily: "Arial, sans-serif" }}
                 >
                   Search Results
                 </h2>
-                <Badge variant="secondary" className="text-[13px] bg-[#0870b8]/10 text-[#0870b8] border-none px-3 py-1 font-semibold rounded-full">
+                <Badge
+                  variant="secondary"
+                  className="text-[13px] bg-[#0870b8]/10 text-[#0870b8] border-none px-3 py-1 font-semibold rounded-full"
+                >
                   {results.length} {results.length === 1 ? "Product" : "Products"}
                 </Badge>
               </div>
@@ -236,7 +260,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
                       )}
                     >
                       {thumbnail && typeof thumbnail !== "string" ? (
-                        <Media
+                        <MediaComponent
                           resource={thumbnail}
                           fill
                           size="(max-width:768px) 100vw, 33vw"
@@ -250,14 +274,14 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                       {/* Categories */}
-                      {hasCategories && typeof category === "object" && category.title && (
+                      {hasCategories && typeof category === "object" && category.name && (
                         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                           <Badge
-                             variant="secondary"
-                             className="bg-[#0870b8]/90 text-white backdrop-blur-sm text-xs px-2 py-1 border-none shadow-sm"
-                           >
-                             {category.title}
-                           </Badge>
+                          <Badge
+                            variant="secondary"
+                            className="bg-[#0870b8]/90 text-white backdrop-blur-sm text-xs px-2 py-1 border-none shadow-sm"
+                          >
+                            {category.name}
+                          </Badge>
                         </div>
                       )}
                     </div>

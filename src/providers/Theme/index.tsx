@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useCallback, use, useEffect, useState } from "react";
+import React, { createContext, useCallback, use, useEffect } from "react";
 
 import type { Theme, ThemeContextType } from "./types";
 
@@ -12,7 +12,7 @@ const initialContext: ThemeContextType = {
 const ThemeContext = createContext(initialContext);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const setTheme = useCallback((themeToSet: Theme | null) => {
+  const setTheme = useCallback((_themeToSet: Theme | null) => {
     document.documentElement.setAttribute("data-theme", "light");
   }, []);
 

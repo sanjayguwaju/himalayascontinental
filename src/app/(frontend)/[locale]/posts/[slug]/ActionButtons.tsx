@@ -14,7 +14,7 @@ export function ActionButtons() {
           title: document.title,
           url: window.location.href,
         });
-      } catch (err) {
+      } catch (_err) {
         // User cancelled or share failed
       }
     } else {
