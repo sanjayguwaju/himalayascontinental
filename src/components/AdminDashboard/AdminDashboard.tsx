@@ -342,14 +342,6 @@ export function AdminDashboard() {
                   <div className="adm:text-2xl adm:font-bold">18</div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader className="adm:pb-2">
-                  <CardTitle className="adm:text-sm adm:font-medium">Photo Albums</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="adm:text-2xl adm:font-bold">12</div>
-                </CardContent>
-              </Card>
             </div>
             <Card>
               <CardHeader>

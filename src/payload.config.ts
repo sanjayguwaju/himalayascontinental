@@ -19,7 +19,6 @@ import { Navigation } from "./globals/Navigation/config";
 import { Footer } from "./globals/Footer/config";
 import { defaultLexical } from "./fields/defaultLexical";
 import { getServerSideURL } from "./utilities/getURL";
-import { Albums } from "./collections/Albums";
 import { ProductCategories } from "./collections/ProductCategories";
 import { ProductSubCategories } from "./collections/ProductSubCategories";
 import { Products } from "./collections/Products";
@@ -103,7 +102,6 @@ export default buildConfig({
     Posts,
     Categories,
     CommonFormSubmissions,
-    Albums,
     ProductCategories,
     ProductSubCategories,
     Products,

@@ -73,7 +73,6 @@ export interface Config {
     posts: Post;
     categories: Category;
     'common-form-submissions': CommonFormSubmission;
-    albums: Album;
     'product-categories': ProductCategory;
     'product-sub-categories': ProductSubCategory;
     products: Product;
@@ -101,7 +100,6 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'common-form-submissions': CommonFormSubmissionsSelect<false> | CommonFormSubmissionsSelect<true>;
-    albums: AlbumsSelect<false> | AlbumsSelect<true>;
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     'product-sub-categories': ProductSubCategoriesSelect<false> | ProductSubCategoriesSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
@@ -2170,27 +2168,6 @@ export interface CommonFormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums".
- */
-export interface Album {
-  id: string;
-  title: string;
-  featuredImage: string | Media;
-  images: {
-    image: string | Media;
-    caption?: string | null;
-    id?: string | null;
-  }[];
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
@@ -2404,10 +2381,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'common-form-submissions';
         value: string | CommonFormSubmission;
-      } | null)
-    | ({
-        relationTo: 'albums';
-        value: string | Album;
       } | null)
     | ({
         relationTo: 'product-categories';
@@ -3677,25 +3650,6 @@ export interface CommonFormSubmissionsSelect<T extends boolean = true> {
   ipAddress?: T;
   userAgent?: T;
   isSpam?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums_select".
- */
-export interface AlbumsSelect<T extends boolean = true> {
-  title?: T;
-  featuredImage?: T;
-  images?:
-    | T
-    | {
-        image?: T;
-        caption?: T;
-        id?: T;
-      };
-  generateSlug?: T;
-  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
