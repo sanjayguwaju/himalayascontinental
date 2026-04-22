@@ -168,7 +168,7 @@ export const ContactUsClient: React.FC = () => {
           </span>
           <span className="flex items-center gap-1">
             <Mail className="w-3.5 h-3.5 text-[#0870b8]" />
-            himalayas2019@gmail.com
+            info@himalayascontinental.com
           </span>
         </div>
 

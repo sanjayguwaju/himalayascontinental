@@ -43,7 +43,7 @@ export const HomepageContactUs: Block = {
       name: "email",
       type: "text",
       label: "Email",
-      defaultValue: "himalayas2019@gmail.com",
+      defaultValue: "info@himalayascontinental.com",
       required: true,
     },
     {
