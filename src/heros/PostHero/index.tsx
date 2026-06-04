@@ -3,7 +3,7 @@ import type { Post } from "@/payload-types";
 import { Media } from "@/components/Media";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays, User, Clock, Hash } from "lucide-react";
-import { formatDateTime } from "src/utilities/formatDateTime";
+import { formatDateTime } from "@/utilities/formatDateTime";
 import { formatAuthors } from "@/utilities/formatAuthors";
 import { cn } from "@/utilities/ui";
 
@@ -24,7 +24,7 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
           "relative overflow-hidden",
           hasHeroImage
             ? "min-h-[70vh]"
-            : "bg-gradient-to-br from-primary via-primary/95 to-accent pt-24 pb-16"
+            : "bg-linear-to-br from-primary via-primary/95 to-accent pt-24 pb-16"
         )}
       >
         {hasHeroImage ? (
@@ -33,7 +33,7 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
             <div className="absolute inset-0">
               <Media fill priority imgClassName="object-cover" resource={heroImage} />
               {/* Gradient overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/20" />
             </div>
 
             {/* Content over image */}
