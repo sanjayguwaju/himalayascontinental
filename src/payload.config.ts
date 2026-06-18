@@ -94,6 +94,12 @@ export default buildConfig({
   editor: defaultLexical,
   db: mongooseAdapter({
     url: systemConfig.DATABASE_URL || "",
+    connectOptions: {
+      maxPoolSize: 5, // Limit connections — M0 free tier has 500 total
+      minPoolSize: 1,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 30000,
+    },
   }),
   collections: [
     Media,
