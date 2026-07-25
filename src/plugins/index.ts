@@ -8,8 +8,30 @@ import { beforeSyncWithSearch } from "../search/beforeSync";
 import { searchFields } from "../search/fieldOverrides";
 import { getServerSideURL } from "../utilities/getURL";
 import { s3StoragePlugin } from "./s3";
+import { mcpPlugin } from "@payloadcms/plugin-mcp";
+
 
 export const plugins: Plugin[] = [
+  mcpPlugin({
+    collections: {
+      brochures: { enabled: true },
+      categories: { enabled: true },
+      "common-form-submissions": { enabled: true },
+      media: { enabled: true },
+      pages: { enabled: true },
+      posts: { enabled: true },
+      "product-categories": { enabled: true },
+      "product-sub-categories": { enabled: true },
+      products: { enabled: true },
+      users: { enabled: { find: true } },
+    },
+    globals: {
+      footer: { enabled: { find: true, update: true } },
+      header: { enabled: { find: true, update: true } },
+      navigation: { enabled: { find: true, update: true } },
+      "top-bar": { enabled: { find: true, update: true } },
+    },
+  }),
   s3StoragePlugin,
   payloadSidebar({
     // Sort order for navigation groups (lower = higher priority)
