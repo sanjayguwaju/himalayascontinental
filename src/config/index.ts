@@ -14,7 +14,6 @@ const config = () => {
     CRON_SECRET: process.env.CRON_SECRET || "",
 
     // Database
-    DATABASE_URI: process.env.DATABASE_URI || "",
     DATABASE_URL: process.env.DATABASE_URL || "",
 
     // Admin
